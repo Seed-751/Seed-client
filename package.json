@@ -7,6 +7,7 @@
     "@testing-library/jest-dom": "^5.11.4",
     "@testing-library/react": "^11.1.0",
     "@testing-library/user-event": "^12.1.10",
+    "babel-loader": "^8.1.0",
     "eslint-plugin-prettier": "^4.0.0",
     "prop-types": "^15.7.2",
     "react": "^17.0.2",
@@ -14,7 +15,7 @@
     "react-redux": "^7.2.5",
     "react-router-dom": "^5.3.0",
     "react-scripts": "4.0.3",
-    "styled-component": "^2.8.0",
+    "styled-components": "^5.3.1",
     "styled-reset": "^4.3.4",
     "web-vitals": "^1.0.1"
   },

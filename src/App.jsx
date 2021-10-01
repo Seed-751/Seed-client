@@ -1,25 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { Route, Switch, Redirect } from "react-router-dom";
+import React from "react";
+import styled, { ThemeProvider } from "styled-components";
+
+import GlobalStyles from "./styles";
+import theme from "./styles/theme";
+import Header from "./components/Header";
+import Navigation from "./components/Navigation";
+
+const Section = styled.section`
+  width: calc(100% - 230px);
+  min-height: 100vh;
+  background-color: ${({ theme }) => theme.color.grey};
+`;
+
+const Wrapper = styled.div`
+  display: flex;
+`;
 
 function App() {
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Wrapper>
+      <ThemeProvider theme={theme}>
+        <GlobalStyles />
+        <Navigation />
+        <Section>
+          <Header />
+        </Section>
+      </ThemeProvider>
+
+    </Wrapper>
   );
 }
 
