@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 
-function Header() {
+export default function Header() {
   return (
     <Wrapper>
       <div>
@@ -29,5 +29,3 @@ const Text = styled.span`
   margin-right: 10px;
   font-size: 14px;
 `;
-
-export default Header;

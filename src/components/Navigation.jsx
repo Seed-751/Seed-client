@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-function Navigation() {
+export default function Navigation() {
   return (
     <Wrapper>
       <nav>
@@ -30,12 +30,12 @@ const Wrapper = styled.nav`
   padding: ${({ theme }) => theme.padding.default};
   background-color: ${({ theme }) => theme.color.blue};
   box-sizing: border-box;
-  border-right: 1px solid ${({ theme }) => theme.color.grey};
+  border-right: 1px solid ${({ theme }) => theme.color.gray};
 
   nav {
     margin-top: 40px;
     padding-top: 15px;
-    border-top: 1px solid ${({ theme }) => theme.color.grey};
+    border-top: 1px solid ${({ theme }) => theme.color.gray};
     font-weight: 700;
     letter-spacing: 0.04em;
 
@@ -49,5 +49,3 @@ const Wrapper = styled.nav`
     }
   }
 `;
-
-export default Navigation;

@@ -1,7 +1,7 @@
 const color = {
   blue: "#83CDDD",
   white: "#fff",
-  grey: "#F0F2FA",
+  gray: "#767676",
 };
 
 const padding = {

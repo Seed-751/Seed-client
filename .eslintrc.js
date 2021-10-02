@@ -24,7 +24,7 @@ module.exports = {
       "SwitchCase": 1
     }],
     "no-multiple-empty-lines": [
-      "error",
+      "warn",
       {
         "max": 1,
         "maxEOF": 0,
@@ -35,7 +35,8 @@ module.exports = {
     semi: ["warn", "always"],
     curly: ["warn", "all"],
     "react/display-name": "off",
-    "no-var": "error",
+    "no-var": "warn",
+    "no-unused-vars": ["warn", { "vars": "all", "args": "after-used", "ignoreRestSiblings": false }],
     "eol-last": ["warn", "always"],
     "linebreak-style": ["warn", "unix"],
     "prefer-const": [
