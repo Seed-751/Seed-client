@@ -37,14 +37,7 @@ module.exports = {
     "react/display-name": "off",
     "no-var": "error",
     "eol-last": ["warn", "always"],
-    "arrow-parens": ["warn", "always"],
     "linebreak-style": ["warn", "unix"],
-    "no-unused-vars": [
-      "warn",
-      {
-        args: "none",
-      }
-    ],
     "prefer-const": [
       "warn",
       {
