@@ -24,7 +24,8 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "prepare": "husky install"
   },
   "eslintConfig": {
     "extends": [
@@ -46,6 +47,14 @@
   },
   "devDependencies": {
     "eslint": "^7.32.0",
-    "eslint-plugin-react": "^7.26.1"
+    "eslint-plugin-react": "^7.26.1",
+    "husky": "^7.0.2",
+    "lint-staged": "^11.1.2"
+  },
+  "lint-staged": {
+    "*.{js,jsx}": [
+      "eslint --fix",
+      "git add"
+    ]
   }
 }
