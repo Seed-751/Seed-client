@@ -1,8 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import useInput from "../hooks/useInput";
+import { selectUser, loginRequest } from "../reducers/userSlice";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { ErrorMessage } from "@hookform/error-message";
+import * as yup from "yup";
+
 import Button from "../components/shared/Button";
 import Input from "../components/shared/Input";
 import theme from "../styles/theme";
@@ -41,42 +47,76 @@ const InputBox = styled.div`
   label {
     margin-left: 10px;
   }
+
+  p {
+    margin: 0;
+    margin-left: 15px;
+    color: red;
+  }
 `;
 
+const schema = yup.object({
+  email: yup.string().email().required(),
+  password: yup.string().required(),
+}).required();
+
 export default function Login() {
-  const [email, onChangeEmail] = useInput("");
-  const [password, onChangePassword] = useInput("");
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const { isLoggedIn } = useSelector(selectUser);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  function handleLogin(data) {
+    dispatch(loginRequest(data));
+  }
+
+  useEffect(() => {
+    if (isLoggedIn) {
+      return history.push("/");
+    }
+
+  }, [isLoggedIn]);
 
   return (
     <Container>
       <div>
         <strong>Welcome back!</strong>
         <h1>Login</h1>
-        <from>
+        <form onSubmit={handleSubmit(handleLogin)}>
           <InputBox>
             <label>Email</label>
             <Input
+              type="email"
               name="email"
-              value={email}
-              onChange={onChangeEmail}
-              required
+              {...register("email")}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="email"
+              render={({ message }) => <p>{message}</p>}
             />
           </InputBox>
           <InputBox>
             <label>Password</label>
             <Input
-              name="password"
-              value={password}
               type="password"
-              onChange={onChangePassword}
-              required
+              name="password"
+              {...register("password")}
+              autoComplete="new-password"
+            />
+            <ErrorMessage
+              errors={errors}
+              name="password"
+              render={({ message }) => <p>{message}</p>}
             />
           </InputBox>
           <Button type="submit">Login</Button>
-        </from>
+        </form>
         <p>
           Not registerd yet?&nbsp;
-          <Link to="/Signup" style={{ color: theme.color.blue }}>Create an Account</Link>
+          <Link to="/signup" style={{ color: theme.color.blue }}>Create an Account</Link>
         </p>
       </div>
     </Container>
