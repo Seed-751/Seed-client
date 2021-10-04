@@ -1,8 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import useInput from "../hooks/useInput";
+import { selectUser, signupRequest } from "../reducers/userSlice";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import { ErrorMessage } from "@hookform/error-message";
+import * as yup from "yup";
+
 import Input from "../components/shared/Input";
 import Button from "../components/shared/Button";
 import theme from "../styles/theme";
@@ -39,35 +45,57 @@ const InputBox = styled.div`
   text-align: left;
 
   label {
-    margin-left: 10px;
+    margin-left: 15px;
+  }
+
+  p {
+    margin: 0;
+    margin-left: 15px;
+    color: red;
   }
 `;
 
-const Message = styled.p`
-  margin: 0;
-  font-size: 10px;
-  color: red;
-`;
+const schema = yup.object({
+  email: yup.string().email().required(),
+  password: yup.string().min(8).max(20).required(),
+  passwordConfirm: yup.string().oneOf([yup.ref("password")]).required(),
+}).required();
 
 export default function Signup() {
-  const [email, onChangeEmail] = useInput("");
-  const [password, onChangePassword] = useInput("");
-  const [passwordConfirm, onChangePasswordConfirm] = useInput("");
+  const { register, handleSubmit, formState: { errors } } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const { isSignupSuccess } = useSelector(selectUser);
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  function handleSignup(data) {
+    dispatch(signupRequest(data));
+  }
+
+  useEffect(() => {
+    if (isSignupSuccess) {
+      return history.push("/login");
+    }
+
+  }, [isSignupSuccess]);
 
   return (
     <Container>
       <div>
         <h1>Sign up</h1>
-        <form
-          name="form"
-        >
+        <form onSubmit={handleSubmit(handleSignup)}>
           <InputBox>
             <label>Email</label>
             <Input
+              type="email"
               name="email"
-              value={email}
-              onChange={onChangeEmail}
-              required
+              {...register("email")}
+            />
+            <ErrorMessage
+              errors={errors}
+              name="email"
+              render={({ message }) => <p>{message}</p>}
             />
           </InputBox>
           <InputBox>
@@ -75,9 +103,13 @@ export default function Signup() {
             <Input
               type="password"
               name="password"
-              value={password}
-              onChange={onChangePassword}
-              required
+              {...register("password")}
+              autoComplete="new-password"
+            />
+            <ErrorMessage
+              errors={errors}
+              name="password"
+              render={({ message }) => <p>{message}</p>}
             />
           </InputBox>
           <InputBox>
@@ -85,9 +117,13 @@ export default function Signup() {
             <Input
               type="password"
               name="passwordConfirm"
-              value={passwordConfirm}
-              onChange={onChangePasswordConfirm}
-              required
+              {...register("passwordConfirm")}
+              autoComplete="new-password"
+            />
+            <ErrorMessage
+              errors={errors}
+              name="passwordConfirm"
+              render={({ message }) => <p>{message}</p>}
             />
           </InputBox>
           <Button type="submit">Sign up</Button>

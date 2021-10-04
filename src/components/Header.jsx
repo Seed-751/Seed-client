@@ -1,15 +1,6 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
-
-export default function Header() {
-  return (
-    <Wrapper>
-      <div>
-        <Text>Welcome, {name}</Text>
-      </div>
-    </Wrapper>
-  );
-}
 
 const Wrapper = styled.header`
   display: flex;
@@ -29,3 +20,21 @@ const Text = styled.span`
   margin-right: 10px;
   font-size: 14px;
 `;
+
+export default function Header({ userInfo }) {
+  const { email } = userInfo || {};
+
+  return (
+    <Wrapper>
+      <div>
+        <Text>Welcome {email}</Text>
+      </div>
+    </Wrapper>
+  );
+}
+
+Header.propTypes = {
+  userInfo: PropTypes.shape({
+    email: PropTypes.string,
+  }),
+};
