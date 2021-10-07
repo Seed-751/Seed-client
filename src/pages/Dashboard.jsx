@@ -1,5 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
+
+import { selectMusic, getMusicsRequest } from "../reducers/musicSlice";
 
 import Music from "../components/Music";
 
@@ -16,12 +20,25 @@ const MusicBox = styled.div`
 `;
 
 export default function Dashboard() {
+  const { musics, isLoading } = useSelector(selectMusic);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getMusicsRequest());
+
+  }, [dispatch]);
+
+  if (isLoading) {
+    return null;
+  }
 
   return (
     <Container>
       <h1>Musics</h1>
       <MusicBox>
-        <Music />
+        {musics?.map((music) => (
+          <Music key={music} music={music} />
+        ))}
       </MusicBox>
     </Container>
   );

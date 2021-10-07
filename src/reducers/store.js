@@ -5,6 +5,7 @@ import logger from "redux-logger";
 import { rootSaga } from "../sagas/rootSaga";
 
 import userReducer from "./userSlice";
+import musicReducer from "./musicSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -15,6 +16,7 @@ const middleware = process.env.NODE_ENV === "development"
 const store = configureStore({
   reducer: {
     user: userReducer,
+    music: musicReducer,
   },
   middleware,
 });
