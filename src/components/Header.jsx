@@ -27,7 +27,7 @@ export default function Header({ userInfo }) {
   return (
     <Wrapper>
       <div>
-        <Text>Welcome {email}</Text>
+        <Text>Hello {email}</Text>
       </div>
     </Wrapper>
   );

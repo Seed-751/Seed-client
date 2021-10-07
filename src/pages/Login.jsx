@@ -11,7 +11,6 @@ import * as yup from "yup";
 
 import Button from "../components/shared/Button";
 import Input from "../components/shared/Input";
-import theme from "../styles/theme";
 
 const Container = styled.div`
   display: flex;
@@ -116,7 +115,7 @@ export default function Login() {
         </form>
         <p>
           Not registerd yet?&nbsp;
-          <Link to="/signup" style={{ color: theme.color.blue }}>Create an Account</Link>
+          <Link to="/signup" style={{ color: ({ theme }) => theme.color.blue }}>Create an Account</Link>
         </p>
       </div>
     </Container>

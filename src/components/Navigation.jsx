@@ -11,10 +11,7 @@ export default function Navigation() {
             <Link to="/">Dashboard</Link>
           </li>
           <li>
-            <Link to="/prescription">Prescription</Link>
-          </li>
-          <li>
-            <Link to="/prescriptions">History</Link>
+            <Link to="/upload">Upload</Link>
           </li>
           <li>
             <Link to="/settings">Settings</Link>
