@@ -37,7 +37,9 @@ export default function Dashboard() {
       <h1>Musics</h1>
       <MusicBox>
         {musics?.map((music) => (
-          <Music key={music} music={music} />
+          <Link key={music._id} to="/musics/:music_id">
+            <Music key={music._id} music={music} />
+          </Link>
         ))}
       </MusicBox>
     </Container>

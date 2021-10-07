@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { INITIAL_PREVIEW_IMAGE } from "../constants";
@@ -48,17 +49,27 @@ const InfoBox = styled.div`
   line-height: 1.2;
 `;
 
-export default function Music() {
+export default function Music({ music }) {
+  const { title, image: url, artist } = music;
+  const { email } = artist;
 
   return (
     <Wrapper>
       <ImgBox>
-        <img src={INITIAL_PREVIEW_IMAGE} alt="thumb-nail"></img>
+        <img src={url} alt="thumb-nail"></img>
       </ImgBox>
       <InfoBox>
-        <h1>title</h1>
-        <p>artist</p>
+        <h1>{title}</h1>
+        <p>{email}</p>
       </InfoBox>
     </Wrapper>
   );
 }
+
+Music.propTypes = {
+  music: PropTypes.shape({
+    title: PropTypes.string,
+    image: PropTypes.string,
+    artist: PropTypes.array,
+  }).isRequired,
+};

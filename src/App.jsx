@@ -13,6 +13,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import MusicDetail from "./pages/MusicDetail";
 import Upload from "./pages/Upload";
 import getCookie from "./utils/getCookie";
 
@@ -64,6 +65,9 @@ export default function App() {
                 </Route>
                 <Route path="/dashboard">
                   <Dashboard />
+                </Route>
+                <Route path="/musics/:music_id">
+                  <MusicDetail />
                 </Route>
                 <PrivateRoute
                   path="/upload"
