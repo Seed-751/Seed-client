@@ -13,6 +13,7 @@ import PrivateRoute from "./components/PrivateRoute";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import Upload from "./pages/Upload";
 import getCookie from "./utils/getCookie";
 
 const Section = styled.section`
@@ -61,10 +62,13 @@ export default function App() {
                 <Route path="/signup">
                   <Signup />
                 </Route>
+                <Route path="/dashboard">
+                  <Dashboard />
+                </Route>
                 <PrivateRoute
-                  path="/dashboard"
+                  path="/upload"
                   isAuthenticated={isLoggedIn}
-                  component={Dashboard}
+                  component={Upload}
                 />
                 <Route path="/" exact>
                   <Redirect to="/dashboard" />
