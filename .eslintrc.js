@@ -1,4 +1,5 @@
 module.exports = {
+  "parser": "babel-eslint",
   "env": {
     "browser": true,
     "es2021": true,
@@ -21,6 +22,7 @@ module.exports = {
   ],
   "rules": {
     indent: ["warn", 2, {
+      "ignoredNodes": ["TemplateLiteral"],
       "SwitchCase": 1
     }],
     "no-multiple-empty-lines": [

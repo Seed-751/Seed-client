@@ -1,4 +1,5 @@
 const INITIAL_PREVIEW_IMAGE = "/defaultImage.png";
+const DEFAULT_AUDIO_SAMPLE = "/file_example_MP3_700KB.mp3";
 
 const ERROR = {
   inputAudioFile: "audio file을 넣어주세요",
@@ -27,4 +28,5 @@ export {
   INITIAL_PREVIEW_IMAGE,
   GENRE_OPTIONS,
   ERROR,
+  DEFAULT_AUDIO_SAMPLE,
 };

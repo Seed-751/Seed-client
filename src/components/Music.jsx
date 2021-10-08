@@ -1,8 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
 
-import { INITIAL_PREVIEW_IMAGE } from "../constants";
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,7 +20,8 @@ const Wrapper = styled.div`
   }
 
   img {
-    width: 100%;
+    width: inherit;
+    object-fit: cover;
   }
 
   strong {
@@ -37,6 +37,8 @@ const Wrapper = styled.div`
 `;
 
 const ImgBox = styled.div`
+  display: flex;
+  justify-content: center;
   width: 90%;
   border-radius: 10px;
 `;

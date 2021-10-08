@@ -3,8 +3,8 @@ import getCookie from "../utils/getCookie";
 const URL = process.env.REACT_APP_API_SERVER_URL;
 const token = getCookie("token");
 
-async function requestMusics() {
-  const res = await fetch(`${URL}/musics`, {
+async function requestMusic(musicId) {
+  const res = await fetch(`${URL}/musics/${musicId}`, {
     method: "GET",
     credentials: "include",
     headers: {
@@ -19,4 +19,4 @@ async function requestMusics() {
   return result;
 }
 
-export default requestMusics;
+export default requestMusic;

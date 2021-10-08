@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Link, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
@@ -37,7 +37,7 @@ export default function Dashboard() {
       <h1>Musics</h1>
       <MusicBox>
         {musics?.map((music) => (
-          <Link key={music._id} to="/musics/:music_id">
+          <Link key={music._id} to={`/musics/${music._id}`}>
             <Music key={music._id} music={music} />
           </Link>
         ))}

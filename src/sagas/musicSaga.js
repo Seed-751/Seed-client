@@ -1,6 +1,6 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 
-import requestMusics from "../api/requestMusics";
+import requestAllMusics from "../api/requestAllMusics";
 import {
   getMusicsRequest,
   getMusicsSuccess,
@@ -9,7 +9,7 @@ import {
 
 function* handleGetMusics() {
   try {
-    const { data, message } = yield call(requestMusics);
+    const { data, message } = yield call(requestAllMusics);
 
     if (data) {
       return yield put(getMusicsSuccess(data));
