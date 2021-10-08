@@ -17,7 +17,7 @@ import {
 
 function* handleSignupSaga({ payload }) {
   try {
-    const {success, message } = yield call(requestSignup, payload);
+    const { success, message } = yield call(requestSignup, payload);
 
     if (success) {
       return yield put(signupSuccess());

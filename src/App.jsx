@@ -5,18 +5,22 @@ import styled, { ThemeProvider } from "styled-components";
 
 import { authCheckRequest, selectUser } from "./reducers/userSlice";
 
-import GlobalStyles from "./styles";
-import theme from "./styles/theme";
 import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import PrivateRoute from "./components/PrivateRoute";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
+import MusicDetail from "./pages/MusicDetail";
 import Upload from "./pages/Upload";
+
+import GlobalStyles from "./styles";
+import theme from "./styles/theme";
 import getCookie from "./utils/getCookie";
 
 const Section = styled.section`
+  display: flex;
+  flex-direction: column;
   width: calc(100% - 230px);
   min-height: 100vh;
 `;
@@ -47,11 +51,11 @@ export default function App() {
   }
 
   return (
-    <Container>
-      <ThemeProvider theme={theme}>
-        <GlobalStyles />
-        {isLoaded &&
-          <>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      {isLoaded &&
+        <>
+          <Container>
             <Navigation />
             <Section>
               <Header userInfo={userInfo} />
@@ -65,6 +69,9 @@ export default function App() {
                 <Route path="/dashboard">
                   <Dashboard />
                 </Route>
+                <Route path="/musics/:music_id">
+                  <MusicDetail />
+                </Route>
                 <PrivateRoute
                   path="/upload"
                   isAuthenticated={isLoggedIn}
@@ -75,9 +82,9 @@ export default function App() {
                 </Route>
               </Switch>
             </Section>
-          </>
-        }
-      </ThemeProvider>
-    </Container>
+          </Container>
+        </>
+      }
+    </ThemeProvider>
   );
 }

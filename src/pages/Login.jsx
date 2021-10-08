@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
+import theme from "../styles/theme";
 import { selectUser, loginRequest } from "../reducers/userSlice";
 import { useForm } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -115,7 +116,7 @@ export default function Login() {
         </form>
         <p>
           Not registerd yet?&nbsp;
-          <Link to="/signup" style={{ color: ({ theme }) => theme.color.blue }}>Create an Account</Link>
+          <Link to="/signup" style={{ color: theme.color.blue }}>Create an Account</Link>
         </p>
       </div>
     </Container>
