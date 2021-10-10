@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useRef, useState, useEffect } from "react";
+import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import theme from "../styles/theme";
-import { IconButton, Slider, Avatar } from "@material-ui/core/";
-import { Forward10, Replay10, PlayArrow, Pause, VolumeOff, VolumeUp } from "@material-ui/icons/";
-import { INITIAL_PREVIEW_IMAGE, DEFAULT_AUDIO_SAMPLE } from "../constants";
+import { IconButton, Avatar } from "@material-ui/core/";
+import { Forward10, Replay10, PlayCircleFilled, PauseCircleFilled, VolumeOff, VolumeUp } from "@material-ui/icons/";
+import { INITIAL_PREVIEW_IMAGE } from "../constants";
 
 const Wrapper = styled.div`
   display: flex;
@@ -23,15 +24,6 @@ const Wrapper = styled.div`
   div {
     display: flex;
   }
-`;
-
-const PlaySliderBox = styled.div`
-  position: absolute;
-  width: 100%;
-  z-index: 1;
-  top: -14px;
-  left: 0;
-  color: ${({ theme }) => theme.color.blue};
 `;
 
 const MusicInfoBox = styled.div`
@@ -62,14 +54,116 @@ const TimeSoundInfoBox = styled.div`
 
 const SoundBox = styled.div`
   width: 100px;
+  color: ${({ theme }) => theme.color.blue};
 `;
 
-export default function BottomPlayer() {
+const PlaySliderBox = styled.div`
+  position: absolute;
+  width: 100%;
+  padding: 0;
+  z-index: 1;
+  top: -3px;
+  left: 0;
+`;
+
+const ProgressBar = styled.input`
+  margin: 0;
+  z-index: 2;
+  width: 100%;
+  height: 3px;
+  appearance: none;
+  color: ${({ theme }) => theme.color.blue};
+  background: ${({ theme }) => theme.color.blue};
+  outline: none;
+
+  ::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    height: 15px;
+    width: 15px;
+    border-radius: 50%;
+    border: none;
+    background-color: ${({ theme }) => theme.color.blue};
+    cursor: pointer;
+    position: relative;
+    margin: -2px 0 0 0;
+  }
+`;
+
+export default function BottomPlayer({ music }) {
+  const audioPlayer = useRef();
+  const progressBar = useRef();
+  const soundBar = useRef();
+  const [isPlaying, setIsPlaying] = useState(false);
+  const [isMuted, setIsMuted] = useState(false);
+  const [currentTime, setCurrentTime] = useState(0);
+  const [duration, setDuration] = useState(0);
+
+  useEffect(() => {
+    audioPlayer.current.onloadedmetadata = function () {
+      setDuration(Math.floor(audioPlayer.current.duration));
+      audioPlayer.current.volume = soundBar.current.value / 100;
+    };
+
+    const id = setInterval(() => {
+      if (!audioPlayer.current) {
+        return null;
+      }
+
+      progressBar.current.value = audioPlayer.current.currentTime / audioPlayer.current.duration * 100;
+      setCurrentTime(Math.floor(audioPlayer.current.currentTime));
+    }, 100);
+
+    return (() => {
+      clearInterval(id);
+    });
+  }, [music]);
+
+  function handleTogglePlay() {
+    setIsPlaying(!isPlaying);
+
+    if (!isPlaying) {
+      audioPlayer.current.play();
+    } else {
+      audioPlayer.current.pause();
+    }
+  }
+
+  function handleToggleMute() {
+    setIsMuted(!isMuted);
+
+    if (!isMuted) {
+      audioPlayer.current.muted = true;
+    } else {
+      audioPlayer.current.muted = false;
+    }
+  }
+
+  function handleChangeProgress(e) {
+    audioPlayer.current.currentTime = duration * e.target.value / 100;
+  }
+
+  function handleChangeSound(e) {
+    audioPlayer.current.volume = e.target.value / 100;
+  }
+
+  function handleBackwardTen() {
+    audioPlayer.current.currentTime -= 10;
+  }
+
+  function handleForwardTen() {
+    audioPlayer.current.currentTime += 10;
+  }
 
   return (
     <Wrapper>
+      <audio ref={audioPlayer} src={music} preload="metadata" />
       <PlaySliderBox>
-        <Slider style={{ color: theme.color.blue }}></Slider>
+        <ProgressBar
+          ref={progressBar}
+          type="range"
+          defaultValue={0}
+          onChange={handleChangeProgress}
+        />
       </PlaySliderBox>
       <MusicInfoBox>
         <Avatar variant="square" src={INITIAL_PREVIEW_IMAGE} />
@@ -80,27 +174,45 @@ export default function BottomPlayer() {
       </MusicInfoBox>
       <ButtonBox>
         <IconButton>
-          <Replay10 style={{ color: theme.color.blue }} />
+          <Replay10
+            style={{ color: theme.color.lightGray }}
+            onClick={handleBackwardTen}
+          />
         </IconButton>
-        <audio src={DEFAULT_AUDIO_SAMPLE}/>
-        <IconButton>
-          <PlayArrow style={{ color: theme.color.blue }} />
-          <Pause style={{ color: theme.color.blue }} />
+        <IconButton onClick={handleTogglePlay}>
+          {isPlaying
+            ? <PauseCircleFilled style={{ color: theme.color.blue }} />
+            : <PlayCircleFilled style={{ color: theme.color.blue }} />
+          }
         </IconButton>
         <IconButton>
-          <Forward10 style={{ color: theme.color.blue }} />
+          <Forward10
+            style={{ color: theme.color.lightGray }}
+            onClick={handleForwardTen}
+          />
         </IconButton>
       </ButtonBox>
       <TimeSoundInfoBox>
-        <p>time / duration</p>
+        <p>{currentTime} / {duration}</p>
         <SoundBox>
-          <Slider style={{ color: theme.color.blue }} />
+          <ProgressBar
+            ref={soundBar}
+            type="range"
+            style={{ color: theme.color.blue }}
+            onChange={handleChangeSound}
+          />
         </SoundBox>
-        <IconButton>
-          <VolumeUp style={{ color: theme.color.blue }} />
-          <VolumeOff style={{ color: theme.color.blue }} />
+        <IconButton onClick={handleToggleMute}>
+          {!isMuted
+            ? <VolumeUp style={{ color: theme.color.lightGray }} />
+            : <VolumeOff style={{ color: theme.color.lightGray }} />
+          }
         </IconButton>
       </TimeSoundInfoBox>
     </Wrapper>
   );
 }
+
+BottomPlayer.propTypes = {
+  music: PropTypes.string.isRequired,
+};

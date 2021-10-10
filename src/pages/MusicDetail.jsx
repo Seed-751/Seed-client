@@ -12,6 +12,7 @@ export default function MusicDetail() {
   const params = useParams();
   const musicId = params.music_id;
   const [album, setAlbum] = useState(null);
+  const [currentMusic, setCurrentMusic] = useState(null);
 
   useEffect(() => {
     async function getMusic() {
@@ -19,6 +20,7 @@ export default function MusicDetail() {
         const { data, message } = await requestMusic(musicId);
 
         if (data) {
+          setCurrentMusic(data.audios[0]);
           return setAlbum(data);
         }
 
@@ -31,9 +33,13 @@ export default function MusicDetail() {
     getMusic();
   }, [musicId]);
 
+  if (!album) {
+    return null;
+  }
+
   return (
     <Container>
-      <BottomPlayer />
+      {currentMusic && <BottomPlayer music={currentMusic} />}
     </Container>
   );
 }
