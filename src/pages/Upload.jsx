@@ -9,6 +9,7 @@ import { ErrorMessage } from "@hookform/error-message";
 import Input from "../components/shared/Input";
 import Button from "../components/shared/Button";
 import requestUploadMusic from "../api/requestUploadMusic";
+import validateMetaData from "../utils/validateMetaData";
 import { INITIAL_PREVIEW_IMAGE, ERROR, GENRE_OPTIONS } from "../constants";
 
 const Container = styled.div`
@@ -97,7 +98,6 @@ const UploadAudioInput = styled.div`
 `;
 
 export default function Upload() {
-  const [audioFiles, setAudioFiles] = useState([]);
   const [previewImage, setPreviewImage] = useState(INITIAL_PREVIEW_IMAGE);
   const [audioError, setAudioError] = useState(null);
   const history = useHistory();
@@ -112,24 +112,35 @@ export default function Upload() {
     acceptedFiles,
   } = useDropzone({
     accept: "audio/*",
-    onDrop: acceptedFiles => {
-      setAudioError(null);
-      setAudioFiles([...acceptedFiles]);
-    },
+    onDrop,
     multiple: true,
     validator: validateAudio,
   });
 
+  async function onDrop(acceptedFiles) {
+    if (!acceptedFiles.length) {
+      return setAudioError([ERROR.inputAudioFile]);
+    }
+
+    await Promise.all(acceptedFiles.map((file) => {
+      return validateMetaData(file);
+    })).then((result) => setAudioError(result));
+  }
+
   async function handleUploadMusic(data) {
-    if (!audioFiles.length) {
-      return setAudioError(ERROR.inputAudioFile);
+    const isNotError = audioError.every((error) => {
+      return error === null;
+    });
+
+    if (!isNotError) {
+      return setAudioError([ERROR.checkAudioFile]);
     }
 
     const { image } = data;
     const musicInfo = {
       ...data,
       image: image[0],
-      audioFiles,
+      audioFiles: acceptedFiles,
     };
 
     try {

@@ -7,6 +7,12 @@ const ERROR = {
   inputImage: "image file을 넣어주세요",
   inputGenre: "genre를 선택해 주세요",
   inputDescription: "description을 입력 해주세요",
+  checkAudioFile: "audio file을 확인해주세요",
+  inputMetaAlbum: "metadata album항목을 확인해주세요",
+  inputMetaTitle: "metadata title항목을 확인해주세요",
+  inputMetaTrack: "metadata track항목을 확인해주세요",
+  inputMetaGenre: "metadata genre항목을 확인해주세요",
+  inputMetaArtist: "metadata artist항목을 확인해주세요",
 };
 
 const GENRE_OPTIONS = [
