@@ -4,10 +4,13 @@ import { useSelector, useDispatch } from "react-redux";
 import styled, { ThemeProvider } from "styled-components";
 
 import { authCheckRequest, selectUser } from "./reducers/userSlice";
+import { selectError } from "./reducers/errorSlice";
 
 import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import PrivateRoute from "./components/PrivateRoute";
+import Modal from "./components/Modal/Modal";
+import Error from "./components/Modal/Error";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
@@ -32,18 +35,21 @@ const Container = styled.div`
 export default function App() {
   const [isLoaded, setIsLoaded] = useState(false);
   const { userInfo, isLoggedIn } = useSelector(selectUser);
+  const { isError, message } = useSelector(selectError);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (isLoggedIn) {
+      return handleLoaded(true);
+    }
+
     if (!getCookie("token")) {
       return handleLoaded(true);
     }
 
     dispatch(authCheckRequest());
 
-    if (isLoggedIn) {
-      return handleLoaded(true);
-    }
+    // eslint-disable-next-line
   }, [isLoggedIn]);
 
   function handleLoaded(value) {
@@ -59,6 +65,11 @@ export default function App() {
             <Navigation />
             <Section>
               <Header userInfo={userInfo} />
+              {isError &&
+                <Modal isError={isError}>
+                  <Error message={message}/>
+                </Modal>
+              }
               <Switch>
                 <Route path="/login">
                   <Login />

@@ -1,7 +1,4 @@
-import getCookie from "../utils/getCookie";
-
 const URL = process.env.REACT_APP_API_SERVER_URL;
-const token = getCookie("token");
 
 async function requestUploadMusic({ title, image, audioFiles, genre, description }) {
   const data = new FormData();
@@ -20,7 +17,6 @@ async function requestUploadMusic({ title, image, audioFiles, genre, description
     credentials: "include",
     headers: {
       Accept: "application/json",
-      "authorization": token,
     },
     body: data,
   });

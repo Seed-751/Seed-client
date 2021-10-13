@@ -5,7 +5,6 @@ import styled from "styled-components";
 import theme from "../styles/theme";
 import { IconButton, Avatar } from "@material-ui/core/";
 import { Forward10, Replay10, PlayCircleFilled, PauseCircleFilled, VolumeOff, VolumeUp } from "@material-ui/icons/";
-import { INITIAL_PREVIEW_IMAGE } from "../constants";
 
 const Wrapper = styled.div`
   display: flex;
@@ -54,7 +53,7 @@ const TimeSoundInfoBox = styled.div`
 
 const SoundBox = styled.div`
   width: 100px;
-  color: ${({ theme }) => theme.color.blue};
+  color: ${({ theme }) => theme.color.green};
 `;
 
 const PlaySliderBox = styled.div`
@@ -72,8 +71,8 @@ const ProgressBar = styled.input`
   width: 100%;
   height: 3px;
   appearance: none;
-  color: ${({ theme }) => theme.color.blue};
-  background: ${({ theme }) => theme.color.blue};
+  color: ${({ theme }) => theme.color.green};
+  background: ${({ theme }) => theme.color.green};
   outline: none;
 
   ::-webkit-slider-thumb {
@@ -82,14 +81,14 @@ const ProgressBar = styled.input`
     width: 15px;
     border-radius: 50%;
     border: none;
-    background-color: ${({ theme }) => theme.color.blue};
+    background-color: ${({ theme }) => theme.color.green};
     cursor: pointer;
     position: relative;
     margin: -2px 0 0 0;
   }
 `;
 
-export default function BottomPlayer({ music }) {
+export default function BottomPlayer({ music, image }) {
   const audioPlayer = useRef();
   const progressBar = useRef();
   const soundBar = useRef();
@@ -97,6 +96,7 @@ export default function BottomPlayer({ music }) {
   const [isMuted, setIsMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
+  const { title, artist, url: audioUrl } = music;
 
   useEffect(() => {
     audioPlayer.current.onloadedmetadata = function () {
@@ -156,7 +156,7 @@ export default function BottomPlayer({ music }) {
 
   return (
     <Wrapper>
-      <audio ref={audioPlayer} src={music} preload="metadata" />
+      <audio ref={audioPlayer} src={audioUrl} preload="metadata" />
       <PlaySliderBox>
         <ProgressBar
           ref={progressBar}
@@ -166,10 +166,10 @@ export default function BottomPlayer({ music }) {
         />
       </PlaySliderBox>
       <MusicInfoBox>
-        <Avatar variant="square" src={INITIAL_PREVIEW_IMAGE} />
+        <Avatar variant="square" src={image} />
         <MusicDetail>
-          <p>title</p>
-          <p>artist</p>
+          <p>{title}</p>
+          <p>{artist}</p>
         </MusicDetail>
       </MusicInfoBox>
       <ButtonBox>
@@ -181,8 +181,8 @@ export default function BottomPlayer({ music }) {
         </IconButton>
         <IconButton onClick={handleTogglePlay}>
           {isPlaying
-            ? <PauseCircleFilled style={{ color: theme.color.blue }} />
-            : <PlayCircleFilled style={{ color: theme.color.blue }} />
+            ? <PauseCircleFilled style={{ color: theme.color.green }} />
+            : <PlayCircleFilled style={{ color: theme.color.green }} />
           }
         </IconButton>
         <IconButton>
@@ -198,7 +198,7 @@ export default function BottomPlayer({ music }) {
           <ProgressBar
             ref={soundBar}
             type="range"
-            style={{ color: theme.color.blue }}
+            style={{ color: theme.color.green }}
             onChange={handleChangeSound}
           />
         </SoundBox>
@@ -215,4 +215,5 @@ export default function BottomPlayer({ music }) {
 
 BottomPlayer.propTypes = {
   music: PropTypes.string.isRequired,
+  image: PropTypes.string,
 };

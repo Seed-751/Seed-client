@@ -4,7 +4,7 @@ const Button = styled.button`
   width: ${(props) => (props.width || "100%")};
   height: ${(props) => (props.height || "45px")};
   border-radius: 50px;
-  background-color: ${({ theme }) => theme.color.blue};
+  background-color: ${({ theme }) => theme.color.green};
   vertical-align: middle;
   color: ${({ theme }) => theme.color.white};
 `;

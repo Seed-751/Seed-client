@@ -6,6 +6,7 @@ import {
   getMusicsSuccess,
   getMusicsFailure,
 } from "../reducers/musicSlice";
+import { occurError } from "../reducers/errorSlice";
 
 function* handleGetMusics() {
   try {
@@ -16,8 +17,10 @@ function* handleGetMusics() {
     }
 
     yield put(getMusicsFailure(message));
+    yield put(occurError(message));
   } catch (err) {
     yield put(getMusicsFailure(err.message));
+    yield put(occurError(err.message));
   }
 }
 

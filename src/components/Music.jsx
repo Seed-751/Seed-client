@@ -72,6 +72,6 @@ Music.propTypes = {
   music: PropTypes.shape({
     title: PropTypes.string,
     image: PropTypes.string,
-    artist: PropTypes.array,
+    artist: PropTypes.object,
   }).isRequired,
 };

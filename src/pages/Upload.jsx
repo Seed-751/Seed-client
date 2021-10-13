@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
 import styled from "styled-components";
@@ -9,7 +10,9 @@ import { ErrorMessage } from "@hookform/error-message";
 import Input from "../components/shared/Input";
 import Button from "../components/shared/Button";
 import requestUploadMusic from "../api/requestUploadMusic";
+import validateMetaData from "../utils/validateMetaData";
 import { INITIAL_PREVIEW_IMAGE, ERROR, GENRE_OPTIONS } from "../constants";
+import { occurError } from "../reducers/errorSlice";
 
 const Container = styled.div`
   display: flex;
@@ -97,10 +100,11 @@ const UploadAudioInput = styled.div`
 `;
 
 export default function Upload() {
-  const [audioFiles, setAudioFiles] = useState([]);
   const [previewImage, setPreviewImage] = useState(INITIAL_PREVIEW_IMAGE);
   const [audioError, setAudioError] = useState(null);
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -112,24 +116,35 @@ export default function Upload() {
     acceptedFiles,
   } = useDropzone({
     accept: "audio/*",
-    onDrop: acceptedFiles => {
-      setAudioError(null);
-      setAudioFiles([...acceptedFiles]);
-    },
+    onDrop,
     multiple: true,
     validator: validateAudio,
   });
 
+  async function onDrop(acceptedFiles) {
+    if (!acceptedFiles.length) {
+      return setAudioError([ERROR.inputAudioFile]);
+    }
+
+    await Promise.all(acceptedFiles.map((file) => {
+      return validateMetaData(file);
+    })).then((result) => setAudioError(result));
+  }
+
   async function handleUploadMusic(data) {
-    if (!audioFiles.length) {
-      return setAudioError(ERROR.inputAudioFile);
+    const isNotError = audioError.every((error) => {
+      return error === null;
+    });
+
+    if (!isNotError) {
+      return setAudioError([ERROR.checkAudioFile]);
     }
 
     const { image } = data;
     const musicInfo = {
       ...data,
       image: image[0],
-      audioFiles,
+      audioFiles: acceptedFiles,
     };
 
     try {
@@ -138,8 +153,9 @@ export default function Upload() {
       if (result.success) {
         return history.push("/");
       }
+
     } catch (err) {
-      console.log(err);
+      dispatch(occurError(err));
     }
   }
 
@@ -192,10 +208,6 @@ export default function Upload() {
               {...register("image", {
                 onChange: handleImage,
                 required: ERROR.inputImage,
-                validate: (value) => {
-                  const type = value[0]?.type.split("/")[0];
-                  return type === "image" || ERROR.inputImage;
-                },
               })}
             />
             <ErrorMessage
