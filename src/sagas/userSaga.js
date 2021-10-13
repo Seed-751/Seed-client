@@ -3,6 +3,7 @@ import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 import requestLogin from "../api/requestLogin";
 import requestSignup from "../api/requestSignup";
 import requestAuthCheck from "../api/requestAuthCheck";
+import requestLogout from "../api/requestLogout";
 import {
   signupRequest,
   signupSuccess,
@@ -13,6 +14,9 @@ import {
   authCheckRequest,
   authCheckSuccess,
   authCheckFailure,
+  logoutRequest,
+  logoutSuccess,
+  logoutFailure,
 } from "../reducers/userSlice";
 
 function* handleSignupSaga({ payload }) {
@@ -43,7 +47,7 @@ function* handleLoginSaga({ payload }) {
   }
 }
 
-function* handleAuthCheck() {
+function* handleAuthCheckSaga() {
   try {
     const { data, message } = yield call(requestAuthCheck);
 
@@ -57,10 +61,25 @@ function* handleAuthCheck() {
   }
 }
 
+function* handleLogoutSaga() {
+  try {
+    const { success, message } = yield call(requestLogout);
+
+    if (success) {
+      return yield put(logoutSuccess());
+    }
+
+    yield put(logoutFailure(message));
+  } catch (err) {
+    yield put(logoutFailure(err.message));
+  }
+}
+
 export default function* userSaga() {
   yield all([
     takeLatest(signupRequest.type, handleSignupSaga),
     takeLatest(loginRequest.type, handleLoginSaga),
-    takeLatest(authCheckRequest.type, handleAuthCheck),
+    takeLatest(authCheckRequest.type, handleAuthCheckSaga),
+    takeLatest(logoutRequest.type, handleLogoutSaga)
   ]);
 }

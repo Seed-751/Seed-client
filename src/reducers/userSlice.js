@@ -55,6 +55,20 @@ const userSlice = createSlice({
       state.isSignupSuccess = false;
       state.error = action.payload;
     },
+    logoutRequest: (state) => {
+      state.isLoading = true;
+    },
+    logoutSuccess: (state) => {
+      state.isLoading = false;
+      state.userInfo = null;
+      state.isLoggedIn = false;
+      state.error = null;
+    },
+    logoutFailure: (state, action) => {
+      state.isLoading = false;
+      state.isLoggedIn = true;
+      state.error = action.payload;
+    },
   },
 });
 
@@ -68,6 +82,9 @@ export const {
   authCheckRequest,
   authCheckSuccess,
   authCheckFailure,
+  logoutRequest,
+  logoutSuccess,
+  logoutFailure,
 } = userSlice.actions;
 
 export const selectUser = (state) => state.user;

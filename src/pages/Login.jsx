@@ -77,7 +77,7 @@ export default function Login() {
       return history.push("/");
     }
 
-  }, [isLoggedIn]);
+  }, [isLoggedIn, history]);
 
   return (
     <Container>

@@ -13,6 +13,7 @@ const ERROR = {
   inputMetaTrack: "metadata track항목을 확인해주세요",
   inputMetaGenre: "metadata genre항목을 확인해주세요",
   inputMetaArtist: "metadata artist항목을 확인해주세요",
+  inputAmount: "amount를 입력해주세요",
 };
 
 const GENRE_OPTIONS = [

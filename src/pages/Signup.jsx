@@ -108,7 +108,7 @@ export default function Signup() {
       return history.push("/login");
     }
 
-  }, [isSignupSuccess]);
+  }, [isSignupSuccess, history]);
 
   return (
     <Container>

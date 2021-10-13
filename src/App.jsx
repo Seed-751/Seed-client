@@ -35,15 +35,17 @@ export default function App() {
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (isLoggedIn) {
+      return handleLoaded(true);
+    }
+
     if (!getCookie("token")) {
       return handleLoaded(true);
     }
 
     dispatch(authCheckRequest());
 
-    if (isLoggedIn) {
-      return handleLoaded(true);
-    }
+    // eslint-disable-next-line
   }, [isLoggedIn]);
 
   function handleLoaded(value) {
