@@ -149,6 +149,7 @@ export default function Upload() {
       if (result.success) {
         return history.push("/");
       }
+
     } catch (err) {
       console.log(err);
     }
@@ -203,10 +204,6 @@ export default function Upload() {
               {...register("image", {
                 onChange: handleImage,
                 required: ERROR.inputImage,
-                validate: (value) => {
-                  const type = value[0]?.type.split("/")[0];
-                  return type === "image" || ERROR.inputImage;
-                },
               })}
             />
             <ErrorMessage
