@@ -1,7 +1,4 @@
-import getCookie from "../utils/getCookie";
-
 const URL = process.env.REACT_APP_API_SERVER_URL;
-const token = getCookie("token");
 
 async function requestAllMusics() {
   const res = await fetch(`${URL}/musics`, {
@@ -10,7 +7,6 @@ async function requestAllMusics() {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      "authorization": token,
     },
   });
 
