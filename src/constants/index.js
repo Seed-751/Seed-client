@@ -14,6 +14,7 @@ const ERROR = {
   inputMetaGenre: "metadata genre항목을 확인해주세요",
   inputMetaArtist: "metadata artist항목을 확인해주세요",
   inputAmount: "amount를 입력해주세요",
+  failPayment: "결제에 실패 하셧습니다",
 };
 
 const GENRE_OPTIONS = [

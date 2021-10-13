@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
 import styled from "styled-components";
@@ -11,6 +12,7 @@ import Button from "../components/shared/Button";
 import requestUploadMusic from "../api/requestUploadMusic";
 import validateMetaData from "../utils/validateMetaData";
 import { INITIAL_PREVIEW_IMAGE, ERROR, GENRE_OPTIONS } from "../constants";
+import { occurError } from "../reducers/errorSlice";
 
 const Container = styled.div`
   display: flex;
@@ -101,6 +103,8 @@ export default function Upload() {
   const [previewImage, setPreviewImage] = useState(INITIAL_PREVIEW_IMAGE);
   const [audioError, setAudioError] = useState(null);
   const history = useHistory();
+  const dispatch = useDispatch();
+
   const {
     register,
     handleSubmit,
@@ -151,7 +155,7 @@ export default function Upload() {
       }
 
     } catch (err) {
-      console.log(err);
+      dispatch(occurError(err));
     }
   }
 

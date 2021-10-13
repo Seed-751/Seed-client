@@ -34,16 +34,20 @@ const ModalInner = styled.div`
     cursor: pointer;
     border: none;
     background: none;
-    }
+  }
+
+  .none{
+    display: none;
+  }
 `;
 
-export default function Modal({ children, onClose }) {
+export default function Modal({ children, onClose, isError }) {
   return (
     <ModalWrapper>
       <ModalInner tabIndex={0} className="modal-inner">
         <button
           type="button"
-          className="close"
+          className={isError ? "none" : "close"}
           onClick={onClose}
         >
           x
@@ -56,5 +60,6 @@ export default function Modal({ children, onClose }) {
 
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
-  onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func,
+  isError: PropTypes.bool,
 };

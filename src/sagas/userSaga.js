@@ -18,6 +18,7 @@ import {
   logoutSuccess,
   logoutFailure,
 } from "../reducers/userSlice";
+import { occurError } from "../reducers/errorSlice";
 
 function* handleSignupSaga({ payload }) {
   try {
@@ -28,8 +29,10 @@ function* handleSignupSaga({ payload }) {
     }
 
     yield put(signupFailure(message));
+    yield put(occurError(message));
   } catch (err) {
     yield put(signupFailure(err.message));
+    yield put(occurError(err.message));
   }
 }
 
@@ -42,8 +45,10 @@ function* handleLoginSaga({ payload }) {
     }
 
     yield put(loginFailure(message));
+    yield put(occurError(message));
   } catch (err) {
     yield put(loginFailure(err.message));
+    yield put(occurError(err.message));
   }
 }
 
@@ -56,8 +61,10 @@ function* handleAuthCheckSaga() {
     }
 
     yield put(authCheckFailure(message));
+    yield put(occurError(message));
   } catch (err) {
     yield put(authCheckFailure(err.message));
+    yield put(occurError(err.message));
   }
 }
 
@@ -70,8 +77,10 @@ function* handleLogoutSaga() {
     }
 
     yield put(logoutFailure(message));
+    yield put(occurError(message));
   } catch (err) {
     yield put(logoutFailure(err.message));
+    yield put(occurError(err.message));
   }
 }
 

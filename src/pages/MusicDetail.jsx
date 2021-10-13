@@ -1,16 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import Modal from "../components/Modal";
+import Modal from "../components/Modal/Modal";
 import BottomPlayer from "../components/BottomPlayer";
 import AlbumInfo from "../components/AlbumInfo";
 import PlayList from "../components/PlayList";
-import PaymentForm from "../components/PaymentForm";
+import PaymentForm from "../components/Modal/PaymentForm";
 
 import requestMusic from "../api/requestMuic";
 import { selectUser } from "../reducers/userSlice";
+import { occurError } from "../reducers/errorSlice";
 
 const Container = styled.div`
   display: flex;
@@ -22,6 +23,7 @@ export default function MusicDetail() {
   const params = useParams();
   const musicId = params.music_id;
   const { userInfo } = useSelector(selectUser);
+  const dispatch = useDispatch();
   const [album, setAlbum] = useState(null);
   const [currentTrack, setCurrentTrack] = useState(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -36,14 +38,14 @@ export default function MusicDetail() {
           return setAlbum(data);
         }
 
-        console.log(message);
+        dispatch(occurError(message));
       } catch (err) {
-        console.log(err);
+        dispatch(occurError(err));
       }
     }
 
     getMusic();
-  }, [musicId]);
+  }, [musicId, dispatch]);
 
   function handleCurrentTrack(music) {
     setCurrentTrack(music);

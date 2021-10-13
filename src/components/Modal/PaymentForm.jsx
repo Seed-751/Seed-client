@@ -1,14 +1,16 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import requestPayment from "../api/requestPayment";
+import requestPayment from "../../api/requestPayment";
+import { ERROR } from "../../constants";
+import { occurError } from "../../reducers/errorSlice";
 
-import Input from "../components/shared/Input";
-import Button from "../components/shared/Button";
-import { ERROR } from "../constants";
+import Input from "../../components/shared/Input";
+import Button from "../../components/shared/Button";
 
 const Wrapper = styled.div`
   display: flex;
@@ -63,10 +65,21 @@ const InputBox = styled.div`
 
 export default function PaymentForm({ albumInfo, userInfo }) {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const dispatch = useDispatch();
 
-  function handlePayment(data) {
+  async function handlePayment(data) {
     const amount = Number(data.amount);
-    requestPayment({ albumInfo, amount, userInfo });
+    try {
+      const { success, message } = await requestPayment({ albumInfo, amount, userInfo });
+
+      if (success) {
+        return history.push("/");
+      }
+
+      dispatch(occurError(message));
+    } catch (err) {
+      dispatch(occurError(err));
+    }
   }
 
   return (
