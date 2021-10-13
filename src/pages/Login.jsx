@@ -116,7 +116,7 @@ export default function Login() {
         </form>
         <p>
           Not registerd yet?&nbsp;
-          <Link to="/signup" style={{ color: theme.color.blue }}>Create an Account</Link>
+          <Link to="/signup" style={{ color: theme.color.green }}>Create an Account</Link>
         </p>
       </div>
     </Container>

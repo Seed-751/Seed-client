@@ -197,7 +197,7 @@ export default function Signup() {
         <div>
           <p>
             Already have an Account?&nbsp;
-            <Link to="/login" style={{ color: theme.color.blue }}>Login</Link>
+            <Link to="/login" style={{ color: theme.color.green }}>Login</Link>
           </p>
         </div>
       </div>

@@ -53,7 +53,7 @@ const TimeSoundInfoBox = styled.div`
 
 const SoundBox = styled.div`
   width: 100px;
-  color: ${({ theme }) => theme.color.blue};
+  color: ${({ theme }) => theme.color.green};
 `;
 
 const PlaySliderBox = styled.div`
@@ -71,8 +71,8 @@ const ProgressBar = styled.input`
   width: 100%;
   height: 3px;
   appearance: none;
-  color: ${({ theme }) => theme.color.blue};
-  background: ${({ theme }) => theme.color.blue};
+  color: ${({ theme }) => theme.color.green};
+  background: ${({ theme }) => theme.color.green};
   outline: none;
 
   ::-webkit-slider-thumb {
@@ -81,7 +81,7 @@ const ProgressBar = styled.input`
     width: 15px;
     border-radius: 50%;
     border: none;
-    background-color: ${({ theme }) => theme.color.blue};
+    background-color: ${({ theme }) => theme.color.green};
     cursor: pointer;
     position: relative;
     margin: -2px 0 0 0;
@@ -181,8 +181,8 @@ export default function BottomPlayer({ music, image }) {
         </IconButton>
         <IconButton onClick={handleTogglePlay}>
           {isPlaying
-            ? <PauseCircleFilled style={{ color: theme.color.blue }} />
-            : <PlayCircleFilled style={{ color: theme.color.blue }} />
+            ? <PauseCircleFilled style={{ color: theme.color.green }} />
+            : <PlayCircleFilled style={{ color: theme.color.green }} />
           }
         </IconButton>
         <IconButton>
@@ -198,7 +198,7 @@ export default function BottomPlayer({ music, image }) {
           <ProgressBar
             ref={soundBar}
             type="range"
-            style={{ color: theme.color.blue }}
+            style={{ color: theme.color.green }}
             onChange={handleChangeSound}
           />
         </SoundBox>

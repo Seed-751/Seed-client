@@ -16,7 +16,7 @@ const Wrapper = styled.nav`
     letter-spacing: 0.04em;
 
     * {
-      color: ${({ theme }) => theme.color.blue}
+      color: ${({ theme }) => theme.color.green}
     };
 
     li {

@@ -33,7 +33,7 @@ const InfoBox = styled.div`
   .artist {
     font-size: 30px;
     flex: 0.5;
-    color: ${({ theme }) => theme.color.blue};
+    color: ${({ theme }) => theme.color.green};
 
   }
 

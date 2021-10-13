@@ -57,7 +57,7 @@ const Box = styled.div`
   width: 20%;
 
   .link {
-    color: ${({ theme }) => theme.color.blue};
+    color: ${({ theme }) => theme.color.green};
   }
 `;
 
