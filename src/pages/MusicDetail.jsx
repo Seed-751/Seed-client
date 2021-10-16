@@ -1,32 +1,34 @@
 import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 import styled from "styled-components";
 
-import Modal from "../components/Modal/Modal";
 import BottomPlayer from "../components/BottomPlayer";
 import AlbumInfo from "../components/AlbumInfo";
 import PlayList from "../components/PlayList";
-import PaymentForm from "../components/Modal/PaymentForm";
 
-import requestMusic from "../api/requestMuic";
+import requestMusic from "../api/requestMusic";
 import { selectUser } from "../reducers/userSlice";
 import { occurError } from "../reducers/errorSlice";
 
 const Container = styled.div`
   display: flex;
   flex-direction: column;
-  margin: 3%;
+  justify-content: center;
+  align-items: center;
+  width: 80%;
+  margin-top: 3%;
+  margin-left: 10%;
 `;
 
 export default function MusicDetail() {
   const params = useParams();
+  const history = useHistory();
   const musicId = params.music_id;
   const { userInfo } = useSelector(selectUser);
   const dispatch = useDispatch();
   const [album, setAlbum] = useState(null);
   const [currentTrack, setCurrentTrack] = useState(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
 
   useEffect(() => {
     async function getMusic() {
@@ -55,28 +57,23 @@ export default function MusicDetail() {
     return null;
   }
 
-  function handleCloseModal() {
-    setIsModalOpen(false);
-  }
-
-  function handleOpenModal() {
-    setIsModalOpen(true);
+  function handlePaymentPage() {
+    history.push({
+      pathname: `/payment/${album._Id}/${userInfo._id}`,
+      albumInfo: album,
+      userInfo,
+    });
   }
 
   return (
-    <Container>
-      {isModalOpen &&
-        <Modal
-          onClose={handleCloseModal}
-        >
-          <PaymentForm
-            albumInfo={album}
-            userInfo={userInfo}
-          />
-        </Modal>}
-      <AlbumInfo album={album} onClick={handleOpenModal} />
-      {album?.audios && <PlayList musics={album.audios} onClick={handleCurrentTrack} />}
-      {currentTrack && <BottomPlayer music={currentTrack} image={album.image} />}
-    </Container>
+    <>
+      {album &&
+        <Container>
+          <AlbumInfo album={album} onClick={handlePaymentPage} />
+          <PlayList musics={album.audios} onClick={handleCurrentTrack} />
+          <BottomPlayer music={currentTrack} image={album.image} />
+        </Container>
+      }
+    </>
   );
 }

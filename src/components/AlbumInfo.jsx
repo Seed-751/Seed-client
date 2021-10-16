@@ -7,16 +7,18 @@ import Button from "../components/shared/Button";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   width: 100%;
   height: 400px;
+  margin-bottom: 10px;
 `;
 
 const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
   flex-shrink: 0;
-  margin-left: 15px;
-  width: 900px;
+  margin: 10px;
+  width: 50%;
   height: 400px;
   line-height: 2rem;
 
@@ -24,7 +26,7 @@ const InfoBox = styled.div`
     width: 100px;
   }
 
-  .title {
+  strong {
     font-weight: bold;
     font-size: 40px;
     flex: 1;
@@ -34,7 +36,6 @@ const InfoBox = styled.div`
     font-size: 30px;
     flex: 0.5;
     color: ${({ theme }) => theme.color.green};
-
   }
 
   .genre {
@@ -58,7 +59,27 @@ const ImgBox = styled.div`
   img {
     height: inherit;
     object-fit: contain;
-    border-radius: 5px;
+  }
+`;
+
+const FundingBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  width: 20%;
+  padding: 10px;
+  border: 1px solid ${({ theme }) => theme.color.lightGray};
+  font-size: 15px;
+
+  strong {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+  }
+
+  button {
+    align-self: center;
+    width: 50%;
   }
 `;
 
@@ -69,7 +90,10 @@ export default function AlbumInfo({ album, onClick }) {
     description,
     genre,
     image,
+    funding,
   } = album;
+  const { name } = artist;
+  const { target, donors, amount } = funding;
 
   return (
     <Wrapper>
@@ -77,12 +101,19 @@ export default function AlbumInfo({ album, onClick }) {
         <img src={image} />
       </ImgBox>
       <InfoBox>
-        <p className="title">{title}</p>
-        <p className="artist">{artist}</p>
+        <strong className="title">{title}</strong>
+        <p className="artist">{name}</p>
         <p className="genre">{genre}</p>
         <p className="description">{description}</p>
-        <Button onClick={onClick}>후원</Button>
+        <Button>좋아요</Button>
       </InfoBox>
+      <FundingBox>
+        <strong className="title">Funding status</strong>
+        <p>목표 {target}</p>
+        <p>후원자 {donors ? donors.length : 0} 명</p>
+        <p>모인금액 {amount} 원</p>
+        <Button onClick={onClick}>후원</Button>
+      </FundingBox>
     </Wrapper>
   );
 }

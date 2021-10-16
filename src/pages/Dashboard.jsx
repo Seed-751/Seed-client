@@ -13,10 +13,14 @@ const Container = styled.div`
 
 const MusicBox = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   row-gap: 20px;
 	column-gap: 20px;
   margin-top: 10px;
+
+  .link {
+    width: 250px;
+  }
 `;
 
 export default function Dashboard() {
@@ -37,7 +41,11 @@ export default function Dashboard() {
       <h1>Musics</h1>
       <MusicBox>
         {musics?.map((music) => (
-          <Link key={music._id} to={`/musics/${music._id}`}>
+          <Link
+            key={music._id}
+            to={`/musics/${music._id}`}
+            className="link"
+          >
             <Music key={music._id} music={music} />
           </Link>
         ))}
