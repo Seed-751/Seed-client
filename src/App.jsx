@@ -10,11 +10,13 @@ import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import PrivateRoute from "./components/PrivateRoute";
 import Modal from "./components/Modal/Modal";
+import Payment from "./pages/Payment";
 import Error from "./components/Modal/Error";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import MusicDetail from "./pages/MusicDetail";
+import MyPage from "./pages/MyList";
 import Upload from "./pages/Upload";
 
 import GlobalStyles from "./styles";
@@ -62,14 +64,14 @@ export default function App() {
       {isLoaded &&
         <>
           <Container>
+            {isError &&
+              <Modal isError={isError}>
+                <Error message={message} />
+              </Modal>
+            }
             <Navigation />
             <Section>
               <Header userInfo={userInfo} />
-              {isError &&
-                <Modal isError={isError}>
-                  <Error message={message}/>
-                </Modal>
-              }
               <Switch>
                 <Route path="/login">
                   <Login />
@@ -87,6 +89,16 @@ export default function App() {
                   path="/upload"
                   isAuthenticated={isLoggedIn}
                   component={Upload}
+                />
+                <PrivateRoute
+                  path="/mypage"
+                  isAuthenticated={isLoggedIn}
+                  component={MyPage}
+                />
+                <PrivateRoute
+                  path="/payment/:albumId/:userId"
+                  isAuthenticated={isLoggedIn}
+                  component={Payment}
                 />
                 <Route path="/" exact>
                   <Redirect to="/dashboard" />
