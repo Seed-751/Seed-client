@@ -1,47 +1,79 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
 import styled from "styled-components";
 
-import { selectMusic, getMusicsRequest } from "../reducers/musicSlice";
+import requestMusics from "../api/requestMusics";
+import { occurError } from "../reducers/errorSlice";
 
 import Music from "../components/Music";
+import MoreBox from "../components/MoreBox";
 
 const Container = styled.div`
   padding: 20px;
+  height: 100%;
 `;
 
 const MusicBox = styled.div`
   display: grid;
-  grid-template-columns: repeat(5, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   row-gap: 20px;
 	column-gap: 20px;
   margin-top: 10px;
+
+  .link {
+    width: 250px;
+  }
 `;
 
 export default function Dashboard() {
-  const { musics, isLoading } = useSelector(selectMusic);
+  const [page, setPage] = useState(0);
+  const [list, setList] = useState([]);
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(getMusicsRequest());
+    if (page === 0) {
+      return null;
+    }
 
-  }, [dispatch]);
+    async function getMusics() {
+      try {
+        const { data, message } = await requestMusics(page);
 
-  if (isLoading) {
-    return null;
+        if (data) {
+          return setList((list) => [...list, ...data]);
+        }
+
+        dispatch(occurError(message));
+      } catch (err) {
+        dispatch(occurError(err.message));
+      }
+    }
+
+    getMusics();
+  }, [page]);
+
+  function handlePageScroll() {
+    setPage((page) => page + 1);
   }
 
   return (
-    <Container>
-      <h1>Musics</h1>
-      <MusicBox>
-        {musics?.map((music) => (
-          <Link key={music._id} to={`/musics/${music._id}`}>
-            <Music key={music._id} music={music} />
-          </Link>
-        ))}
-      </MusicBox>
-    </Container>
+    <>
+      <Container>
+        <h1>Musics</h1>
+        <MusicBox>
+          {list?.map((music) => (
+            <Link
+              key={music._id}
+              to={`/musics/${music._id}`}
+              className="link"
+            >
+              <Music key={music._id} music={music} />
+            </Link>
+          ))}
+        </MusicBox>
+      </Container>
+      <MoreBox handlePageScroll={handlePageScroll} />
+    </>
   );
 }

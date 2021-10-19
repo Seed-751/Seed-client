@@ -8,8 +8,12 @@ const Wrapper = styled.nav`
   box-sizing: border-box;
   border-right: 1px solid ${({ theme }) => theme.color.lightGray};
 
+  div {
+    font-size: 30px;
+  }
+
   nav {
-    margin-top: 40px;
+    margin-top: 20px;
     padding-top: 15px;
     border-top: 1px solid ${({ theme }) => theme.color.lightGray};
     font-weight: 700;
@@ -29,6 +33,7 @@ const Wrapper = styled.nav`
 export default function Navigation() {
   return (
     <Wrapper>
+      <div>Seed</div>
       <nav>
         <ul>
           <li>
@@ -36,6 +41,9 @@ export default function Navigation() {
           </li>
           <li>
             <Link to="/upload">Upload</Link>
+          </li>
+          <li>
+            <Link to="/mypage">My list</Link>
           </li>
           <li>
             <Link to="/settings">Settings</Link>

@@ -1,10 +1,12 @@
 import React, { useRef, useState, useEffect } from "react";
+import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import theme from "../styles/theme";
 import { IconButton, Avatar } from "@material-ui/core/";
 import { Forward10, Replay10, PlayCircleFilled, PauseCircleFilled, VolumeOff, VolumeUp } from "@material-ui/icons/";
+import { selectCurrentMusic } from "../reducers/currentMusicSlice";
 
 const Wrapper = styled.div`
   display: flex;
@@ -88,7 +90,7 @@ const ProgressBar = styled.input`
   }
 `;
 
-export default function BottomPlayer({ music, image }) {
+export default function BottomPlayer({ image }) {
   const audioPlayer = useRef();
   const progressBar = useRef();
   const soundBar = useRef();
@@ -96,7 +98,8 @@ export default function BottomPlayer({ music, image }) {
   const [isMuted, setIsMuted] = useState(false);
   const [currentTime, setCurrentTime] = useState(0);
   const [duration, setDuration] = useState(0);
-  const { title, artist, url: audioUrl } = music;
+  const { currentTrack } = useSelector(selectCurrentMusic);
+  const { title, artist, url: audioUrl } = currentTrack;
 
   useEffect(() => {
     audioPlayer.current.onloadedmetadata = function () {
@@ -116,7 +119,7 @@ export default function BottomPlayer({ music, image }) {
     return (() => {
       clearInterval(id);
     });
-  }, [music]);
+  }, [currentTrack]);
 
   function handleTogglePlay() {
     setIsPlaying(!isPlaying);
@@ -214,6 +217,5 @@ export default function BottomPlayer({ music, image }) {
 }
 
 BottomPlayer.propTypes = {
-  music: PropTypes.string.isRequired,
   image: PropTypes.string,
 };

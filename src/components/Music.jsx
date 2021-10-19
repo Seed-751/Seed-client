@@ -5,15 +5,12 @@ import styled from "styled-components";
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
-  align-items: center;
   flex-direction: column;
-  width: 200px;
-  height: 250px;
+  padding-top: 0;
+  width: 250px;
+  height: 300px;
   border: none;
   background: #fff;
-  border-radius: 10px;
-  box-shadow: 9px 7px 27px -6px rgba(0,0,0,0.75);
 
   &:hover {
     cursor: pointer;
@@ -39,30 +36,51 @@ const Wrapper = styled.div`
 const ImgBox = styled.div`
   display: flex;
   justify-content: center;
-  width: 90%;
-  border-radius: 10px;
+  flex-direction: column;
+  position: relative;
+  width: 100%;
+  margin-top: 0 auto;
+  box-shadow: 2px 0px 10px 1px rgba(0,0,0,0.3);
+`;
+
+const Status = styled.div`
+  position: absolute;
+  height: 30px;
+  top: 220px;
+  padding: 5px;
+  line-height: 22px;
+  background-color: ${({ theme }) => theme.color.green};
+  color: white;
 `;
 
 const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-  line-height: 1.2;
+  line-height: 1.5;
+
+  h1 {
+    overflow:hidden;
+    text-overflow:ellipsis;
+    white-space:nowrap;
+  }
 `;
 
 export default function Music({ music }) {
-  const { title, image: url, artist } = music;
-  const { email } = artist;
+  const { title, image: url, artist, funding } = music;
+  const { name } = artist;
+  const { target, amount } = funding;
+  const status = amount / target * 100;
 
   return (
     <Wrapper>
       <ImgBox>
         <img src={url} alt="thumb-nail"></img>
+        <Status>{status} %</Status>
       </ImgBox>
       <InfoBox>
         <h1>{title}</h1>
-        <p>{email}</p>
+        <p>{name}</p>
       </InfoBox>
     </Wrapper>
   );
@@ -73,5 +91,6 @@ Music.propTypes = {
     title: PropTypes.string,
     image: PropTypes.string,
     artist: PropTypes.object,
+    funding: PropTypes.object,
   }).isRequired,
 };

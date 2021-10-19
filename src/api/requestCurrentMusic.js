@@ -1,7 +1,7 @@
 const URL = process.env.REACT_APP_API_SERVER_URL;
 
-async function requestAllMusics() {
-  const res = await fetch(`${URL}/musics`, {
+async function requestCurrentMusic(musicId) {
+  const res = await fetch(`${URL}/musics/${musicId}`, {
     method: "GET",
     credentials: "include",
     headers: {
@@ -15,4 +15,4 @@ async function requestAllMusics() {
   return result;
 }
 
-export default requestAllMusics;
+export default requestCurrentMusic;

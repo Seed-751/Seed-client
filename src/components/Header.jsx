@@ -2,11 +2,12 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
-import { IconButton, Avatar } from "@material-ui/core/";
-import { Search } from "@material-ui/icons/";
+import { Avatar } from "@material-ui/core/";
 import styled from "styled-components";
 
 import { logoutRequest } from "../reducers/userSlice";
+import SearchForm from "../components/SearchFrom";
+import SearchPreview from "../components/SearchPreview";
 
 const Wrapper = styled.header`
   display: flex;
@@ -23,35 +24,6 @@ const Wrapper = styled.header`
   }
 `;
 
-const SearchBox = styled.div`
-  margin-top: auto;
-  margin-bottom: auto;
-  width: 70%;
-  height: 50px;
-  background-color: ${({ theme }) => theme.color.lightGray};
-  border-radius: 30px;
-  padding: 10px;
-  flex-shrink: 0;
-
-  .search-icon {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 50%;
-    color: white;
-    text-decoration:none;
-  }
-`;
-
-const Input = styled.input`
-  border: 0;
-  outline: 0;
-  background: none;
-  width: 100%;
-  line-height: 40px;
-  padding: 0 10px;
-`;
-
 const Box = styled.div`
   justify-content: space-evenly;
   width: 20%;
@@ -66,6 +38,15 @@ const Text = styled.div`
   gap: 10px;
 `;
 
+const SearchBox = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 70%;
+`;
+
 export default function Header({ userInfo }) {
   const { email, profileImage } = userInfo || {};
   const dispatch = useDispatch();
@@ -77,10 +58,8 @@ export default function Header({ userInfo }) {
   return (
     <Wrapper>
       <SearchBox>
-        <Input type="text" name="" placeholder="Search..." />
-        <IconButton className="search-icon">
-          <Search />
-        </IconButton>
+        <SearchForm />
+        <SearchPreview />
       </SearchBox>
       <Box>
         {!userInfo

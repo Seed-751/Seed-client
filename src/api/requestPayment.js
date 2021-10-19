@@ -1,13 +1,14 @@
+import { occurError } from "../reducers/errorSlice";
+
+import { ERROR } from "../constants";
 const URL = process.env.REACT_APP_API_SERVER_URL;
 const IAMPORT = process.env.REACT_APP_IAMPORT;
 
-import { ERROR } from "../constants";
-
-async function requestPayment({ albumInfo, amount, userInfo }) {
+async function requestPayment({ albumInfo, amount, userInfo, dispatch, history }) {
   const IMP = window.IMP;
   IMP.init(IAMPORT);
 
-  const { email, name } = userInfo;
+  const { _id: userId, email, name } = userInfo;
   const { title, _id: albumId } = albumInfo;
 
   IMP.request_pay({
@@ -23,7 +24,7 @@ async function requestPayment({ albumInfo, amount, userInfo }) {
       const amountToBePaid = amount;
       const { imp_uid, merchant_uid } = rsp;
 
-      const res = await fetch(`${URL}/musics/payment/${merchant_uid}`, {
+      const res = await fetch(`${URL}/musics/payment/${merchant_uid}/${userId}`, {
         method: "POST",
         credentials: "include",
         headers: {
@@ -36,14 +37,15 @@ async function requestPayment({ albumInfo, amount, userInfo }) {
       const result = await res.json();
 
       if (result.success) {
-        return { success: true };
+        return history.push("/");
       }
 
-      return { message: ERROR.failPayment };
+      dispatch(occurError(result.message));
     } else {
-      return { message: ERROR.failPayment };
+      dispatch(occurError(ERROR.failPayment));
     }
   });
+
 }
 
 export default requestPayment;

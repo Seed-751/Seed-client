@@ -11,6 +11,7 @@ import Input from "../components/shared/Input";
 import Button from "../components/shared/Button";
 import requestUploadMusic from "../api/requestUploadMusic";
 import validateMetaData from "../utils/validateMetaData";
+import validateDuration from "../utils/validateDuration";
 import { INITIAL_PREVIEW_IMAGE, ERROR, GENRE_OPTIONS } from "../constants";
 import { occurError } from "../reducers/errorSlice";
 
@@ -126,17 +127,31 @@ export default function Upload() {
       return setAudioError([ERROR.inputAudioFile]);
     }
 
-    await Promise.all(acceptedFiles.map((file) => {
-      return validateMetaData(file);
-    })).then((result) => setAudioError(result));
-  }
+    const durationValidateResult = await Promise.all(acceptedFiles.map((file) => {
+      return validateDuration(file);
+    }));
 
-  async function handleUploadMusic(data) {
-    const isNotError = audioError.every((error) => {
+    const durationNormal = durationValidateResult.every((error) => {
       return error === null;
     });
 
-    if (!isNotError) {
+    if (!durationNormal) {
+      return setAudioError(durationValidateResult);
+    }
+
+    const metaDataValidateResult = await Promise.all(acceptedFiles.map((file) => {
+      return validateMetaData(file);
+    }));
+
+    setAudioError(metaDataValidateResult);
+  }
+
+  async function handleUploadMusic(data) {
+    const audioFileNormal = audioError.every((error) => {
+      return error === null;
+    });
+
+    if (!audioFileNormal) {
       return setAudioError([ERROR.checkAudioFile]);
     }
 
@@ -148,12 +163,13 @@ export default function Upload() {
     };
 
     try {
-      const result = await requestUploadMusic(musicInfo);
+      const { success, message } = await requestUploadMusic(musicInfo);
 
-      if (result.success) {
+      if (success) {
         return history.push("/");
       }
 
+      dispatch(occurError(message));
     } catch (err) {
       dispatch(occurError(err));
     }
