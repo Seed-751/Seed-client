@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams, useHistory } from "react-router-dom";
 import styled from "styled-components";
@@ -7,9 +7,8 @@ import BottomPlayer from "../components/BottomPlayer";
 import AlbumInfo from "../components/AlbumInfo";
 import PlayList from "../components/PlayList";
 
-import requestMusic from "../api/requestMusic";
 import { selectUser } from "../reducers/userSlice";
-import { occurError } from "../reducers/errorSlice";
+import { getCurrentMusicRequest, selectCurrentMusic, initiateCurrentMusic } from "../reducers/currentMusicSlice";
 
 const Container = styled.div`
   display: flex;
@@ -26,36 +25,16 @@ export default function MusicDetail() {
   const history = useHistory();
   const musicId = params.music_id;
   const { userInfo } = useSelector(selectUser);
+  const { music: album } = useSelector(selectCurrentMusic);
   const dispatch = useDispatch();
-  const [album, setAlbum] = useState(null);
-  const [currentTrack, setCurrentTrack] = useState(null);
 
   useEffect(() => {
-    async function getMusic() {
-      try {
-        const { data, message } = await requestMusic(musicId);
+    dispatch(getCurrentMusicRequest(musicId));
 
-        if (data) {
-          setCurrentTrack(data.audios[0]);
-          return setAlbum(data);
-        }
-
-        dispatch(occurError(message));
-      } catch (err) {
-        dispatch(occurError(err));
-      }
-    }
-
-    getMusic();
+    return () => {
+      dispatch(initiateCurrentMusic());
+    };
   }, [musicId, dispatch]);
-
-  function handleCurrentTrack(music) {
-    setCurrentTrack(music);
-  }
-
-  if (!album) {
-    return null;
-  }
 
   function handlePaymentPage() {
     history.push({
@@ -65,13 +44,17 @@ export default function MusicDetail() {
     });
   }
 
+  if (!album) {
+    return null;
+  }
+
   return (
     <>
       {album &&
         <Container>
           <AlbumInfo album={album} onClick={handlePaymentPage} />
-          <PlayList musics={album.audios} onClick={handleCurrentTrack} />
-          <BottomPlayer music={currentTrack} image={album.image} />
+          <PlayList musics={album.audios} />
+          <BottomPlayer image={album.image} />
         </Container>
       }
     </>

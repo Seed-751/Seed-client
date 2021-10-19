@@ -1,9 +1,11 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
 import { IconButton } from "@material-ui/core/";
 import { PlayCircleFilled } from "@material-ui/icons/";
+import { setCurrentTrack} from "../reducers/currentMusicSlice";
 
 const Wrapper = styled.div`
   display: flex;
@@ -32,7 +34,13 @@ const TrackBox = styled.div`
   }
 `;
 
-export default function PlayList({ musics, onClick }) {
+export default function PlayList({ musics }) {
+  const dispatch = useDispatch();
+
+  function handleSetCurrentTrack(music) {
+    dispatch(setCurrentTrack(music));
+  }
+
   return (
     <Wrapper>
       <h1>tracks</h1>
@@ -45,7 +53,7 @@ export default function PlayList({ musics, onClick }) {
             <div className="title">
               <p>{title}</p>
             </div>
-            <IconButton onClick={() => onClick(music)}>
+            <IconButton onClick={() => handleSetCurrentTrack(music)}>
               <PlayCircleFilled />
             </IconButton>
           </TrackBox>
@@ -57,5 +65,4 @@ export default function PlayList({ musics, onClick }) {
 
 PlayList.propTypes = {
   musics: PropTypes.array.isRequired,
-  onClick: PropTypes.func.isRequired,
 };

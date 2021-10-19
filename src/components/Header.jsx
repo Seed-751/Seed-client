@@ -7,6 +7,7 @@ import styled from "styled-components";
 
 import { logoutRequest } from "../reducers/userSlice";
 import SearchForm from "../components/SearchFrom";
+import SearchPreview from "../components/SearchPreview";
 
 const Wrapper = styled.header`
   display: flex;
@@ -37,6 +38,15 @@ const Text = styled.div`
   gap: 10px;
 `;
 
+const SearchBox = styled.div`
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-top: auto;
+  margin-bottom: auto;
+  width: 70%;
+`;
+
 export default function Header({ userInfo }) {
   const { email, profileImage } = userInfo || {};
   const dispatch = useDispatch();
@@ -47,7 +57,10 @@ export default function Header({ userInfo }) {
 
   return (
     <Wrapper>
-      <SearchForm />
+      <SearchBox>
+        <SearchForm />
+        <SearchPreview />
+      </SearchBox>
       <Box>
         {!userInfo
           ?

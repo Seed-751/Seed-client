@@ -7,6 +7,8 @@ import { rootSaga } from "../sagas/rootSaga";
 import userReducer from "./userSlice";
 import musicReducer from "./musicSlice";
 import errorReducer from "./errorSlice";
+import searchReducer from "./searchSlice";
+import currentMusicReducer from "./currentMusicSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -19,6 +21,8 @@ const store = configureStore({
     user: userReducer,
     music: musicReducer,
     error: errorReducer,
+    search: searchReducer,
+    currentMusic: currentMusicReducer,
   },
   middleware,
 });

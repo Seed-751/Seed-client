@@ -12,6 +12,7 @@ const musicSlice = createSlice({
   reducers: {
     getMusicsRequest: (state) => {
       state.isLoading = true;
+      state.error = null;
     },
     getMusicsSuccess: (state, action) => {
       state.isLoading = false;
