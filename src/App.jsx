@@ -103,6 +103,9 @@ export default function App() {
                 <Route path="/" exact>
                   <Redirect to="/dashboard" />
                 </Route>
+                <Route path="*">
+                  <Redirect to="/dashboard" />
+                </Route>
               </Switch>
             </Section>
           </Container>

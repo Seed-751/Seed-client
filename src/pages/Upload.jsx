@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
 import styled from "styled-components";
@@ -14,6 +14,7 @@ import validateMetaData from "../utils/validateMetaData";
 import validateDuration from "../utils/validateDuration";
 import { INITIAL_PREVIEW_IMAGE, ERROR, GENRE_OPTIONS } from "../constants";
 import { occurError } from "../reducers/errorSlice";
+import { selectUser } from "../reducers/userSlice";
 
 const Container = styled.div`
   display: flex;
@@ -102,6 +103,7 @@ const UploadAudioInput = styled.div`
 
 export default function Upload() {
   const [previewImage, setPreviewImage] = useState(INITIAL_PREVIEW_IMAGE);
+  const { userInfo } = useSelector(selectUser);
   const [audioError, setAudioError] = useState(null);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -163,7 +165,8 @@ export default function Upload() {
     };
 
     try {
-      const { success, message } = await requestUploadMusic(musicInfo);
+      const token = userInfo.token;
+      const { success, message } = await requestUploadMusic(musicInfo, token);
 
       if (success) {
         return history.push("/");

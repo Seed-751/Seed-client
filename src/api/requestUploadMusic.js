@@ -1,6 +1,6 @@
 const URL = process.env.REACT_APP_API_SERVER_URL;
 
-async function requestUploadMusic({ title, image, audioFiles, genre, description }) {
+async function requestUploadMusic({ title, image, audioFiles, genre, description }, token) {
   const data = new FormData();
 
   data.append("title", title);
@@ -17,6 +17,7 @@ async function requestUploadMusic({ title, image, audioFiles, genre, description
     credentials: "include",
     headers: {
       Accept: "application/json",
+      authorization: `Bearer ${token}`
     },
     body: data,
   });
