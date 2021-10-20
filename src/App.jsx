@@ -48,7 +48,7 @@ export default function App() {
 
     console.log(token);
     console.log(typeof token);
-    if (!token || token === null) {
+    if (token === null || !token) {
       return handleLoaded(true);
     }
 
