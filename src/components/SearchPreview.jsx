@@ -1,6 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
+import PropTypes from "prop-types";
 
 import styled from "styled-components";
 
@@ -24,18 +25,28 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function SearchPreview() {
+export default function SearchPreview({ onReset }) {
   const { searchResult } = useSelector(selectSearch);
+  const history = useHistory();
+
+  function handleClickPreview(musicId) {
+    history.push(`/musics/${musicId}`);
+    onReset();
+  }
 
   return (
     <Wrapper>
       {searchResult?.map((music) => (
-        <Link key={music._id} className="link" to={`/musics/${music._id}`}>
+        <div key={music._id} className="link" onClick={() => handleClickPreview(music._id)} >
           <Avatar variant="square" src={music.image}/>
           <p>{music.artist.name}</p>
           <p>{music.title}</p>
-        </Link>
+        </div>
       ))}
     </Wrapper>
   );
 }
+
+SearchPreview.propTypes = {
+  onReset: PropTypes.func.isRequired,
+};
