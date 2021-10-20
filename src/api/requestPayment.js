@@ -5,6 +5,8 @@ const URL = process.env.REACT_APP_API_SERVER_URL;
 const IAMPORT = process.env.REACT_APP_IAMPORT;
 
 async function requestPayment({ albumInfo, amount, userInfo, dispatch, history }) {
+  const token = localStorage.getItem("token");
+
   const IMP = window.IMP;
   IMP.init(IAMPORT);
 
@@ -30,6 +32,7 @@ async function requestPayment({ albumInfo, amount, userInfo, dispatch, history }
         headers: {
           "Content-Type": "application/json",
           Accept: "application/json",
+          authorization: `Bearer ${token}`
         },
         body: JSON.stringify({ imp_uid, amountToBePaid, albumId }),
       });

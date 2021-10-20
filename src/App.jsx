@@ -21,7 +21,6 @@ import Upload from "./pages/Upload";
 
 import GlobalStyles from "./styles";
 import theme from "./styles/theme";
-import getCookie from "./utils/getCookie";
 
 const Section = styled.section`
   display: flex;
@@ -45,7 +44,7 @@ export default function App() {
       return handleLoaded(true);
     }
 
-    if (!getCookie("token")) {
+    if (!localStorage.getItem("token")) {
       return handleLoaded(true);
     }
 

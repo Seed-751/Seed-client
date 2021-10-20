@@ -30,7 +30,7 @@ const userSlice = createSlice({
     },
     loginSuccess: (state, action) => {
       state.isLoading = false;
-      state.userInfo = { ...action.payload };
+      state.userInfo = { ...action.payload.userInfo };
       state.isLoggedIn = true;
       state.error = null;
     },
