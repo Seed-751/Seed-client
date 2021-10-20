@@ -47,7 +47,8 @@ export default function App() {
     const token = localStorage.getItem("token");
 
     console.log(token);
-    if (!token) {
+    console.log(typeof token);
+    if (!token || token === null) {
       return handleLoaded(true);
     }
 
