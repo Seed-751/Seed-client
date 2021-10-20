@@ -165,8 +165,7 @@ export default function Upload() {
     };
 
     try {
-      const token = userInfo.token;
-      const { success, message } = await requestUploadMusic(musicInfo, token);
+      const { success, message } = await requestUploadMusic(musicInfo);
 
       if (success) {
         return history.push("/");

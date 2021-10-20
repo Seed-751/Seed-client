@@ -1,6 +1,8 @@
 const URL = process.env.REACT_APP_API_SERVER_URL;
 
-async function requestUploadMusic({ title, image, audioFiles, genre, description }, token) {
+async function requestUploadMusic({ title, image, audioFiles, genre, description }) {
+  const token = localStorage.getItem("token");
+  console.log(token);
   const data = new FormData();
 
   data.append("title", title);

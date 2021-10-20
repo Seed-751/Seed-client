@@ -13,6 +13,9 @@ async function requestLogin(userInfo) {
 
   const result = await res.json();
 
+  const { token } = result.data;
+
+  localStorage.setItem("token", token);
   return result;
 }
 
