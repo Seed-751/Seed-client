@@ -50,7 +50,7 @@ export default function App() {
       return handleLoaded(true);
     }
 
-    dispatch(authCheckRequest());
+    dispatch(authCheckRequest(token));
 
     // eslint-disable-next-line
   }, [isLoggedIn]);
