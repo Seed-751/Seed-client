@@ -2,7 +2,7 @@ const URL = process.env.REACT_APP_API_SERVER_URL;
 import { ERROR } from "../constants";
 
 async function requestLogout() {
-  localStorage.setItem("token", null);
+  localStorage.removeItem("token");
 
   if (!localStorage.getItem("token")) {
     const res = await fetch(`${URL}/users/logout`, {
