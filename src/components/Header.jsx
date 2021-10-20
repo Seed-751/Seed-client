@@ -1,12 +1,13 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { Avatar } from "@material-ui/core/";
 import styled from "styled-components";
 
+import { searchMusicRequest } from "../reducers/searchSlice";
 import { logoutRequest } from "../reducers/userSlice";
-import SearchForm from "../components/SearchFrom";
+import SearchForm from "../components/SearchForm";
 import SearchPreview from "../components/SearchPreview";
 
 const Wrapper = styled.header`
@@ -50,16 +51,29 @@ const SearchBox = styled.div`
 export default function Header({ userInfo }) {
   const { email, profileImage } = userInfo || {};
   const dispatch = useDispatch();
+  const [searchInput, setSearchInput] = useState("");
+
+  useEffect(() => {
+    dispatch(searchMusicRequest(searchInput));
+  }, [dispatch, searchInput]);
+
+  function handleChangeInput(e) {
+    setSearchInput(e.target.value);
+  }
 
   function handleLogout() {
     dispatch(logoutRequest());
   }
 
+  function handleResetInput() {
+    setSearchInput("");
+  }
+
   return (
     <Wrapper>
       <SearchBox>
-        <SearchForm />
-        <SearchPreview />
+        <SearchForm onChange={handleChangeInput} searchInput={searchInput} />
+        <SearchPreview onReset={handleResetInput} />
       </SearchBox>
       <Box>
         {!userInfo

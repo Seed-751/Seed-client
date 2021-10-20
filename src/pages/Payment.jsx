@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
@@ -11,6 +11,8 @@ import { ERROR } from "../constants";
 
 import Input from "../components/shared/Input";
 import Button from "../components/shared/Button";
+import { selectUser } from "../reducers/userSlice";
+import { occurError } from "../reducers/errorSlice";
 
 const Wrapper = styled.div`
   display: flex;
@@ -62,11 +64,16 @@ const InputBox = styled.div`
 
 export default function PaymentForm({ location }) {
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const { isLoggedIn } = useSelector(selectUser);
   const dispatch = useDispatch();
   const history = useHistory();
   const { albumInfo, userInfo } = location;
 
   function handlePayment(data) {
+    if (!isLoggedIn) {
+      return dispatch(occurError(ERROR.requestLogin));
+    }
+
     const amount = Number(data.amount);
     requestPayment({ albumInfo, amount, userInfo, dispatch, history });
   }

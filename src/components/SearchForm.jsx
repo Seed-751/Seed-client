@@ -1,11 +1,10 @@
-import React, { useState, useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import styled from "styled-components";
+import PropTypes from "prop-types";
 import { IconButton } from "@material-ui/core/";
 import { Search } from "@material-ui/icons/";
 
-import { searchMusicRequest } from "../reducers/searchSlice";
-import Input from "../components/shared/Input";
+import Input from "./shared/Input";
 
 const Form = styled.form`
   display: flex;
@@ -37,17 +36,7 @@ const SearchInput = styled(Input)`
   text-align: start;
 `;
 
-export default function SearchFrom() {
-  const [searchInput, setSearchInput] = useState("");
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(searchMusicRequest(searchInput));
-  }, [dispatch, searchInput]);
-
-  function handleChangeInput(e) {
-    setSearchInput(e.target.value);
-  }
+export default function SearchForm({ onChange, searchInput }) {
 
   return (
     <Form>
@@ -56,7 +45,7 @@ export default function SearchFrom() {
         name="search"
         value={searchInput}
         placeholder="Search..."
-        onChange={handleChangeInput}
+        onChange={onChange}
       />
       <IconButton className="search-icon" >
         <Search />
@@ -64,3 +53,8 @@ export default function SearchFrom() {
     </Form>
   );
 }
+
+SearchForm.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  searchInput: PropTypes.string.isRequired,
+};

@@ -17,6 +17,7 @@ const ERROR = {
   inputAmount: "amount를 입력해주세요",
   failPayment: "결제에 실패 하셧습니다",
   failLogout: "logout 에 실패 하셧습니다",
+  requestLogin: "login을 먼저 해주세요",
 };
 
 const GENRE_OPTIONS = [

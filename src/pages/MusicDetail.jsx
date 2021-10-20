@@ -7,7 +7,9 @@ import BottomPlayer from "../components/BottomPlayer";
 import AlbumInfo from "../components/AlbumInfo";
 import PlayList from "../components/PlayList";
 
+import { ERROR } from "../constants";
 import { selectUser } from "../reducers/userSlice";
+import { occurError } from "../reducers/errorSlice";
 import { getCurrentMusicRequest, selectCurrentMusic, initiateCurrentMusic } from "../reducers/currentMusicSlice";
 
 const Container = styled.div`
@@ -24,7 +26,7 @@ export default function MusicDetail() {
   const params = useParams();
   const history = useHistory();
   const musicId = params.music_id;
-  const { userInfo } = useSelector(selectUser);
+  const { userInfo, isLoggedIn } = useSelector(selectUser);
   const { music: album } = useSelector(selectCurrentMusic);
   const dispatch = useDispatch();
 
@@ -37,6 +39,10 @@ export default function MusicDetail() {
   }, [musicId, dispatch]);
 
   function handlePaymentPage() {
+    if (!isLoggedIn) {
+      return dispatch(occurError(ERROR.requestLogin));
+    }
+
     history.push({
       pathname: `/payment/${album._Id}/${userInfo._id}`,
       albumInfo: album,
