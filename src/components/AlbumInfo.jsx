@@ -16,8 +16,8 @@ const Wrapper = styled.div`
 const InfoBox = styled.div`
   display: flex;
   flex-direction: column;
+  justify-content: space-evenly;
   flex-shrink: 0;
-  margin: 10px;
   width: 50%;
   height: 400px;
   line-height: 2rem;
@@ -29,24 +29,20 @@ const InfoBox = styled.div`
   strong {
     font-weight: bold;
     font-size: 90px;
-    flex: 1;
   }
 
   .artist {
     font-size: 30px;
-    flex: 0.5;
     color: ${({ theme }) => theme.color.green};
   }
 
   .genre {
     font-size: 20px;
     color: ${({ theme }) => theme.color.lightGray};
-    flex: 0.5;
   }
 
   .description {
     position: relative;
-    flex: 3;
     line-height: 2rem;
   }
 `;
@@ -69,12 +65,15 @@ const FundingBox = styled.div`
   width: 20%;
   padding: 10px;
   border: 1px solid ${({ theme }) => theme.color.lightGray};
+  border-radius: 10px;
   font-size: 15px;
+  color: ${({ theme }) => theme.color.lightGray};
 
   strong {
     text-align: center;
     font-weight: bold;
     font-size: 20px;
+    color: white;
   }
 
   button {
@@ -108,7 +107,7 @@ export default function AlbumInfo({ album, onClick }) {
       </InfoBox>
       <FundingBox>
         <strong className="title">Funding status</strong>
-        <p>목표 {target}</p>
+        <p>target {target} 원</p>
         <p>후원자 {donors ? donors.length : 0} 명</p>
         <p>모인금액 {amount} 원</p>
         <Button onClick={onClick}>후원</Button>

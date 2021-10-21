@@ -11,17 +11,28 @@ import { Avatar } from "@material-ui/core/";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 70%;
+  border-radius: 15px;
+  width: 100%;
+  background-color: white;
+  z-index: 1;
 
   .link {
     display: flex;
-    justify-content: space-between;
     align-items: center;
     width: 100%;
-    border: 1px solid red;
-    background-color: white;
     height: 50px;
-    z-index: 1;
+    color: ${({ theme }) => theme.color.lightGray};
+    cursor: pointer;
+    gap: 25px;
+    padding-left: 10px;
+  }
+
+  .artist {
+    flex: 1;
+  }
+
+  .title {
+    flex: 2;
   }
 `;
 
@@ -38,9 +49,9 @@ export default function SearchPreview({ onReset }) {
     <Wrapper>
       {searchResult?.map((music) => (
         <div key={music._id} className="link" onClick={() => handleClickPreview(music._id)} >
-          <Avatar variant="square" src={music.image}/>
-          <p>{music.artist.name}</p>
-          <p>{music.title}</p>
+          <Avatar className="avatar" variant="square" src={music.image} />
+          <p className="artist">{music.artist.name}</p>
+          <p className="title">{music.title}</p>
         </div>
       ))}
     </Wrapper>

@@ -2,7 +2,9 @@ const color = {
   green: "#2a9d8f",
   white: "#fff",
   gray: "#767676",
-  lightGray: "#d6d6d6"
+  lightGray: "#898989",
+  black: "#171717",
+  lightBlack: "#373737"
 };
 
 const padding = {

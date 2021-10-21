@@ -18,7 +18,9 @@ const GlobalStyle = createGlobalStyle`
       "Helvetica Neue",
       Arial,sans-serif;
 
-    background-color: #F2F5F7;
+    color: white;
+
+    background-color: #171717;
   }
 
 

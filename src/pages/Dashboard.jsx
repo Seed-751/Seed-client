@@ -10,8 +10,12 @@ import Music from "../components/Music";
 import MoreBox from "../components/MoreBox";
 
 const Container = styled.div`
-  padding: 20px;
   height: 100%;
+  padding: 10px;
+
+  .title {
+    font-size: 50px;
+  }
 `;
 
 const MusicBox = styled.div`
@@ -59,7 +63,7 @@ export default function Dashboard() {
   return (
     <>
       <Container>
-        <h1>Musics</h1>
+        <h1 className="title">Albums</h1>
         <MusicBox>
           {list?.map((music) => (
             <Link

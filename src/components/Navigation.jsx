@@ -6,17 +6,16 @@ const Wrapper = styled.nav`
   width: 230px;
   padding: ${({ theme }) => theme.padding.default};
   box-sizing: border-box;
+  background-color: ${({ theme }) => theme.color.lightBlack};
 
-  background:#FCFBFC;
-
-  div {
+  h1 {
     font-size: 30px;
+    color: ${({ theme }) => theme.color.green};
   }
 
   nav {
     margin-top: 20px;
     padding-top: 15px;
-    border-top: 1px solid ${({ theme }) => theme.color.lightGray};
     font-weight: 700;
     letter-spacing: 0.04em;
 
@@ -26,7 +25,11 @@ const Wrapper = styled.nav`
 
     li {
       padding: 10px 0;
+    }
+
+    .link{
       font-size: 20px;
+      color: ${({ theme }) => theme.color.lightGray};
     }
   }
 `;
@@ -34,20 +37,20 @@ const Wrapper = styled.nav`
 export default function Navigation() {
   return (
     <Wrapper>
-      <div>Seed</div>
+      <h1>Seed</h1>
       <nav>
         <ul>
           <li>
-            <Link to="/">Home</Link>
+            <Link className="link" to="/">Home</Link>
           </li>
           <li>
-            <Link to="/upload">Upload</Link>
+            <Link className="link" to="/upload">Upload</Link>
           </li>
           <li>
-            <Link to="/mypage">My list</Link>
+            <Link className="link" to="/mypage">My list</Link>
           </li>
           <li>
-            <Link to="/settings">Settings</Link>
+            <Link className="link" to="/settings">Settings</Link>
           </li>
         </ul>
       </nav>

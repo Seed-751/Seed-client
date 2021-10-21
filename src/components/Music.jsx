@@ -75,7 +75,7 @@ export default function Music({ music }) {
     <Wrapper>
       <ImgBox>
         <img src={url} alt="thumb-nail"></img>
-        <Status>{status} %</Status>
+        <Status>{status.toFixed(1)}%</Status>
       </ImgBox>
       <InfoBox>
         <h1>{title}</h1>

@@ -7,6 +7,7 @@ import theme from "../styles/theme";
 import { IconButton, Avatar } from "@material-ui/core/";
 import { Forward10, Replay10, PlayCircleFilled, PauseCircleFilled, VolumeOff, VolumeUp } from "@material-ui/icons/";
 import { selectCurrentMusic } from "../reducers/currentMusicSlice";
+import transformTime from "../utils/transformTime";
 
 const Wrapper = styled.div`
   display: flex;
@@ -17,9 +18,9 @@ const Wrapper = styled.div`
   width: 100%;
   left: 0;
   bottom: 0;
-  background-color: ${({ theme }) => theme.color.white};
-  height: 60px;
-  font: 5px;
+  background-color: ${({ theme }) => theme.color.lightBlack};
+  height: 90px;
+  font-size: 20px;
   color: ${({ theme }) => theme.color.lightGray};
 
   div {
@@ -37,13 +38,22 @@ const MusicInfoBox = styled.div`
 const MusicDetail = styled.div`
   flex-direction: column;
   justify-content: center;
-  color: black;
 `;
 
 const ButtonBox = styled.div`
   align-items: center;
   justify-content: center;
   width: 30%;
+
+  .play-icon {
+    font-size: 65px;
+    color: ${({ theme }) => theme.color.green};
+  }
+
+  .side-icon {
+    font-size: 35px;
+    color: ${({ theme }) => theme.color.white};
+  }
 `;
 
 const TimeSoundInfoBox = styled.div`
@@ -51,6 +61,11 @@ const TimeSoundInfoBox = styled.div`
   justify-content: end;
   gap: 30px;
   width: 30%;
+
+  .side-icon {
+    font-size: 30px;
+    color: ${({ theme }) => theme.color.white};
+  }
 `;
 
 const SoundBox = styled.div`
@@ -178,25 +193,25 @@ export default function BottomPlayer({ image }) {
       <ButtonBox>
         <IconButton>
           <Replay10
-            style={{ color: theme.color.lightGray }}
+            className="side-icon"
             onClick={handleBackwardTen}
           />
         </IconButton>
         <IconButton onClick={handleTogglePlay}>
           {isPlaying
-            ? <PauseCircleFilled style={{ color: theme.color.green }} />
-            : <PlayCircleFilled style={{ color: theme.color.green }} />
+            ? <PauseCircleFilled className="play-icon" />
+            : <PlayCircleFilled className="play-icon" />
           }
         </IconButton>
         <IconButton>
           <Forward10
-            style={{ color: theme.color.lightGray }}
+            className="side-icon"
             onClick={handleForwardTen}
           />
         </IconButton>
       </ButtonBox>
       <TimeSoundInfoBox>
-        <p>{currentTime} / {duration}</p>
+        <p>{transformTime(currentTime)} / {transformTime(duration)}</p>
         <SoundBox>
           <ProgressBar
             ref={soundBar}
@@ -207,8 +222,8 @@ export default function BottomPlayer({ image }) {
         </SoundBox>
         <IconButton onClick={handleToggleMute}>
           {!isMuted
-            ? <VolumeUp style={{ color: theme.color.lightGray }} />
-            : <VolumeOff style={{ color: theme.color.lightGray }} />
+            ? <VolumeUp className="side-icon" />
+            : <VolumeOff className="side-icon" />
           }
         </IconButton>
       </TimeSoundInfoBox>

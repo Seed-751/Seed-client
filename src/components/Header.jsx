@@ -14,6 +14,7 @@ const Wrapper = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
+  width: 100%;
   height: 55px;
   margin-top: 5px;
 
@@ -42,8 +43,10 @@ const SearchBox = styled.div`
   display: flex;
   flex-direction: column;
   margin-top: auto;
+  margin-left: 0;
   margin-bottom: auto;
-  width: 70%;
+  width: 50%;
+
 `;
 
 export default function Header({ userInfo }) {

@@ -10,10 +10,9 @@ const Form = styled.form`
   display: flex;
   margin-top: auto;
   margin-bottom: auto;
-  padding-left: 0;
-  width: 90%;
-  background-color: ${({ theme }) => theme.color.lightGray};
-  border-radius: 10px;
+  width: 100%;
+  background-color: white;
+  border-radius: 30px;
   flex-shrink: 0;
 
   .search-icon {
@@ -21,7 +20,7 @@ const Form = styled.form`
     justify-content: center;
     align-items: center;
     border-radius: 50%;
-    color: white;
+    color: ${({ theme }) => theme.color.lightGray};
     text-decoration:none;
   }
 `;
@@ -34,11 +33,11 @@ const SearchInput = styled(Input)`
   width: 100%;
   line-height: 40px;
   padding: 0 20px;
+  color: ${({ theme }) => theme.color.lightGray};
   text-align: start;
 `;
 
 export default function SearchForm({ onChange, searchInput }) {
-
   return (
     <Form>
       <SearchInput
@@ -47,6 +46,7 @@ export default function SearchForm({ onChange, searchInput }) {
         value={searchInput}
         placeholder="Search..."
         onChange={onChange}
+        autoComplete="off"
       />
       <IconButton className="search-icon" >
         <Search />
