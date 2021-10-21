@@ -10,7 +10,6 @@ const Wrapper = styled.div`
   width: 250px;
   height: 300px;
   border: none;
-  background: #fff;
 
   &:hover {
     cursor: pointer;

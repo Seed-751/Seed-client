@@ -17,9 +17,8 @@ const Container = styled.div`
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  width: 80%;
+  width: 100%;
   margin-top: 3%;
-  margin-left: 10%;
 `;
 
 export default function MusicDetail() {

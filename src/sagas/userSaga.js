@@ -52,9 +52,9 @@ function* handleLoginSaga({ payload }) {
   }
 }
 
-function* handleAuthCheckSaga() {
+function* handleAuthCheckSaga({ payload }) {
   try {
-    const { data, message } = yield call(requestAuthCheck);
+    const { data, message } = yield call(requestAuthCheck, payload);
 
     if (data) {
       return yield put(authCheckSuccess(data));

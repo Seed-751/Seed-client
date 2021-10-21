@@ -10,9 +10,10 @@ const Form = styled.form`
   display: flex;
   margin-top: auto;
   margin-bottom: auto;
-  width: 100%;
+  padding-left: 0;
+  width: 90%;
   background-color: ${({ theme }) => theme.color.lightGray};
-  border-radius: 30px;
+  border-radius: 10px;
   flex-shrink: 0;
 
   .search-icon {

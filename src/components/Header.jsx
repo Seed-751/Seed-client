@@ -16,8 +16,6 @@ const Wrapper = styled.header`
   align-items: center;
   height: 55px;
   margin-top: 5px;
-  padding: 0 20px;
-  background-color: ${({ theme }) => theme.color.white};
 
   div {
     display: flex;

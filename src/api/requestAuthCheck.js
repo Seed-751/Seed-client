@@ -7,7 +7,7 @@ async function requestAuthCheck(token) {
     headers: {
       "Content-Type": "application/json",
       Accept: "application/json",
-      authorization: `Bearer ${token}`
+      Authorization: `Bearer ${token}`
     },
   });
 

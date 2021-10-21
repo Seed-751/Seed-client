@@ -24,8 +24,9 @@ import theme from "./styles/theme";
 
 const Section = styled.section`
   display: flex;
+  padding: 0px 90px 0px 90px;
+  width: 100%;
   flex-direction: column;
-  width: calc(100% - 230px);
   min-height: 100vh;
 `;
 

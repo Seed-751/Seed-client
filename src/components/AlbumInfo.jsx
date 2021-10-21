@@ -28,7 +28,7 @@ const InfoBox = styled.div`
 
   strong {
     font-weight: bold;
-    font-size: 40px;
+    font-size: 90px;
     flex: 1;
   }
 
@@ -105,7 +105,6 @@ export default function AlbumInfo({ album, onClick }) {
         <p className="artist">{name}</p>
         <p className="genre">{genre}</p>
         <p className="description">{description}</p>
-        <Button>좋아요</Button>
       </InfoBox>
       <FundingBox>
         <strong className="title">Funding status</strong>

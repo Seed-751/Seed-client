@@ -6,7 +6,8 @@ const Wrapper = styled.nav`
   width: 230px;
   padding: ${({ theme }) => theme.padding.default};
   box-sizing: border-box;
-  border-right: 1px solid ${({ theme }) => theme.color.lightGray};
+
+  background:#FCFBFC;
 
   div {
     font-size: 30px;
@@ -25,7 +26,7 @@ const Wrapper = styled.nav`
 
     li {
       padding: 10px 0;
-      font-size: 15px;
+      font-size: 20px;
     }
   }
 `;

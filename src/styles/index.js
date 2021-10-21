@@ -17,7 +17,10 @@ const GlobalStyle = createGlobalStyle`
       Roboto,
       "Helvetica Neue",
       Arial,sans-serif;
+
+    background-color: #F2F5F7;
   }
+
 
   a {
     color: inherit;
