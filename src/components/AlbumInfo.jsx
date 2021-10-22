@@ -80,6 +80,42 @@ const FundingBox = styled.div`
     align-self: center;
     width: 50%;
   }
+
+  .status {
+    color: ${({ theme }) => theme.color.green};
+  }
+
+  .progress {
+    padding: 2px;
+    width: 100%;
+    max-width: 500px;
+    border: 3px solid  ${({ theme }) => theme.color.green};
+    height: 30px;
+  }
+
+  .progress .progress__bar {
+    height: 100%;
+    width: ${({ status }) => {
+  if (status > 100) {
+    return "100%";
+  }
+
+  return `${status}%`;
+}};
+    background-color:  ${({ theme }) => theme.color.green};
+    animation: fill-bar 1s;
+  }
+
+  @keyframes fill-bar {
+    from {width: 0%;}
+    to {width: ${({ status }) => {
+  if (status > 100) {
+    return "100%";
+  }
+
+  return `${status}%`;
+}};}
+  }
 `;
 
 export default function AlbumInfo({ album, onClick }) {
@@ -93,6 +129,7 @@ export default function AlbumInfo({ album, onClick }) {
   } = album;
   const { name } = artist;
   const { target, donors, amount } = funding;
+  const status = amount / target * 100;
 
   return (
     <Wrapper>
@@ -105,11 +142,14 @@ export default function AlbumInfo({ album, onClick }) {
         <p className="genre">{genre}</p>
         <p className="description">{description}</p>
       </InfoBox>
-      <FundingBox>
+      <FundingBox status={status}>
         <strong className="title">Funding status</strong>
-        <p>target {target} 원</p>
         <p>후원자 {donors ? donors.length : 0} 명</p>
-        <p>모인금액 {amount} 원</p>
+        <p>{amount} / {target} 원</p>
+        <p className="status">{status.toFixed(1)}%</p>
+        <div className="progress">
+          <div className="progress__bar"></div>
+        </div>
         <Button onClick={onClick}>후원</Button>
       </FundingBox>
     </Wrapper>

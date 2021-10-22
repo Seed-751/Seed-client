@@ -1,7 +1,6 @@
 import { ERROR } from "../constants";
 
 function validateDuration(file) {
-
   return new Promise((resolve) => {
     const reader = new FileReader();
 
@@ -13,7 +12,7 @@ function validateDuration(file) {
         const duration = audio.duration;
 
         if (duration > 100) {
-          return resolve(`${file.name} - ${ERROR.checkAudioDuration}`);
+          return resolve([{ message: ERROR.checkAudioDuration }]);
         }
 
         resolve(null);
@@ -21,7 +20,6 @@ function validateDuration(file) {
     };
 
     reader.readAsDataURL(file);
-
   });
 }
 

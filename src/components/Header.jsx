@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import { Avatar } from "@material-ui/core/";
@@ -53,6 +53,7 @@ export default function Header({ userInfo }) {
   const { email, profileImage } = userInfo || {};
   const dispatch = useDispatch();
   const [searchInput, setSearchInput] = useState("");
+  const history = useHistory();
 
   useEffect(() => {
     dispatch(searchMusicRequest(searchInput));
@@ -64,6 +65,8 @@ export default function Header({ userInfo }) {
 
   function handleLogout() {
     dispatch(logoutRequest());
+
+    history.push("/");
   }
 
   function handleResetInput() {

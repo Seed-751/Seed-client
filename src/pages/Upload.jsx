@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { useDropzone } from "react-dropzone";
 import styled from "styled-components";
@@ -10,23 +10,15 @@ import { ErrorMessage } from "@hookform/error-message";
 import Input from "../components/shared/Input";
 import Button from "../components/shared/Button";
 import requestUploadMusic from "../api/requestUploadMusic";
-import validateMetaData from "../utils/validateMetaData";
-import validateDuration from "../utils/validateDuration";
 import { INITIAL_PREVIEW_IMAGE, ERROR, GENRE_OPTIONS } from "../constants";
 import { occurError } from "../reducers/errorSlice";
-import { selectUser } from "../reducers/userSlice";
+import validateAudio from "../utils/validateAudio";
 
 const Container = styled.div`
   display: flex;
   justify-content: center;
-  align-items: center;
-  margin-top: 5%;
+  height: 100%;
   text-align: center;
-
-  div > * {
-    display: block;
-    width: 400px;
-  }
 
   strong {
     font-size: 24px;
@@ -34,26 +26,71 @@ const Container = styled.div`
     letter-spacing: 0.06em;
   }
 
-  p {
-    margin-top: 28px;
-    font-size: 14px;
-    color: ${({ theme }) => theme.color.gray};
+  form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  button {
+    width: 50%;
   }
 `;
 
+const Wrapper = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  margin-top: 10px;
+  background-color: ${({ theme }) => theme.color.lightBlack};
+  height: 90%;
+  border-radius: 5px;
+`;
+
+const InnerWrapper = styled.div`
+  display: flex;
+`;
+
 const InputBox = styled.div`
+  display: flex;
+  flex-direction: column;
   margin-top: 10px;
   margin-Bottom: 10px;
+  line-height: 1.5;
   width: 100%;
   text-align: left;
 
-  label {
-    margin-left: 15px;
+
+  .audio-file {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border: 1px solid ${({ theme }) => theme.color.lightGray};
+    color: ${({ theme }) => theme.color.lightGray};
+
+    button {
+      width: 15%;
+      height: 10%;
+    }
   }
 
-  p {
-    margin: 0;
-    margin-left: 15px;
+  .audio-reject-file {
+    border: 1px solid ${({ theme }) => theme.color.lightGray};
+    color: ${({ theme }) => theme.color.lightGray};
+
+    div {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    button {
+      width: 15%;
+      height: 10%;
+    }
+  }
+
+  .error {
     color: red;
   }
 `;
@@ -72,6 +109,7 @@ const UploadImageInput = styled.input`
 
 const UploadTextarea = styled.textarea`
   resize: vertical;
+  height: 100%;
 `;
 
 const PreviewBox = styled.div`
@@ -92,7 +130,7 @@ const UploadAudioInput = styled.div`
   border-radius: 2px;
   border-color: ${({ theme }) => theme.color.gray};
   border-style: dashed;
-  background-color: ${({ theme }) => theme.color.white};
+  background-color: ${({ theme }) => theme.color.black};
   outline: none;
   transition: border .24s ease-in-out;
 
@@ -101,9 +139,20 @@ const UploadAudioInput = styled.div`
   }
 `;
 
+const FileBox = styled.div`
+  flex: 1;
+  padding: 10px;
+`;
+
+const TextBox = styled.div`
+  flex: 1;
+  padding: 10px;
+`;
+
 export default function Upload() {
   const [previewImage, setPreviewImage] = useState(INITIAL_PREVIEW_IMAGE);
-  const { userInfo } = useSelector(selectUser);
+  const [audioFiles, setAudioFiles] = useState([]);
+  const [rejectedAudioFiles, setRejectedAudioFiles] = useState([]);
   const [audioError, setAudioError] = useState(null);
   const history = useHistory();
   const dispatch = useDispatch();
@@ -116,52 +165,47 @@ export default function Upload() {
   const {
     getRootProps,
     getInputProps,
-    acceptedFiles,
   } = useDropzone({
     accept: "audio/*",
     onDrop,
     multiple: true,
-    validator: validateAudio,
   });
 
-  async function onDrop(acceptedFiles) {
-    if (!acceptedFiles.length) {
-      return setAudioError([ERROR.inputAudioFile]);
-    }
+  async function onDrop(acceptedFiles, rejectedFiles) {
+    setAudioError(null);
 
-    const durationValidateResult = await Promise.all(acceptedFiles.map((file) => {
-      return validateDuration(file);
+    const validateAcceptedFiles = await Promise.all(acceptedFiles.map((file) => {
+      return validateAudio(file);
     }));
 
-    const durationNormal = durationValidateResult.every((error) => {
-      return error === null;
+    const validFile = [];
+    const invalidFile = [];
+
+    validateAcceptedFiles.forEach((file) => {
+      if (file.errors) {
+        return invalidFile.push(file);
+      }
+
+      return validFile.push(file);
     });
 
-    if (!durationNormal) {
-      return setAudioError(durationValidateResult);
-    }
-
-    const metaDataValidateResult = await Promise.all(acceptedFiles.map((file) => {
-      return validateMetaData(file);
-    }));
-
-    setAudioError(metaDataValidateResult);
+    setAudioFiles([...audioFiles, ...validFile]);
+    setRejectedAudioFiles([...rejectedAudioFiles, ...invalidFile, ...rejectedFiles]);
   }
 
   async function handleUploadMusic(data) {
-    const audioFileNormal = audioError.every((error) => {
-      return error === null;
-    });
-
-    if (!audioFileNormal) {
-      return setAudioError([ERROR.checkAudioFile]);
+    if (!audioFiles.length || rejectedAudioFiles.length) {
+      return setAudioError(ERROR.checkAudioFile);
     }
 
     const { image } = data;
+    const audioArray = audioFiles.map((fileInfo) => (
+      fileInfo.file
+    ));
     const musicInfo = {
       ...data,
       image: image[0],
-      audioFiles: acceptedFiles,
+      audioFiles: [...audioArray],
     };
 
     try {
@@ -183,111 +227,140 @@ export default function Upload() {
       : setPreviewImage(INITIAL_PREVIEW_IMAGE);
   }
 
-  function validateAudio(file) {
-    const type = file.type.split("/")[0];
-
-    if (type !== "audio") {
-      return ERROR.inputAudioFile;
-    }
+  function onDelete(file) {
+    setAudioFiles(audioFiles.filter((audioFile) => audioFile !== file));
+    setRejectedAudioFiles(rejectedAudioFiles.filter((audioFile) => audioFile !== file));
   }
 
   return (
     <Container>
-      <div>
-        <h1>Upload Music</h1>
+      <Wrapper>
+        <strong>Upload Music</strong>
         <form
           onSubmit={handleSubmit(handleUploadMusic)}
           encType="multipart/form-data"
         >
+          <InnerWrapper>
+            <FileBox>
+              <InputBox>
+                <label>Image</label>
+                <PreviewBox>
+                  <img src={previewImage} />
+                </PreviewBox>
+                <UploadImageInput
+                  name="image"
+                  type="file"
+                  {...register("image", {
+                    onChange: handleImage,
+                    required: ERROR.inputImage,
+                  })}
+                />
+                <ErrorMessage
+                  errors={errors}
+                  name="image"
+                  render={({ message }) => <p>{message}</p>}
+                />
+              </InputBox>
 
-          <InputBox>
-            <label>Title</label>
-            <UploadInput
-              name="title"
-              {...register("title", {
-                required: ERROR.inputTitle,
-              })}
-            />
-            <ErrorMessage
-              errors={errors}
-              name="title"
-              render={({ message }) => <p>{message}</p>}
-            />
-          </InputBox>
+              <InputBox>
+                <label>Audio</label>
+                <UploadAudioInput {...getRootProps()}>
+                  <input
+                    {...getInputProps()}
+                  />
+                  <p style={{ color: "gray" }}>Drag and drop audio files here, or click to select files</p>
+                </UploadAudioInput>
+                <div>
+                  <p>accepted files</p>
+                  {audioFiles?.map((fileInfo) => {
+                    const { file } = fileInfo;
+                    return (
+                      <div className="audio-file" key={file.path}>
+                        <p>
+                          {file.name}
+                        </p>
+                        <Button type="button" onClick={() => onDelete(fileInfo)}>delete</Button>
+                      </div>
+                    );
+                  })}
+                </div>
+                <div>
+                  <p>rejected files</p>
+                  {rejectedAudioFiles?.map((fileInfo) => {
+                    const { file, errors } = fileInfo;
+                    return (
+                      <div className="audio-reject-file" key={file.path}>
+                        <div>
+                          <p key={file.path}>
+                            {file.name}
+                          </p>
+                          <Button type="button" onClick={() => onDelete(fileInfo)}>delete</Button>
+                        </div>
+                        {errors.map((error) => (
+                          <p className="error" key={error}>{error.message}</p>
+                        ))}
+                      </div>
+                    );
+                  })}
+                </div>
+                {audioError && <p>{audioError}</p>}
+              </InputBox>
+            </FileBox>
 
-          <InputBox>
-            <label>Image</label>
-            <PreviewBox>
-              <img src={previewImage} />
-            </PreviewBox>
-            <UploadImageInput
-              name="image"
-              type="file"
-              {...register("image", {
-                onChange: handleImage,
-                required: ERROR.inputImage,
-              })}
-            />
-            <ErrorMessage
-              errors={errors}
-              name="image"
-              render={({ message }) => <p>{message}</p>}
-            />
-          </InputBox>
+            <TextBox>
+              <InputBox>
+                <label>Title</label>
+                <UploadInput
+                  name="title"
+                  {...register("title", {
+                    required: ERROR.inputTitle,
+                  })}
+                />
+                <ErrorMessage
+                  errors={errors}
+                  name="title"
+                  render={({ message }) => <p>{message}</p>}
+                />
+              </InputBox>
 
-          <InputBox>
-            <label>Audio</label>
-            <UploadAudioInput {...getRootProps()}>
-              <input
-                {...getInputProps()}
-              />
-              <p style={{ color: "gray" }}>Drag and drop audio files here, or click to select files</p>
-            </UploadAudioInput>
-            <ul>
-              {acceptedFiles?.map((file) => (
-                <li key={file.path}>{file.path}</li>
-              ))}
-            </ul>
-            {audioError && <p>{audioError}</p>}
-          </InputBox>
+              <InputBox>
+                <label>Genre</label>
+                <select
+                  name="genre"
+                  {...register("genre", {
+                    required: ERROR.inputGenre,
+                  })}
+                >
+                  {GENRE_OPTIONS.map((genre) => (
+                    <option key={genre} value={genre}>{genre}</option>
+                  ))}
+                </select>
+                <ErrorMessage
+                  errors={errors}
+                  name="genre"
+                  render={({ message }) => <p>{message}</p>}
+                />
+              </InputBox>
 
-          <InputBox>
-            <label>Genre</label>
-            <select
-              name="genre"
-              {...register("genre", {
-                required: ERROR.inputGenre,
-              })}
-            >
-              {GENRE_OPTIONS.map((genre) => (
-                <option key={genre} value={genre}>{genre}</option>
-              ))}
-            </select>
-            <ErrorMessage
-              errors={errors}
-              name="genre"
-              render={({ message }) => <p>{message}</p>}
-            />
-          </InputBox>
-
-          <InputBox>
-            <label>Description</label>
-            <UploadTextarea
-              name="description"
-              {...register("description", {
-                required: ERROR.inputDescription,
-              })}
-            />
-            <ErrorMessage
-              errors={errors}
-              name="description"
-              render={({ message }) => <p>{message}</p>}
-            />
-          </InputBox>
-
+              <InputBox>
+                <label>Description</label>
+                <UploadTextarea
+                  name="description"
+                  {...register("description", {
+                    required: ERROR.inputDescription,
+                  })}
+                />
+                <ErrorMessage
+                  errors={errors}
+                  name="description"
+                  render={({ message }) => <p>{message}</p>}
+                />
+              </InputBox>
+            </TextBox>
+          </InnerWrapper>
           <Button type="submit">Upload</Button>
         </form>
-      </div>
+      </Wrapper>
     </Container>
   );
 }
