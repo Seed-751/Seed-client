@@ -1,31 +1,53 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 
-import requestSearchMusic from "../api/requestSearchMusic";
+import requestSearchPreview from "../api/requestSearchPreview";
 import requestCurrentMusic from "../api/requestCurrentMusic";
+import requestMusics from "../api/requestMusics";
 import {
-  searchMusicRequest,
-  searchMusicSuccess,
-  searchMusicFailure,
-} from "../reducers/searchSlice";
+  searchPreviewRequest,
+  searchPreviewSuccess,
+  searchPreviewFailure,
+} from "../reducers/searchPreviewSlice";
 import {
   getCurrentMusicRequest,
   getCurrentMusicSuccess,
   getCurrentMusicFailure,
 } from "../reducers/currentMusicSlice";
+import {
+  getMusicsRequest,
+  getMusicsSuccess,
+  getMusicsFailure,
+} from "../reducers/musicSlice";
 import { occurError } from "../reducers/errorSlice";
 
-function* handleSearchMusicSaga({ payload }) {
+function* handleMusicsSaga({ payload }) {
   try {
-    const { data, message } = yield call(requestSearchMusic, payload);
+    const { data, message } = yield call(requestMusics, payload);
 
     if (data) {
-      return yield put(searchMusicSuccess(data));
+      return yield put(getMusicsSuccess(data));
     }
 
-    yield put(searchMusicFailure(message));
+    yield put(getMusicsFailure(message));
     yield put(occurError(message));
   } catch (err) {
-    yield put(searchMusicFailure(err.message));
+    yield put(getMusicsFailure(err.message));
+    yield put(occurError(err.message));
+  }
+}
+
+function* handleSearchPreviewSaga({ payload }) {
+  try {
+    const { data, message } = yield call(requestSearchPreview, payload);
+
+    if (data) {
+      return yield put(searchPreviewSuccess(data));
+    }
+
+    yield put(searchPreviewFailure(message));
+    yield put(occurError(message));
+  } catch (err) {
+    yield put(searchPreviewFailure(err.message));
     yield put(occurError(err.message));
   }
 }
@@ -48,7 +70,8 @@ function* handleGetCurrentMusicSaga({ payload }) {
 
 export default function* musicSaga() {
   yield all([
-    takeLatest(searchMusicRequest.type, handleSearchMusicSaga),
+    takeLatest(searchPreviewRequest.type, handleSearchPreviewSaga),
     takeLatest(getCurrentMusicRequest.type, handleGetCurrentMusicSaga),
+    takeLatest(getMusicsRequest.type, handleMusicsSaga),
   ]);
 }

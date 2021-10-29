@@ -1,7 +1,7 @@
 const URL = process.env.REACT_APP_API_SERVER_URL;
 
-async function requestSearchMusic(keyword) {
-  const res = await fetch(`${URL}/musics/search/?keword=${keyword}`, {
+async function requestSearchPreview(keyword) {
+  const res = await fetch(`${URL}/musics/searchPreview/?keword=${keyword}`, {
     method: "GET",
     credentials: "include",
     headers: {
@@ -15,4 +15,4 @@ async function requestSearchMusic(keyword) {
   return result;
 }
 
-export default requestSearchMusic;
+export default requestSearchPreview;

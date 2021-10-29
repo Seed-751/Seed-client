@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 
 import styled from "styled-components";
 
-import { selectSearch } from "../reducers/searchSlice";
+import { selectSearchPreview } from "../reducers/searchPreviewSlice";
 import { Avatar } from "@material-ui/core/";
 
 const Wrapper = styled.div`
@@ -15,13 +15,13 @@ const Wrapper = styled.div`
   width: 100%;
   background-color: white;
   z-index: 1;
+  color: ${({ theme }) => theme.color.lightGray};
 
   .link {
     display: flex;
     align-items: center;
     width: 100%;
     height: 50px;
-    color: ${({ theme }) => theme.color.lightGray};
     cursor: pointer;
     gap: 25px;
     padding-left: 10px;
@@ -36,8 +36,9 @@ const Wrapper = styled.div`
   }
 `;
 
-export default function SearchPreview({ onReset }) {
-  const { searchResult } = useSelector(selectSearch);
+export default function SearchPreview({ onReset, searchInput }) {
+  const { searchPreviewResult } = useSelector(selectSearchPreview);
+  const { albumsByTitle, albumsByArtist } = searchPreviewResult;
   const history = useHistory();
 
   function handleClickPreview(musicId) {
@@ -46,18 +47,29 @@ export default function SearchPreview({ onReset }) {
   }
 
   return (
-    <Wrapper>
-      {searchResult?.map((music) => (
-        <div key={music._id} className="link" onClick={() => handleClickPreview(music._id)} >
-          <Avatar className="avatar" variant="square" src={music.image} />
-          <p className="artist">{music.artist.name}</p>
-          <p className="title">{music.title}</p>
-        </div>
-      ))}
-    </Wrapper>
+    <>
+      {searchInput &&
+        <Wrapper>
+          {albumsByTitle?.map((music) => (
+            <div key={music._id} className="link" onClick={() => handleClickPreview(music._id)} >
+              <Avatar className="avatar" variant="square" src={music.image} />
+              <p className="artist">{music.artist.name}</p>
+              <p className="title">{music.title}</p>
+            </div>
+          ))}
+          {albumsByArtist?.map((music) => (
+            <div key={music._id} className="link" onClick={() => handleClickPreview(music._id)} >
+              <Avatar className="avatar" variant="square" src={music.image} />
+              <p className="artist">{music.artist.name}</p>
+              <p className="title">{music.title}</p>
+            </div>
+          ))}
+        </Wrapper>}
+    </>
   );
 }
 
 SearchPreview.propTypes = {
   onReset: PropTypes.func.isRequired,
+  searchInput: PropTypes.node,
 };

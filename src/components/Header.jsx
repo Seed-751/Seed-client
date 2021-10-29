@@ -5,7 +5,7 @@ import PropTypes from "prop-types";
 import { Avatar } from "@material-ui/core/";
 import styled from "styled-components";
 
-import { searchMusicRequest } from "../reducers/searchSlice";
+import { searchPreviewRequest } from "../reducers/searchPreviewSlice";
 import { logoutRequest } from "../reducers/userSlice";
 import SearchForm from "../components/SearchForm";
 import SearchPreview from "../components/SearchPreview";
@@ -56,7 +56,7 @@ export default function Header({ userInfo }) {
   const history = useHistory();
 
   useEffect(() => {
-    dispatch(searchMusicRequest(searchInput));
+    dispatch(searchPreviewRequest(searchInput));
   }, [dispatch, searchInput]);
 
   function handleChangeInput(e) {
@@ -77,7 +77,7 @@ export default function Header({ userInfo }) {
     <Wrapper>
       <SearchBox>
         <SearchForm onChange={handleChangeInput} searchInput={searchInput} />
-        <SearchPreview onReset={handleResetInput} />
+        <SearchPreview onReset={handleResetInput} searchInput={searchInput} />
       </SearchBox>
       <Box>
         {!userInfo
