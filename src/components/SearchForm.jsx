@@ -1,9 +1,12 @@
 import React from "react";
-import styled from "styled-components";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
+import styled from "styled-components";
 import { IconButton } from "@material-ui/core/";
 import { Search } from "@material-ui/icons/";
 
+import { searchMusicRequest } from "../reducers/searchSlice";
 import Input from "./shared/Input";
 
 const Form = styled.form`
@@ -37,9 +40,28 @@ const SearchInput = styled(Input)`
   text-align: start;
 `;
 
-export default function SearchForm({ onChange, searchInput }) {
+export default function SearchForm({
+  onChange,
+  onReset,
+  searchInput,
+}) {
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  function handleSearchMusic(e) {
+    e.preventDefault();
+
+    if (!searchInput) {
+      return null;
+    }
+
+    dispatch(searchMusicRequest(searchInput));
+    onReset();
+    history.push(`/searchResult/${searchInput}`);
+  }
+
   return (
-    <Form>
+    <Form onSubmit={handleSearchMusic}>
       <SearchInput
         type="text"
         name="search"
@@ -48,7 +70,7 @@ export default function SearchForm({ onChange, searchInput }) {
         onChange={onChange}
         autoComplete="off"
       />
-      <IconButton className="search-icon" >
+      <IconButton type="submit" className="search-icon" >
         <Search />
       </IconButton>
     </Form>
@@ -57,5 +79,6 @@ export default function SearchForm({ onChange, searchInput }) {
 
 SearchForm.propTypes = {
   onChange: PropTypes.func.isRequired,
+  onReset: PropTypes.func.isRequired,
   searchInput: PropTypes.string.isRequired,
 };

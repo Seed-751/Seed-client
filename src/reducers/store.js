@@ -7,6 +7,7 @@ import { rootSaga } from "../sagas/rootSaga";
 import userReducer from "./userSlice";
 import errorReducer from "./errorSlice";
 import searchPreviewReducer from "./searchPreviewSlice";
+import searchReducer from "./searchSlice";
 import musicRreducer from "./musicSlice";
 import currentMusicReducer from "./currentMusicSlice";
 
@@ -21,6 +22,7 @@ const store = configureStore({
     user: userReducer,
     error: errorReducer,
     searchPreview: searchPreviewReducer,
+    search: searchReducer,
     music: musicRreducer,
     currentMusic: currentMusicReducer,
   },

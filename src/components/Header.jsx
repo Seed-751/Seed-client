@@ -76,7 +76,7 @@ export default function Header({ userInfo }) {
   return (
     <Wrapper>
       <SearchBox>
-        <SearchForm onChange={handleChangeInput} searchInput={searchInput} />
+        <SearchForm onChange={handleChangeInput} onReset={handleResetInput} searchInput={searchInput} />
         <SearchPreview onReset={handleResetInput} searchInput={searchInput} />
       </SearchBox>
       <Box>

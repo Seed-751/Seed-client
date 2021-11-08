@@ -1,6 +1,7 @@
 import { all, call, put, takeLatest } from "@redux-saga/core/effects";
 
 import requestSearchPreview from "../api/requestSearchPreview";
+import requestSearchMusic from "../api/requestSearchMusic";
 import requestCurrentMusic from "../api/requestCurrentMusic";
 import requestMusics from "../api/requestMusics";
 import {
@@ -8,6 +9,11 @@ import {
   searchPreviewSuccess,
   searchPreviewFailure,
 } from "../reducers/searchPreviewSlice";
+import {
+  searchMusicRequest,
+  searchMusicSuccess,
+  searchMusicFailure,
+} from "../reducers/searchSlice";
 import {
   getCurrentMusicRequest,
   getCurrentMusicSuccess,
@@ -32,6 +38,22 @@ function* handleMusicsSaga({ payload }) {
     yield put(occurError(message));
   } catch (err) {
     yield put(getMusicsFailure(err.message));
+    yield put(occurError(err.message));
+  }
+}
+
+function* handleSearchMusicSaga({ payload }) {
+  try {
+    const { data, message } = yield call(requestSearchMusic, payload);
+
+    if (data) {
+      return yield put(searchMusicSuccess(data));
+    }
+
+    yield put(searchMusicFailure(message));
+    yield put(occurError(message));
+  } catch (err) {
+    yield put(searchMusicFailure(err.message));
     yield put(occurError(err.message));
   }
 }
@@ -71,6 +93,7 @@ function* handleGetCurrentMusicSaga({ payload }) {
 export default function* musicSaga() {
   yield all([
     takeLatest(searchPreviewRequest.type, handleSearchPreviewSaga),
+    takeLatest(searchMusicRequest.type, handleSearchMusicSaga),
     takeLatest(getCurrentMusicRequest.type, handleGetCurrentMusicSaga),
     takeLatest(getMusicsRequest.type, handleMusicsSaga),
   ]);
