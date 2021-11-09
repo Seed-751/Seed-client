@@ -20,8 +20,8 @@ const Wrapper = styled.nav`
     letter-spacing: 0.04em;
 
     * {
-      color: ${({ theme }) => theme.color.green}
-    };
+      color: ${({ theme }) => theme.color.green};
+    }
 
     li {
       padding: 10px 0;
@@ -37,7 +37,7 @@ const Wrapper = styled.nav`
 export default function Navigation() {
   return (
     <Wrapper>
-      <h1>Seed</h1>
+      <h1><Link to="/">Seed</Link></h1>
       <nav>
         <ul>
           <li>
@@ -48,9 +48,6 @@ export default function Navigation() {
           </li>
           <li>
             <Link className="link" to="/mypage">My list</Link>
-          </li>
-          <li>
-            <Link className="link" to="/settings">Settings</Link>
           </li>
         </ul>
       </nav>

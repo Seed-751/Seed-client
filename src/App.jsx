@@ -16,6 +16,7 @@ import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import Dashboard from "./pages/Dashboard";
 import MusicDetail from "./pages/MusicDetail";
+import SearchReuslt from "./pages/SearchResult";
 import MyPage from "./pages/MyList";
 import Upload from "./pages/Upload";
 
@@ -83,6 +84,9 @@ export default function App() {
                 </Route>
                 <Route path="/dashboard">
                   <Dashboard />
+                </Route>
+                <Route path="/searchResult/:keword">
+                  <SearchReuslt />
                 </Route>
                 <Route path="/musics/:music_id">
                   <MusicDetail />
