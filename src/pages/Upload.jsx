@@ -42,6 +42,7 @@ const Wrapper = styled.div`
   flex-direction: column;
   flex-wrap: wrap;
   margin-top: 10px;
+  padding: 20px;
   background-color: ${({ theme }) => theme.color.lightBlack};
   height: 90%;
   border-radius: 5px;
@@ -93,6 +94,11 @@ const InputBox = styled.div`
   .error {
     color: red;
   }
+
+  select {
+    border-radius: 5px;
+    height: 50px;
+  }
 `;
 
 const UploadInput = styled(Input)`
@@ -104,12 +110,13 @@ const UploadImageInput = styled.input`
   border-style: dashed;
   border-color: ${({ theme }) => theme.color.gray};
   border-width: 2px;
-  border-radius: 2px;
+  border-radius: 5px;
 `;
 
 const UploadTextarea = styled.textarea`
-  resize: vertical;
-  height: 100%;
+  resize: none;
+  min-height: 300px;
+  border-radius: 5px;
 `;
 
 const PreviewBox = styled.div`
@@ -127,7 +134,7 @@ const UploadAudioInput = styled.div`
   align-items: center;
   padding: 20px;
   border-width: 2px;
-  border-radius: 2px;
+  border-radius: 5px;
   border-color: ${({ theme }) => theme.color.gray};
   border-style: dashed;
   background-color: ${({ theme }) => theme.color.black};

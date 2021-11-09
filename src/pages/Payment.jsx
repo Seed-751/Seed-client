@@ -90,6 +90,7 @@ export default function PaymentForm({ location }) {
             <label>Amount</label>
             <Input
               name="amount"
+              autocomplete="off"
               {...register("amount", {
                 required: ERROR.inputAmount,
               })}

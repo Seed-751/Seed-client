@@ -6,12 +6,9 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 0px;
-  border: 1px solid white;
 `;
 
 const Nav = styled.nav`
-  border: 1px solid white;
-
   ul {
     display: flex;
     flex-direction: row;
