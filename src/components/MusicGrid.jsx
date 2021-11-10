@@ -20,7 +20,7 @@ const MusicBox = styled.div`
 `;
 
 export default function MusicGrid() {
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const { musics } = useSelector(selectMusic);
   const dispatch = useDispatch();
 
