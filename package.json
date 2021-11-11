@@ -60,7 +60,9 @@
     "babel-eslint": "^10.1.0",
     "eslint-plugin-react": "^7.26.1",
     "husky": "^7.0.2",
-    "lint-staged": "^11.1.2"
+    "lint-staged": "^11.1.2",
+    "redux-saga-effects": "^1.1.0",
+    "redux-saga-test-plan": "^4.0.4"
   },
   "lint-staged": {
     "*.{js,jsx}": [

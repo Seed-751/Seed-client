@@ -20,7 +20,7 @@ import {
 } from "../reducers/userSlice";
 import { occurError } from "../reducers/errorSlice";
 
-function* handleSignupSaga({ payload }) {
+export function* handleSignupSaga({ payload }) {
   try {
     const { success, message } = yield call(requestSignup, payload);
 
@@ -36,7 +36,7 @@ function* handleSignupSaga({ payload }) {
   }
 }
 
-function* handleLoginSaga({ payload }) {
+export function* handleLoginSaga({ payload }) {
   try {
     const { data, message } = yield call(requestLogin, payload);
 
@@ -52,7 +52,7 @@ function* handleLoginSaga({ payload }) {
   }
 }
 
-function* handleAuthCheckSaga({ payload }) {
+export function* handleAuthCheckSaga({ payload }) {
   try {
     const { data, message } = yield call(requestAuthCheck, payload);
 
@@ -68,7 +68,7 @@ function* handleAuthCheckSaga({ payload }) {
   }
 }
 
-function* handleLogoutSaga() {
+export function* handleLogoutSaga() {
   try {
     const { success, message } = yield call(requestLogout);
 

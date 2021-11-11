@@ -26,7 +26,7 @@ import {
 } from "../reducers/musicSlice";
 import { occurError } from "../reducers/errorSlice";
 
-function* handleMusicsSaga({ payload }) {
+export function* handleMusicsSaga({ payload }) {
   try {
     const { data, message } = yield call(requestMusics, payload);
 
@@ -42,7 +42,7 @@ function* handleMusicsSaga({ payload }) {
   }
 }
 
-function* handleSearchMusicSaga({ payload }) {
+export function* handleSearchMusicSaga({ payload }) {
   try {
     const { data, message } = yield call(requestSearchMusic, payload);
 
@@ -58,7 +58,7 @@ function* handleSearchMusicSaga({ payload }) {
   }
 }
 
-function* handleSearchPreviewSaga({ payload }) {
+export function* handleSearchPreviewSaga({ payload }) {
   try {
     const { data, message } = yield call(requestSearchPreview, payload);
 
@@ -74,7 +74,7 @@ function* handleSearchPreviewSaga({ payload }) {
   }
 }
 
-function* handleGetCurrentMusicSaga({ payload }) {
+export function* handleGetCurrentMusicSaga({ payload }) {
   try {
     const { data, message } = yield call(requestCurrentMusic, payload);
 

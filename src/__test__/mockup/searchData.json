@@ -1,0 +1,346 @@
+{
+  "albumsByArtist": [],
+  "albumsByTitle": [
+    {
+      "_id": "6173337b7a0e9fe7b7e20b97",
+      "title": "Just A Notion 2",
+      "artist": {
+        "_id": "617333777a0e9fe7b7e20b14",
+        "name": "ABBA",
+        "createdAt": "2021-10-22T21:56:07.408Z",
+        "updatedAt": "2021-10-22T21:56:07.408Z",
+        "__v": 0
+      },
+      "image": "https://i.scdn.co/image/ab67616d00001e02526bc7da3dc018d66212ec07",
+      "audios": [
+        {
+          "title": "strawberry moon",
+          "track": "1",
+          "url": "https://seed-751.s3.ap-northeast-2.amazonaws.com/1634939089107.mp3",
+          "_id": "6173337b7a0e9fe7b7e20b98"
+        }
+      ],
+      "funding": {
+        "target": 1000000,
+        "amount": 0,
+        "donors": [],
+        "_id": "6173337b7a0e9fe7b7e20b99",
+        "createdAt": "2021-10-22T21:56:11.348Z",
+        "updatedAt": "2021-10-22T21:56:11.348Z"
+      },
+      "createdAt": "2021-10-22T21:56:11.351Z",
+      "updatedAt": "2021-10-22T21:56:11.351Z",
+      "__v": 0
+    },
+    {
+      "_id": "617332de0fc6abeeb8aa399c",
+      "title": "Just A Notion",
+      "artist": {
+        "_id": "617332da0fc6abeeb8aa3919",
+        "name": "ABBA",
+        "createdAt": "2021-10-22T21:53:30.297Z",
+        "updatedAt": "2021-10-22T21:53:30.297Z",
+        "__v": 0
+      },
+      "image": "https://i.scdn.co/image/ab67616d00001e02526bc7da3dc018d66212ec07",
+      "audios": [
+        {
+          "title": "strawberry moon",
+          "track": "1",
+          "url": "https://seed-751.s3.ap-northeast-2.amazonaws.com/1634939089107.mp3",
+          "_id": "617332de0fc6abeeb8aa399d"
+        }
+      ],
+      "funding": {
+        "target": 1000000,
+        "amount": 0,
+        "donors": [],
+        "_id": "617332de0fc6abeeb8aa399e",
+        "createdAt": "2021-10-22T21:53:34.243Z",
+        "updatedAt": "2021-10-22T21:53:34.243Z"
+      },
+      "createdAt": "2021-10-22T21:53:34.246Z",
+      "updatedAt": "2021-10-22T21:53:34.246Z",
+      "__v": 0
+    },
+    {
+      "_id": "617332c7427e1e6e37829533",
+      "title": "Just A Notion 3",
+      "artist": {
+        "_id": "617332c3427e1e6e378294b0",
+        "name": "ABBA",
+        "createdAt": "2021-10-22T21:53:07.758Z",
+        "updatedAt": "2021-10-22T21:53:07.758Z",
+        "__v": 0
+      },
+      "image": "https://i.scdn.co/image/ab67616d00001e02526bc7da3dc018d66212ec07",
+      "audios": [
+        {
+          "title": "strawberry moon",
+          "track": "1",
+          "url": "https://seed-751.s3.ap-northeast-2.amazonaws.com/1634939089107.mp3",
+          "_id": "617332c7427e1e6e37829534"
+        }
+      ],
+      "funding": {
+        "target": 1000000,
+        "amount": 0,
+        "donors": [],
+        "_id": "617332c7427e1e6e37829535",
+        "createdAt": "2021-10-22T21:53:11.665Z",
+        "updatedAt": "2021-10-22T21:53:11.665Z"
+      },
+      "createdAt": "2021-10-22T21:53:11.667Z",
+      "updatedAt": "2021-10-22T21:53:11.667Z",
+      "__v": 0
+    },
+    {
+      "_id": "617332ab2ea55c48cfa65f19",
+      "title": "Just A Notion 4",
+      "artist": {
+        "_id": "617332a72ea55c48cfa65e96",
+        "name": "ABBA",
+        "createdAt": "2021-10-22T21:52:39.392Z",
+        "updatedAt": "2021-10-22T21:52:39.392Z",
+        "__v": 0
+      },
+      "image": "https://i.scdn.co/image/ab67616d00001e02526bc7da3dc018d66212ec07",
+      "audios": [
+        {
+          "title": "strawberry moon",
+          "track": "1",
+          "url": "https://seed-751.s3.ap-northeast-2.amazonaws.com/1634939089107.mp3",
+          "_id": "617332ab2ea55c48cfa65f1a"
+        }
+      ],
+      "funding": {
+        "target": 1000000,
+        "amount": 0,
+        "donors": [],
+        "_id": "617332ab2ea55c48cfa65f1b",
+        "createdAt": "2021-10-22T21:52:43.300Z",
+        "updatedAt": "2021-10-22T21:52:43.300Z"
+      },
+      "createdAt": "2021-10-22T21:52:43.303Z",
+      "updatedAt": "2021-10-22T21:52:43.303Z",
+      "__v": 0
+    },
+    {
+      "_id": "6173329ea98afbd8f65a1094",
+      "title": "Just A Notion 5",
+      "artist": {
+        "_id": "6173329aa98afbd8f65a1011",
+        "name": "ABBA",
+        "createdAt": "2021-10-22T21:52:26.866Z",
+        "updatedAt": "2021-10-22T21:52:26.866Z",
+        "__v": 0
+      },
+      "image": "https://i.scdn.co/image/ab67616d00001e02526bc7da3dc018d66212ec07",
+      "audios": [
+        {
+          "title": "strawberry moon",
+          "track": "1",
+          "url": "https://seed-751.s3.ap-northeast-2.amazonaws.com/1634939089107.mp3",
+          "_id": "6173329ea98afbd8f65a1095"
+        }
+      ],
+      "funding": {
+        "target": 1000000,
+        "amount": 0,
+        "donors": [],
+        "_id": "6173329ea98afbd8f65a1096",
+        "createdAt": "2021-10-22T21:52:30.738Z",
+        "updatedAt": "2021-10-22T21:52:30.738Z"
+      },
+      "createdAt": "2021-10-22T21:52:30.740Z",
+      "updatedAt": "2021-10-22T21:52:30.740Z",
+      "__v": 0
+    },
+    {
+      "_id": "617332913cd88d7c391dc7f7",
+      "title": "Just A Notion 6",
+      "artist": {
+        "_id": "6173328d3cd88d7c391dc774",
+        "name": "ABBA",
+        "createdAt": "2021-10-22T21:52:13.510Z",
+        "updatedAt": "2021-10-22T21:52:13.510Z",
+        "__v": 0
+      },
+      "image": "https://i.scdn.co/image/ab67616d00001e02526bc7da3dc018d66212ec07",
+      "audios": [
+        {
+          "title": "strawberry moon",
+          "track": "1",
+          "url": "https://seed-751.s3.ap-northeast-2.amazonaws.com/1634939089107.mp3",
+          "_id": "617332913cd88d7c391dc7f8"
+        }
+      ],
+      "funding": {
+        "target": 1000000,
+        "amount": 0,
+        "donors": [],
+        "_id": "617332913cd88d7c391dc7f9",
+        "createdAt": "2021-10-22T21:52:17.487Z",
+        "updatedAt": "2021-10-22T21:52:17.487Z"
+      },
+      "createdAt": "2021-10-22T21:52:17.489Z",
+      "updatedAt": "2021-10-22T21:52:17.489Z",
+      "__v": 0
+    },
+    {
+      "_id": "61733283cb8a480b02d586ed",
+      "title": "Just A Notion 7",
+      "artist": {
+        "_id": "6173327fcb8a480b02d5866a",
+        "name": "ABBA",
+        "createdAt": "2021-10-22T21:51:59.913Z",
+        "updatedAt": "2021-10-22T21:51:59.913Z",
+        "__v": 0
+      },
+      "image": "https://i.scdn.co/image/ab67616d00001e02526bc7da3dc018d66212ec07",
+      "audios": [
+        {
+          "title": "strawberry moon",
+          "track": "1",
+          "url": "https://seed-751.s3.ap-northeast-2.amazonaws.com/1634939089107.mp3",
+          "_id": "61733283cb8a480b02d586ee"
+        }
+      ],
+      "funding": {
+        "target": 1000000,
+        "amount": 0,
+        "donors": [],
+        "_id": "61733283cb8a480b02d586ef",
+        "createdAt": "2021-10-22T21:52:03.797Z",
+        "updatedAt": "2021-10-22T21:52:03.797Z"
+      },
+      "createdAt": "2021-10-22T21:52:03.799Z",
+      "updatedAt": "2021-10-22T21:52:03.799Z",
+      "__v": 0
+    },
+    {
+      "_id": "61733277deab2fb54c7b8702",
+      "title": "Just A Notion 8",
+      "artist": {
+        "_id": "61733273deab2fb54c7b867f",
+        "name": "ABBA",
+        "createdAt": "2021-10-22T21:51:47.850Z",
+        "updatedAt": "2021-10-22T21:51:47.850Z",
+        "__v": 0
+      },
+      "image": "https://i.scdn.co/image/ab67616d00001e02526bc7da3dc018d66212ec07",
+      "audios": [
+        {
+          "title": "strawberry moon",
+          "track": "1",
+          "url": "https://seed-751.s3.ap-northeast-2.amazonaws.com/1634939089107.mp3",
+          "_id": "61733277deab2fb54c7b8703"
+        }
+      ],
+      "funding": {
+        "target": 1000000,
+        "amount": 0,
+        "donors": [],
+        "_id": "61733277deab2fb54c7b8704",
+        "createdAt": "2021-10-22T21:51:51.844Z",
+        "updatedAt": "2021-10-22T21:51:51.844Z"
+      },
+      "createdAt": "2021-10-22T21:51:51.846Z",
+      "updatedAt": "2021-10-22T21:51:51.846Z",
+      "__v": 0
+    },
+    {
+      "_id": "617332696fe6d20595140be1",
+      "title": "Just A Notion 9",
+      "artist": {
+        "_id": "617332656fe6d20595140b5e",
+        "name": "ABBA",
+        "createdAt": "2021-10-22T21:51:33.486Z",
+        "updatedAt": "2021-10-22T21:51:33.486Z",
+        "__v": 0
+      },
+      "image": "https://i.scdn.co/image/ab67616d00001e02526bc7da3dc018d66212ec07",
+      "audios": [
+        {
+          "title": "strawberry moon",
+          "track": "1",
+          "url": "https://seed-751.s3.ap-northeast-2.amazonaws.com/1634939089107.mp3",
+          "_id": "617332696fe6d20595140be2"
+        }
+      ],
+      "funding": {
+        "target": 1000000,
+        "amount": 0,
+        "donors": [],
+        "_id": "617332696fe6d20595140be3",
+        "createdAt": "2021-10-22T21:51:37.452Z",
+        "updatedAt": "2021-10-22T21:51:37.452Z"
+      },
+      "createdAt": "2021-10-22T21:51:37.454Z",
+      "updatedAt": "2021-10-22T21:51:37.454Z",
+      "__v": 0
+    },
+    {
+      "_id": "617332371e182319f9646969",
+      "title": "Just A Notion 1",
+      "artist": {
+        "_id": "617332331e182319f96468e6",
+        "name": "ABBA",
+        "createdAt": "2021-10-22T21:50:43.330Z",
+        "updatedAt": "2021-10-22T21:50:43.330Z",
+        "__v": 0
+      },
+      "image": "https://i.scdn.co/image/ab67616d00001e02526bc7da3dc018d66212ec07",
+      "audios": [
+        {
+          "title": "strawberry moon",
+          "track": "1",
+          "url": "https://seed-751.s3.ap-northeast-2.amazonaws.com/1634939089107.mp3",
+          "_id": "617332371e182319f964696a"
+        }
+      ],
+      "funding": {
+        "target": 1000000,
+        "amount": 0,
+        "donors": [],
+        "_id": "617332371e182319f964696b",
+        "createdAt": "2021-10-22T21:50:47.309Z",
+        "updatedAt": "2021-10-22T21:50:47.309Z"
+      },
+      "createdAt": "2021-10-22T21:50:47.311Z",
+      "updatedAt": "2021-10-22T21:50:47.311Z",
+      "__v": 0
+    },
+    {
+      "_id": "617331a6c2803243a155f45c",
+      "title": "Just A Notion",
+      "artist": {
+        "_id": "617331a2c2803243a155f3d9",
+        "name": "ABBA",
+        "createdAt": "2021-10-22T21:48:18.991Z",
+        "updatedAt": "2021-10-22T21:48:18.991Z",
+        "__v": 0
+      },
+      "image": "https://i.scdn.co/image/ab67616d00001e02526bc7da3dc018d66212ec07",
+      "audios": [
+        {
+          "title": "strawberry moon",
+          "track": "1",
+          "url": "https://seed-751.s3.ap-northeast-2.amazonaws.com/1634939089107.mp3",
+          "_id": "617331a6c2803243a155f45d"
+        }
+      ],
+      "funding": {
+        "target": 1000000,
+        "amount": 0,
+        "donors": [],
+        "_id": "617331a6c2803243a155f45e",
+        "createdAt": "2021-10-22T21:48:22.881Z",
+        "updatedAt": "2021-10-22T21:48:22.881Z"
+      },
+      "createdAt": "2021-10-22T21:48:22.884Z",
+      "updatedAt": "2021-10-22T21:48:22.884Z",
+      "__v": 0
+    }
+  ]
+}
