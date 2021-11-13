@@ -46,7 +46,6 @@ const SearchBox = styled.div`
   margin-left: 0;
   margin-bottom: auto;
   width: 50%;
-
 `;
 
 export default function Header({ userInfo }) {
