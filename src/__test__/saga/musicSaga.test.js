@@ -17,9 +17,9 @@ import requestSearchMusic from "../../api/requestSearchMusic";
 import requestSearchPreview from "../../api/requestSearchPreview";
 import requestCurrentMusic from "../../api/requestCurrentMusic";
 
-import musicsData from "../mockup/musicsData.json";
-import searchData from "../mockup/searchData.json";
-import currentMusicData from "../mockup/currentMusicData.json";
+import musicsData from "../mock/musicsData.json";
+import searchData from "../mock/searchData.json";
+import currentMusicData from "../mock/currentMusicData.json";
 
 describe("Get musics in musicSaga test", () => {
   it("Get musics success => ", () => {
