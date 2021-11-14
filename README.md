@@ -102,6 +102,41 @@ saga를 도입하게 된 이유는 새로운 기술을 도입하고 싶다는 �
 
 공식문서에도 나와 있는 부분으로 saga는 순수함수로 복잡한 로직을 간단하게 표현하여 테스트에도 적합하다는 것도 장점이었습니다.
 
+<details>
+<summary>redux saga test logic 예시</summary>
+
+```js
+describe("Request signup in userSaga test", () => {
+  it("Request signup success => ", () => {
+    const data = {
+      email: "test@gmail.com",
+      password: "test",
+      name: "test",
+    };
+
+    const response = {
+      success: true,
+    };
+
+    return expectSaga(handleSignupSaga, { payload: data })
+      .withReducer(userReducer)
+      .provide([[call(requestSignup, data), response]])
+      .put({ type: "user/signupSuccess", payload: undefined })
+      .hasFinalState({
+        userInfo: null,
+        isLoading: false,
+        isLoggedIn: false,
+        isSignupSuccess: true,
+        error: null,
+      })
+      .silentRun();
+  });
+});
+
+```
+</details>
+<br>
+
 saga는 generator라는 함수로 구성되어 로직을 delay, cancel, pause 등 더 제어할수 있는 특징을 가지고 그중에 takeLatest를 로직에 사용하였는데 비동기 로직을 감시하다 실행이 되었더라도 감시한 함수가 또 실행하게 되면 이전 요청에 대한 응답을 취소하기 때문에 사용자의 불필요한 연속적인 요청에도 대응할 수 있는 메서드로 비동기의 흐름을 세밀하게 제어하는 경험을 했습니다.
 
 ### 🔅 파일 업로드 과정
@@ -170,6 +205,7 @@ function validateMetaData(file) {
 
 ```
 </details>
+
 
 <br>
 
