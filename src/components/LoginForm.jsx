@@ -47,8 +47,9 @@ export default function LoginForm() {
     <>
       <form onSubmit={handleSubmit(handleLogin)}>
         <InputBox>
-          <label>Email</label>
+          <label id="email-label">Email</label>
           <Input
+            aria-labelledby="email-label"
             type="email"
             name="email"
             {...register("email")}
@@ -60,8 +61,9 @@ export default function LoginForm() {
           />
         </InputBox>
         <InputBox>
-          <label>Password</label>
+          <label id="password-label">Password</label>
           <Input
+            aria-labelledby="password-label"
             type="password"
             name="password"
             {...register("password")}
