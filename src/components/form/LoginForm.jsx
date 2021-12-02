@@ -6,10 +6,10 @@ import * as yup from "yup";
 import { ErrorMessage } from "@hookform/error-message";
 import styled from "styled-components";
 
-import { loginRequest } from "../reducers/userSlice";
+import { loginRequest } from "../../reducers/userSlice";
 
-import Button from "../components/shared/Button";
-import Input from "../components/shared/Input";
+import Button from "../shared/Button";
+import Input from "../shared/Input";
 
 const InputBox = styled.div`
   margin-top: 10px;

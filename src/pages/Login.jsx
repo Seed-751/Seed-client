@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import theme from "../styles/theme";
-import LoginForm from "../components/LoginForm";
+import LoginForm from "../components/form/LoginForm";
 import { selectUser } from "../reducers/userSlice";
 
 const Container = styled.div`

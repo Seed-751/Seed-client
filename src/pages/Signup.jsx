@@ -5,7 +5,7 @@ import styled from "styled-components";
 import theme from "../styles/theme";
 
 import { selectUser } from "../reducers/userSlice";
-import SignupFrom from "../components/SignupForm";
+import SignupFrom from "../components/form/SignupForm";
 
 const Container = styled.div`
   display: flex;
