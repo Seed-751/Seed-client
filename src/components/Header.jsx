@@ -7,7 +7,7 @@ import styled from "styled-components";
 
 import { searchPreviewRequest } from "../reducers/searchPreviewSlice";
 import { logoutRequest } from "../reducers/userSlice";
-import SearchForm from "../components/SearchForm";
+import SearchForm from "../components/form/SearchForm";
 import SearchPreview from "../components/SearchPreview";
 
 const Wrapper = styled.header`
