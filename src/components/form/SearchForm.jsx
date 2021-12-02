@@ -70,7 +70,11 @@ export default function SearchForm({
         onChange={onChange}
         autoComplete="off"
       />
-      <IconButton type="submit" className="search-icon" >
+      <IconButton
+        aria-label="search"
+        type="submit"
+        className="search-icon"
+      >
         <Search />
       </IconButton>
     </Form>
