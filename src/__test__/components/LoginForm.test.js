@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import MockProvider from "../MockProvider";
-import LoginForm from "../../components/LoginForm";
+import LoginForm from "../../components/form/LoginForm";
 
 describe("LoginForm component", () => {
   beforeEach(() => {
