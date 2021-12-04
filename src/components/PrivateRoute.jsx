@@ -16,6 +16,6 @@ export default function PrivateRoute({ component: Component, isAuthenticated, ..
 }
 
 PrivateRoute.propTypes = {
-  component: PropTypes.element.isRequired,
+  component: PropTypes.func.isRequired,
   isAuthenticated: PropTypes.bool.isRequired
 };
