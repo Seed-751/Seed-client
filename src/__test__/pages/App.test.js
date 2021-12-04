@@ -4,8 +4,8 @@ import { render, screen } from "@testing-library/react";
 import { createMemoryHistory } from "history";
 import { BrowserRouter as Router } from "react-router-dom";
 
-import store from "../reducers/store";
-import App from "../App";
+import store from "../../reducers/store";
+import App from "../../App";
 
 describe("<App />", () => {
   afterEach(() => {
