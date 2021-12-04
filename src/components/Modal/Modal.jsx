@@ -1,8 +1,6 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
-import { confirm } from "../../reducers/noticeSlice";
 
 const ModalWrapper = styled.div`
   position: fixed;
@@ -37,21 +35,20 @@ const ModalInner = styled.div`
     border: none;
     background: none;
   }
+
+  .none {
+    display: none;
+  }
 `;
 
-export default function Modal({ children }) {
-  const dispatch = useDispatch();
-
-  function onClose() {
-    dispatch(confirm());
-  }
+export default function Modal({ children, onClose, isNotNotice }) {
 
   return (
     <ModalWrapper>
       <ModalInner tabIndex={0} className="modal-inner">
         <button
           type="button"
-          className="close"
+          className={isNotNotice ? "close" : "none"}
           onClick={onClose}
         >
           x
@@ -64,4 +61,6 @@ export default function Modal({ children }) {
 
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
+  onClose: PropTypes.func,
+  isNotNotice: PropTypes.boolean,
 };

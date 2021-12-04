@@ -31,7 +31,7 @@ const Wrapper = styled.div`
 
   button { 
     background-color: ${({ type, theme }) => {
-  if (type === Notice.typeNotice) {
+  if (type === NOTICE.typeNotice) {
     return theme.color.notice;
   }
 
@@ -43,7 +43,7 @@ const Wrapper = styled.div`
   .icon {
     font-size: 100px;
     color: ${({ type, theme }) => {
-  if (type === Notice.typeNotice) {
+  if (type === NOTICE.typeNotice) {
     return theme.color.notice;
   }
 

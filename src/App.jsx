@@ -10,7 +10,6 @@ import Header from "./components/Header";
 import Navigation from "./components/Navigation";
 import PrivateRoute from "./components/PrivateRoute";
 import Modal from "./components/Modal/Modal";
-import Payment from "./pages/Payment";
 import Notice from "./components/Modal/Notice";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
@@ -103,11 +102,6 @@ export default function App() {
                   path="/mypage"
                   isAuthenticated={isLoggedIn}
                   component={MyPage}
-                />
-                <PrivateRoute
-                  path="/payment/:albumId/:userId"
-                  isAuthenticated={isLoggedIn}
-                  component={Payment}
                 />
                 <Route path="/" exact>
                   <Redirect to="/dashboard" />
