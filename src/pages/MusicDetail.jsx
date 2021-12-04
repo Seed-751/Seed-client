@@ -1,11 +1,13 @@
-import React, { useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useParams, useHistory } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
 import BottomPlayer from "../components/BottomPlayer";
 import AlbumInfo from "../components/AlbumInfo";
 import PlayList from "../components/PlayList";
+import Modal from "../components/Modal/Modal";
+import Payment from "../pages/Payment";
 
 import { ERROR } from "../constants";
 import { selectUser } from "../reducers/userSlice";
@@ -23,17 +25,18 @@ const Container = styled.div`
 
 export default function MusicDetail() {
   const params = useParams();
-  const history = useHistory();
   const musicId = params.music_id;
   const { userInfo, isLoggedIn } = useSelector(selectUser);
   const { music: album } = useSelector(selectCurrentMusic);
   const dispatch = useDispatch();
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     dispatch(getCurrentMusicRequest(musicId));
 
     return () => {
       dispatch(initiateCurrentMusic());
+      handleClosePayment();
     };
   }, [musicId, dispatch]);
 
@@ -42,11 +45,15 @@ export default function MusicDetail() {
       return dispatch(occurError(ERROR.requestLogin));
     }
 
-    history.push({
-      pathname: `/payment/${album._Id}/${userInfo._id}`,
-      albumInfo: album,
-      userInfo,
-    });
+    handleOpenPayment();
+  }
+
+  function handleOpenPayment() {
+    setIsOpen(true);
+  }
+
+  function handleClosePayment() {
+    setIsOpen(false);
   }
 
   if (!album) {
@@ -60,6 +67,17 @@ export default function MusicDetail() {
           <AlbumInfo album={album} onClick={handlePaymentPage} />
           <PlayList musics={album.audios} />
           <BottomPlayer image={album.image} />
+          {isOpen &&
+            <Modal
+              isNotNotice={true}
+              onClose={handleClosePayment}
+            >
+              <Payment
+                albumInfo={album}
+                userInfo={userInfo}
+                onClose={handleClosePayment}
+              />
+            </Modal>}
         </Container>
       }
     </>

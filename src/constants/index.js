@@ -20,6 +20,15 @@ const ERROR = {
   requestLogin: "login을 먼저 해주세요",
 };
 
+const MESSAGE = {
+  successPay: "결제에 성공하셧습니다!"
+};
+
+const NOTICE = {
+  typeError: "error",
+  typeNotice: "notice",
+};
+
 const GENRE_OPTIONS = [
   "classic",
   "jazz",
@@ -40,4 +49,6 @@ export {
   GENRE_OPTIONS,
   ERROR,
   DEFAULT_AUDIO_SAMPLE,
+  NOTICE,
+  MESSAGE,
 };

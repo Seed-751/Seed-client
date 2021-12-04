@@ -1,6 +1,7 @@
-import { occurError } from "../reducers/noticeSlice";
+import { occurError, occurNotice } from "../reducers/noticeSlice";
+import { getCurrentMusicRequest } from "../reducers/currentMusicSlice";
 
-import { ERROR } from "../constants";
+import { ERROR, MESSAGE } from "../constants";
 const URL = process.env.REACT_APP_API_SERVER_URL;
 const IAMPORT = process.env.REACT_APP_IAMPORT;
 
@@ -40,7 +41,10 @@ async function requestPayment({ albumInfo, amount, userInfo, dispatch, history }
       const result = await res.json();
 
       if (result.success) {
-        return history.push("/");
+        dispatch(occurNotice(MESSAGE.successPay));
+        dispatch(getCurrentMusicRequest(albumId));
+        history.push(`/musics/${albumId}`);
+        return;
       }
 
       dispatch(occurError(result.message));

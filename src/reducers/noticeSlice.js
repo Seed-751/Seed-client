@@ -34,6 +34,6 @@ export const {
   confirm,
 } = notice.actions;
 
-export const selectError = (state) => state.notice;
+export const selectNotice = (state) => state.notice;
 
 export default notice.reducer;

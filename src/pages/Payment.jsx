@@ -16,15 +16,16 @@ import { occurError } from "../reducers/noticeSlice";
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  justify-content: center;
   align-items: center;
   text-align: center;
-  margin-top: 150px;
   width: 100%;
+  height: 500px;
 
   strong {
     font-size: 24px;
+    color: black;
     font-weight: 600;
     letter-spacing: 0.06em;
   }
@@ -62,18 +63,18 @@ const InputBox = styled.div`
   }
 `;
 
-export default function PaymentForm({ location }) {
+export default function Payment({ albumInfo, userInfo, onClose }) {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { isLoggedIn } = useSelector(selectUser);
   const dispatch = useDispatch();
   const history = useHistory();
-  const { albumInfo, userInfo } = location;
 
-  function handlePayment(data) {
+  function handlePay(data) {
     if (!isLoggedIn) {
       return dispatch(occurError(ERROR.requestLogin));
     }
 
+    onClose();
     const amount = Number(data.amount);
     requestPayment({ albumInfo, amount, userInfo, dispatch, history });
   }
@@ -81,11 +82,11 @@ export default function PaymentForm({ location }) {
   return (
     <Wrapper>
       <div>
-        <h1>후원하기</h1>
+        <strong>후원하기</strong>
         <div>
           <p>{albumInfo.title} 앨범에 얼마를 후원 하시겟어요?</p>
         </div>
-        <form onSubmit={handleSubmit(handlePayment)}>
+        <form onSubmit={handleSubmit(handlePay)}>
           <InputBox>
             <label>Amount</label>
             <Input
@@ -108,9 +109,8 @@ export default function PaymentForm({ location }) {
   );
 }
 
-PaymentForm.propTypes = {
-  location: PropTypes.shape({
-    albumInfo: PropTypes.object.isRequired,
-    userInfo: PropTypes.object.isRequired,
-  }),
+Payment.propTypes = {
+  albumInfo: PropTypes.object.isRequired,
+  userInfo: PropTypes.object.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
