@@ -18,7 +18,7 @@ import {
   logoutSuccess,
   logoutFailure,
 } from "../reducers/userSlice";
-import { occurError } from "../reducers/errorSlice";
+import { occurError } from "../reducers/noticeSlice";
 
 export function* handleSignupSaga({ payload }) {
   try {

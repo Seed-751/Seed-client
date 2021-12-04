@@ -9,7 +9,7 @@ import PlayList from "../components/PlayList";
 
 import { ERROR } from "../constants";
 import { selectUser } from "../reducers/userSlice";
-import { occurError } from "../reducers/errorSlice";
+import { occurError } from "../reducers/noticeSlice";
 import { getCurrentMusicRequest, selectCurrentMusic, initiateCurrentMusic } from "../reducers/currentMusicSlice";
 
 const Container = styled.div`

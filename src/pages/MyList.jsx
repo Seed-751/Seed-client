@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 
 import requestMyMusics from "../api/requestMyMusics";
 import requestMyFundings from "../api/requestMyFundings";
-import { occurError } from "../reducers/errorSlice";
+import { occurError } from "../reducers/noticeSlice";
 import MyMusics from "../components/MyMusics";
 import MyFundings from "../components/MyFundings";
 

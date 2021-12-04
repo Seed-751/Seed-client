@@ -11,7 +11,7 @@ import Button from "../shared/Button";
 
 import { initiateMusics } from "../../reducers/musicSlice";
 import requestUploadMusic from "../../api/requestUploadMusic";
-import { occurError } from "../../reducers/errorSlice";
+import { occurError } from "../../reducers/noticeSlice";
 import validateAudio from "../../utils/validateAudio";
 
 import { INITIAL_PREVIEW_IMAGE, ERROR, GENRE_OPTIONS } from "../../constants";

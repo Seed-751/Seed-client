@@ -5,7 +5,7 @@ import logger from "redux-logger";
 import { rootSaga } from "../sagas/rootSaga";
 
 import userReducer from "./userSlice";
-import errorReducer from "./errorSlice";
+import noticeReducer from "./noticeSlice";
 import searchPreviewReducer from "./searchPreviewSlice";
 import searchReducer from "./searchSlice";
 import musicRreducer from "./musicSlice";
@@ -20,7 +20,7 @@ const middleware = process.env.NODE_ENV === "development"
 const store = configureStore({
   reducer: {
     user: userReducer,
-    error: errorReducer,
+    notice: noticeReducer,
     searchPreview: searchPreviewReducer,
     search: searchReducer,
     music: musicRreducer,

@@ -24,7 +24,7 @@ import {
   getMusicsSuccess,
   getMusicsFailure,
 } from "../reducers/musicSlice";
-import { occurError } from "../reducers/errorSlice";
+import { occurError } from "../reducers/noticeSlice";
 
 export function* handleMusicsSaga({ payload }) {
   try {

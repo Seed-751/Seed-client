@@ -1,4 +1,4 @@
-import { occurError } from "../reducers/errorSlice";
+import { occurError } from "../reducers/noticeSlice";
 
 import { ERROR } from "../constants";
 const URL = process.env.REACT_APP_API_SERVER_URL;

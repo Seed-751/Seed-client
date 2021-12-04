@@ -12,7 +12,7 @@ import { ERROR } from "../constants";
 import Input from "../components/shared/Input";
 import Button from "../components/shared/Button";
 import { selectUser } from "../reducers/userSlice";
-import { occurError } from "../reducers/errorSlice";
+import { occurError } from "../reducers/noticeSlice";
 
 const Wrapper = styled.div`
   display: flex;
