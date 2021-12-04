@@ -72,7 +72,7 @@ describe("UploadForm component", () => {
     expect(imageInput.files).toHaveLength(1);
   });
 
-  it("upload image file", async () => {
+  it("upload audio file", async () => {
     const audioInput = screen.getByLabelText("Audio");
     const file = new File(["test"], "test.mp3", { type: "audio/mpe" });
 
