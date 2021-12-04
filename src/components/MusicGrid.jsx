@@ -20,13 +20,17 @@ const MusicBox = styled.div`
 `;
 
 export default function MusicGrid() {
-  const [page, setPage] = useState(1);
+  const [page, setPage] = useState(0);
   const { musics } = useSelector(selectMusic);
   const dispatch = useDispatch();
 
   useEffect(() => {
+    if (page === 0) {
+      return;
+    }
+
     dispatch(getMusicsRequest(page));
-  }, [page, dispatch]);
+  }, [page]);
 
   function handlePageScroll() {
     setPage((page) => page + 1);

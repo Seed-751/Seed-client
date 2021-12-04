@@ -6,11 +6,16 @@ export default function MoreBox({ handlePageScroll }) {
   const observer = new IntersectionObserver(([{ isIntersecting }]) => {
     if (isIntersecting) {
       handlePageScroll();
+      return;
     }
-  });
+  }, { threshold: 1.0 });
 
   useEffect(() => {
     observer.observe(trigger.current);
+
+    return (() => {
+      observer && observer.disconnect();
+    });
   }, []);
 
   return (

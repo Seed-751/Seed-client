@@ -9,6 +9,7 @@ import styled from "styled-components";
 import Input from "../shared/Input";
 import Button from "../shared/Button";
 
+import { initiateMusics } from "../../reducers/musicSlice";
 import requestUploadMusic from "../../api/requestUploadMusic";
 import { occurError } from "../../reducers/errorSlice";
 import validateAudio from "../../utils/validateAudio";
@@ -186,6 +187,7 @@ export default function UploadForm() {
       const { success, message } = await requestUploadMusic(musicInfo);
 
       if (success) {
+        dispatch(initiateMusics());
         return history.push("/");
       }
 

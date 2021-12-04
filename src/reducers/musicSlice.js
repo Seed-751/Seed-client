@@ -23,6 +23,9 @@ const musicSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    initiateMusics: () => {
+      return initialState;
+    },
   },
 });
 
@@ -30,6 +33,7 @@ export const {
   getMusicsRequest,
   getMusicsSuccess,
   getMusicsFailure,
+  initiateMusics,
 } = musicSlice.actions;
 
 export const selectMusic = (state) => state.music;
