@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
@@ -12,20 +12,31 @@ const MusicBox = styled.div`
   grid-template-columns: repeat(4, 1fr);
   row-gap: 20px;
   margin-top: 10px;
+  height: 700px;
 
   .link {
     width: 250px;
+    height: 300px;
   }
 `;
 
 export default function MusicList({ data }) {
   const [currentPage, setCurrentPage] = useState(1);
+  const [pagedData, setPagedData] = useState([]);
   const totalData = data.length;
-  const pagedData = paginate(data, currentPage, 8);
 
   function handleChangePage(page) {
     setCurrentPage(page);
   }
+
+  useEffect(() => {
+    const currentData = paginate(data, currentPage, 8);
+    setPagedData(currentData);
+
+    return(() => {
+      setPagedData([]);
+    });
+  }, [data, currentPage]);
 
   return (
     <>

@@ -3,11 +3,15 @@ import { useSelector } from "react-redux";
 import styled from "styled-components";
 
 import MusicList from "../components/MusicList";
+import NoResult from "../components/NoResult";
 import { selectSearch } from "../reducers/searchSlice";
 
 const Container = styled.div`
+  display: flex;
+  flex-direction: column;
   height: 100%;
   padding: 10px;
+  gap: 30px;
 
   .title {
     font-size: 50px;
@@ -54,12 +58,18 @@ export default function SearchResult() {
       </Nav>
       {active.byTitle &&
         <>
-          {albumsByTitle && <MusicList data={albumsByTitle} />}
+          {albumsByTitle?.length
+            ? <MusicList data={albumsByTitle} />
+            : <NoResult />
+          }
         </>
       }
       {active.byArtist &&
         <>
-          {albumsByArtist && <MusicList data={albumsByArtist} />}
+          {albumsByArtist?.length
+            ? <MusicList data={albumsByArtist} />
+            : <NoResult />
+          }
         </>
       }
     </Container>
