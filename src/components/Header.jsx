@@ -17,6 +17,7 @@ const Wrapper = styled.header`
   width: 100%;
   height: 55px;
   margin-top: 5px;
+  padding-top: 10px;
 
   div {
     display: flex;

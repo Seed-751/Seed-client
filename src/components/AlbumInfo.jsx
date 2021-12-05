@@ -28,11 +28,13 @@ const InfoBox = styled.div`
 
   strong {
     font-weight: bold;
-    font-size: 90px;
+    font-size: 30px;
+    line-height: 1.2em;
   }
 
   .artist {
-    font-size: 30px;
+    font-size: 17px;
+    line-height: 1.2em;
     color: ${({ theme }) => theme.color.green};
   }
 

@@ -9,7 +9,7 @@ const Container = styled.div`
   text-align: center;
 
   strong {
-    font-size: 24px;
+    font-size: 30px;
     font-weight: 600;
     letter-spacing: 0.06em;
   }
@@ -26,13 +26,10 @@ const Container = styled.div`
 `;
 
 const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  flex-wrap: wrap;
+  position: relative;
   margin-top: 10px;
   padding: 20px;
   background-color: ${({ theme }) => theme.color.lightBlack};
-  height: 90%;
   border-radius: 5px;
 `;
 

@@ -7,6 +7,7 @@ import MusicGrid from "../components/MusicGrid";
 
 const Wrapper = styled.div`
   height: 100%;
+  margin-top: 10px;
   padding: 10px;
 
   .title {

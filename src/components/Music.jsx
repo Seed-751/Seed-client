@@ -6,6 +6,8 @@ import styled from "styled-components";
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  gap: 10px;
+  margin-top: 5px;
   padding-top: 0;
   width: 250px;
   height: 300px;

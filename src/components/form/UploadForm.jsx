@@ -16,8 +16,17 @@ import validateAudio from "../../utils/validateAudio";
 
 import { INITIAL_PREVIEW_IMAGE, ERROR, GENRE_OPTIONS } from "../../constants";
 
+const Form = styled.form`
+  .submit {
+    position: absolute;
+    bottom: 5%;
+  }
+`;
+
 const InnerWrapper = styled.div`
   display: flex;
+  padding: 5px;
+  gap: 10px;
 `;
 
 const InputBox = styled.div`
@@ -26,14 +35,23 @@ const InputBox = styled.div`
   margin-top: 10px;
   margin-Bottom: 10px;
   line-height: 1.5;
-  width: 100%;
+  width: 350px;
   text-align: left;
 
+  label {
+    display: block;
+    padding: 5px;
+  }
+
+  .files-container {
+    padding: 10px;
+  }
 
   .audio-file {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    padding: 5px;
     border: 1px solid ${({ theme }) => theme.color.lightGray};
     color: ${({ theme }) => theme.color.lightGray};
 
@@ -46,6 +64,7 @@ const InputBox = styled.div`
   .audio-reject-file {
     border: 1px solid ${({ theme }) => theme.color.lightGray};
     color: ${({ theme }) => theme.color.lightGray};
+    padding: 5px;
 
     div {
       display: flex;
@@ -89,10 +108,11 @@ const UploadTextarea = styled.textarea`
 
 const PreviewBox = styled.div`
   height: 100%;
-  border: 1px solid black;
 
   img {
-    height: 100%;
+    width: 350px;
+    height: inherit;
+    object-fit: contain;
   }
 `;
 
@@ -116,12 +136,10 @@ const UploadAudioInput = styled.div`
 
 const FileBox = styled.div`
   flex: 1;
-  padding: 10px;
 `;
 
 const TextBox = styled.div`
   flex: 1;
-  padding: 10px;
 `;
 
 export default function UploadForm() {
@@ -210,7 +228,7 @@ export default function UploadForm() {
 
   return (
     <>
-      <form
+      <Form
         onSubmit={handleSubmit(handleUploadMusic)}
         encType="multipart/form-data"
       >
@@ -246,8 +264,8 @@ export default function UploadForm() {
                 />
                 <p style={{ color: "gray" }}>Drag and drop audio files here, or click to select files</p>
               </UploadAudioInput>
-              <div>
-                <p>accepted files</p>
+              <div className="files-container">
+                <p>Accepted Files</p>
                 {audioFiles?.map((fileInfo) => {
                   const { file } = fileInfo;
                   return (
@@ -260,8 +278,8 @@ export default function UploadForm() {
                   );
                 })}
               </div>
-              <div>
-                <p>rejected files</p>
+              <div className="files-container">
+                <p>Rejected Files</p>
                 {rejectedAudioFiles?.map((fileInfo) => {
                   const { file, errors } = fileInfo;
                   return (
@@ -337,8 +355,8 @@ export default function UploadForm() {
             </InputBox>
           </TextBox>
         </InnerWrapper>
-        <Button type="submit">Upload</Button>
-      </form>
+        <Button className="submit" type="submit">Upload</Button>
+      </Form>
     </>
   );
 }
