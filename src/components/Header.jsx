@@ -62,13 +62,13 @@ export default function Header({ userInfo }) {
     dispatch(searchPreviewRequest(searchInput));
   }, [dispatch, searchInput]);
 
-  function handleChangeInput(e) {
-    setSearchInput(e.target.value);
-  }
-
   function handleLogout() {
     dispatch(logoutRequest());
     history.push("/");
+  }
+
+  function handleChangeInput(e) {
+    setSearchInput(e.target.value);
   }
 
   function handleResetInput() {

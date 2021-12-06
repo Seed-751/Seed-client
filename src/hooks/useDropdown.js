@@ -7,7 +7,7 @@ function useDropdown(currentHeader, currentOptions) {
   useEffect(() => {
     setHeader(currentHeader);
     setOptions(currentOptions);
-  }, [currentHeader, currentOptions]);
+  }, []);
 
   return { header, options };
 }
