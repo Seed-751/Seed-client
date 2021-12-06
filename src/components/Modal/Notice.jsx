@@ -29,7 +29,7 @@ const Wrapper = styled.div`
     color: ${({ theme }) => theme.color.gray};
   }
 
-  button { 
+  button {
     background-color: ${({ type, theme }) => {
   if (type === NOTICE.typeNotice) {
     return theme.color.notice;

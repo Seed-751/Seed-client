@@ -6,7 +6,6 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: center;
   margin-bottom: 0px;
-
 `;
 
 const Nav = styled.nav`
