@@ -7,8 +7,11 @@ import styled from "styled-components";
 
 import { searchPreviewRequest } from "../reducers/searchPreviewSlice";
 import { logoutRequest } from "../reducers/userSlice";
+import useDropdown from "../hooks/useDropdown";
+
 import SearchForm from "../components/form/SearchForm";
 import SearchPreview from "../components/SearchPreview";
+import Dropdown from "../components/shared/Dropdown";
 
 const Wrapper = styled.header`
   display: flex;
@@ -34,11 +37,6 @@ const Box = styled.div`
   }
 `;
 
-const Text = styled.div`
-  padding-right: 0;
-  gap: 10px;
-`;
-
 const SearchBox = styled.div`
   position: relative;
   display: flex;
@@ -50,9 +48,14 @@ const SearchBox = styled.div`
 `;
 
 export default function Header({ userInfo }) {
-  const { email, profileImage } = userInfo || {};
-  const dispatch = useDispatch();
+  const { profileImage } = userInfo || {};
+  const currentHeader = <Avatar src={profileImage} />;
+  const currentOptions = {
+    Logout: handleLogout,
+  };
+  const { header, options } = useDropdown(currentHeader, currentOptions);
   const [searchInput, setSearchInput] = useState("");
+  const dispatch = useDispatch();
   const history = useHistory();
 
   useEffect(() => {
@@ -65,7 +68,6 @@ export default function Header({ userInfo }) {
 
   function handleLogout() {
     dispatch(logoutRequest());
-
     history.push("/");
   }
 
@@ -87,13 +89,10 @@ export default function Header({ userInfo }) {
             <Link to="/signup" className="link">Signup</Link>
           </>
           :
-          <>
-            <button type="button" className="link" onClick={handleLogout}>Logout</button>
-            <Text>
-              <Avatar src={profileImage} />
-              {email}
-            </Text>
-          </>
+          <Dropdown
+            header={header}
+            options={options}
+          />
         }
       </Box>
     </Wrapper>
