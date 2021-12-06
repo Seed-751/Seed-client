@@ -16,7 +16,7 @@ const musicSlice = createSlice({
     },
     getMusicsSuccess: (state, action) => {
       state.isLoading = false;
-      state.musics = state.musics.concat(action.payload);
+      state.musics = [...state.musics, ...action.payload];
       state.error = null;
     },
     getMusicsFailure: (state, action) => {
