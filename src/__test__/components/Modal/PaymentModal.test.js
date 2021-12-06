@@ -1,0 +1,58 @@
+import React from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { render, waitFor } from "@testing-library/react";
+import userEvent from "@testing-library/user-event";
+
+import MockTheme from "../../MockTheme";
+import Payment from "../../../components/Modal/Payment";
+import Modal from "../../../components/Modal/Modal";
+
+jest.mock("react-redux", () => ({
+  useSelector: jest.fn(),
+  useDispatch: jest.fn(),
+}));
+
+describe("Payment Modal", () => {
+  afterEach(() => {
+    jest.restoreAllMocks();
+  });
+
+  it("has component", () => {
+    useSelector.mockImplementation((selectUser) => {
+      return {
+        userInfo: {
+          isLoggedIn: true,
+        }
+      };
+    });
+    useDispatch.mockImplementation(() => function dispatch() { });
+    const album = {
+      title: "title",
+      artist: {
+        name: "artist",
+      },
+    };
+    const userInfo = {
+      email: "test@gmail.com",
+    };
+    const onClose = jest.fn();
+
+    const { getByText } = render(
+      <MockTheme>
+        <Modal
+          isNotNotice={true}
+          onClose={onClose}
+        >
+          <Payment
+            albumInfo={album}
+            userInfo={userInfo}
+            onClose={onClose}
+          />
+        </Modal>
+      </MockTheme>
+    );
+
+    expect(getByText("후원하기")).toBeInTheDocument();
+    expect(getByText("Pay With Kakao")).toBeInTheDocument();
+  });
+});

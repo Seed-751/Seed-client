@@ -1,0 +1,206 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Upload page matches snapshot 1`] = `
+<div>
+  <div
+    class="sc-iqHYmW eLLWmM"
+  >
+    <div
+      class="sc-crrszt bygnOj"
+    >
+      <strong>
+        Upload Music
+      </strong>
+      <form
+        class="sc-dlfnuX kA-Dyrb"
+        enctype="multipart/form-data"
+      >
+        <div
+          class="sc-hKgJUU jqJoTQ"
+        >
+          <div
+            class="sc-jrAFXE hvXkzg"
+          >
+            <div
+              class="sc-eCstlR fYvFmI"
+            >
+              <label
+                id="image-label"
+              >
+                Image
+              </label>
+              <div
+                class="sc-fubCzh eotzAO"
+              >
+                <img
+                  src="/defaultImage.png"
+                />
+              </div>
+              <input
+                aria-labelledby="image-label"
+                class="sc-gKseQn djnPYe"
+                name="image"
+                type="file"
+              />
+            </div>
+            <div
+              class="sc-eCstlR fYvFmI"
+            >
+              <label
+                id="audio-label"
+              >
+                Audio
+              </label>
+              <div
+                class="sc-pGacB EciOV"
+                tabindex="0"
+              >
+                <input
+                  accept="audio/*"
+                  aria-labelledby="audio-label"
+                  autocomplete="off"
+                  multiple=""
+                  style="display: none;"
+                  tabindex="-1"
+                  type="file"
+                />
+                <p
+                  style="color: gray;"
+                >
+                  Drag and drop audio files here, or click to select files
+                </p>
+              </div>
+              <div
+                class="files-container"
+              >
+                <p>
+                  Accepted Files
+                </p>
+              </div>
+              <div
+                class="files-container"
+              >
+                <p>
+                  Rejected Files
+                </p>
+              </div>
+            </div>
+          </div>
+          <div
+            class="sc-kEjbQP jvxEBd"
+          >
+            <div
+              class="sc-eCstlR fYvFmI"
+            >
+              <label
+                id="title-label"
+              >
+                Title
+              </label>
+              <input
+                aria-labelledby="title-label"
+                class="sc-bdfBQB sc-jSgvzq gpSnii kNqZOj"
+                name="title"
+              />
+            </div>
+            <div
+              class="sc-eCstlR fYvFmI"
+            >
+              <label
+                id="genre-label"
+              >
+                Genre
+              </label>
+              <select
+                aria-labelledby="genre-label"
+                name="genre"
+              >
+                <option
+                  value="classic"
+                >
+                  classic
+                </option>
+                <option
+                  value="jazz"
+                >
+                  jazz
+                </option>
+                <option
+                  value="pop"
+                >
+                  pop
+                </option>
+                <option
+                  value="rock"
+                >
+                  rock
+                </option>
+                <option
+                  value="hip hop"
+                >
+                  hip hop
+                </option>
+                <option
+                  value="rhythm and blues"
+                >
+                  rhythm and blues
+                </option>
+                <option
+                  value="reggae"
+                >
+                  reggae
+                </option>
+                <option
+                  value="funk"
+                >
+                  funk
+                </option>
+                <option
+                  value="disco"
+                >
+                  disco
+                </option>
+                <option
+                  value="electronic music"
+                >
+                  electronic music
+                </option>
+                <option
+                  value="vocal music"
+                >
+                  vocal music
+                </option>
+                <option
+                  value="ballad"
+                >
+                  ballad
+                </option>
+              </select>
+            </div>
+            <div
+              class="sc-eCstlR fYvFmI"
+            >
+              <label
+                id="description-label"
+              >
+                Description
+              </label>
+              <textarea
+                aria-labelledby="description-label"
+                class="sc-iBPTik fUxqyS"
+                name="description"
+              />
+            </div>
+          </div>
+        </div>
+        <button
+          class="sc-gsTEea bzwDJA submit"
+          type="submit"
+        >
+          Upload
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+`;
