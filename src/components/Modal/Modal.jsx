@@ -62,5 +62,5 @@ export default function Modal({ children, onClose, isNotNotice }) {
 Modal.propTypes = {
   children: PropTypes.node.isRequired,
   onClose: PropTypes.func,
-  isNotNotice: PropTypes.boolean,
+  isNotNotice: PropTypes.bool,
 };

@@ -95,6 +95,7 @@ export default function Payment({ albumInfo, userInfo, onClose }) {
           <label>Amount</label>
           <Input
             name="amount"
+            type="number"
             autoComplete="off"
             {...register("amount", {
               required: ERROR.inputAmount,
