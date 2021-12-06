@@ -3,10 +3,10 @@
 exports[`<App /> matches snapshot 1`] = `
 <div>
   <div
-    class="sc-gGmKaI bWKfcL"
+    class="sc-crrszt fRjkOT"
   >
     <nav
-      class="sc-fubCzh iGheEx"
+      class="sc-kEjbQP kzyaRm"
     >
       <h1>
         <a
@@ -45,13 +45,13 @@ exports[`<App /> matches snapshot 1`] = `
       </nav>
     </nav>
     <section
-      class="sc-lcuiOb juIuND"
+      class="sc-iqHYmW iNMKRi"
     >
       <header
-        class="sc-eCstlR fUMICK"
+        class="sc-fubCzh heZVao"
       >
         <div
-          class="sc-iBPTik bjhsWa"
+          class="sc-jrAFXE flZrjl"
         >
           <form
             class="sc-gsTEea gUbKTY"
@@ -92,7 +92,7 @@ exports[`<App /> matches snapshot 1`] = `
           
         </div>
         <div
-          class="sc-jSgvzq jwsbXz"
+          class="sc-pGacB blvLIr"
         >
           <a
             class="link"
@@ -108,19 +108,7 @@ exports[`<App /> matches snapshot 1`] = `
           </a>
         </div>
       </header>
-      <div
-        class="sc-fKFxtB dCryeS"
-      >
-        <h1
-          class="title"
-        >
-          Albums
-        </h1>
-        <div
-          class="sc-kfzBvY iDyONL"
-        />
-        <div />
-      </div>
+      <div />
     </section>
   </div>
 </div>

@@ -13,10 +13,6 @@ describe("<App />", () => {
   });
 
   it("matches snapshot", () => {
-    window.IntersectionObserver = jest.fn(() => ({
-      observe: jest.fn(),
-    }));
-
     const { container } = render(
       <Provider store={store}>
         <Router>
@@ -31,6 +27,7 @@ describe("<App />", () => {
   it("should render Login, Signup Button if user not logged in", () => {
     window.IntersectionObserver = jest.fn(() => ({
       observe: jest.fn(),
+      disconnect: jest.fn(),
     }));
 
     const history = createMemoryHistory();
