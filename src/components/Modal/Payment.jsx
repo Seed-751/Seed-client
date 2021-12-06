@@ -6,13 +6,13 @@ import styled from "styled-components";
 
 import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
-import requestPayment from "../api/requestPayment";
-import { ERROR } from "../constants";
+import requestPayment from "../../api/requestPayment";
+import { ERROR } from "../../constants";
 
-import Input from "../components/shared/Input";
-import Button from "../components/shared/Button";
-import { selectUser } from "../reducers/userSlice";
-import { occurError } from "../reducers/noticeSlice";
+import Input from "../../components/shared/Input";
+import Button from "../../components/shared/Button";
+import { selectUser } from "../../reducers/userSlice";
+import { occurError } from "../../reducers/noticeSlice";
 
 const Wrapper = styled.div`
   display: flex;
@@ -21,10 +21,11 @@ const Wrapper = styled.div`
   align-items: center;
   text-align: center;
   width: 100%;
-  height: 500px;
+  height: 300px;
+  color: ${({ theme }) => theme.color.gray};
 
   strong {
-    font-size: 24px;
+    font-size: 30px;
     color: black;
     font-weight: 600;
     letter-spacing: 0.06em;
@@ -38,6 +39,11 @@ const Wrapper = styled.div`
 
   form {
     width: 90%;
+  }
+
+  span {
+    font-weight: bold;
+    color: black;
   }
 `;
 
@@ -54,7 +60,6 @@ const InputBox = styled.div`
   p {
     margin: 0;
     margin-left: 15px;
-    color: red;
   }
 
   input {
@@ -81,30 +86,28 @@ export default function Payment({ albumInfo, userInfo, onClose }) {
 
   return (
     <Wrapper>
-      <div>
-        <strong>후원하기</strong>
-        <div>
-          <p>{albumInfo.title} 앨범에 얼마를 후원 하시겟어요?</p>
-        </div>
-        <form onSubmit={handleSubmit(handlePay)}>
-          <InputBox>
-            <label>Amount</label>
-            <Input
-              name="amount"
-              autocomplete="off"
-              {...register("amount", {
-                required: ERROR.inputAmount,
-              })}
-            />
-            <ErrorMessage
-              errors={errors}
-              name="amount"
-              render={({ message }) => <p>{message}</p>}
-            />
-          </InputBox>
-          <Button>Pay With Kakao</Button>
-        </form>
-      </div>
+      <strong>후원하기</strong>
+      <p>
+        <span>{albumInfo.artist.name}</span>님의 <span>{albumInfo.title}</span> 앨범에 얼마를 후원 하시겟어요?
+      </p>
+      <form onSubmit={handleSubmit(handlePay)}>
+        <InputBox>
+          <label>Amount</label>
+          <Input
+            name="amount"
+            autoComplete="off"
+            {...register("amount", {
+              required: ERROR.inputAmount,
+            })}
+          />
+          <ErrorMessage
+            errors={errors}
+            name="amount"
+            render={({ message }) => <p>{message}</p>}
+          />
+        </InputBox>
+        <Button>Pay With Kakao</Button>
+      </form>
     </Wrapper>
   );
 }

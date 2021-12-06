@@ -7,7 +7,7 @@ import BottomPlayer from "../components/BottomPlayer";
 import AlbumInfo from "../components/AlbumInfo";
 import PlayList from "../components/PlayList";
 import Modal from "../components/Modal/Modal";
-import Payment from "../pages/Payment";
+import Payment from "../components/Modal/Payment";
 
 import { ERROR } from "../constants";
 import { selectUser } from "../reducers/userSlice";
