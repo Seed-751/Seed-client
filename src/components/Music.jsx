@@ -18,7 +18,8 @@ const Wrapper = styled.div`
   }
 
   img {
-    width: inherit;
+    width: 250px;
+    height: 250px;
     object-fit: cover;
   }
 
