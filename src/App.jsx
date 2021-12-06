@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, lazy, Suspense } from "react";
 import { Route, Switch, Redirect } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import styled, { ThemeProvider } from "styled-components";
@@ -8,16 +8,17 @@ import { selectNotice } from "./reducers/noticeSlice";
 
 import Header from "./components/Header";
 import Navigation from "./components/Navigation";
-import PrivateRoute from "./components/PrivateRoute";
-import Modal from "./components/Modal/Modal";
-import Notice from "./components/Modal/Notice";
-import Login from "./pages/Login";
-import Signup from "./pages/Signup";
-import Dashboard from "./pages/Dashboard";
-import MusicDetail from "./pages/MusicDetail";
-import SearchReuslt from "./pages/SearchResult";
-import MyPage from "./pages/MyList";
-import Upload from "./pages/Upload";
+
+const Dashboard = lazy(() => import("./pages/Dashboard"));
+const PrivateRoute = lazy(() => import("./components/PrivateRoute"));
+const Modal = lazy(() => import("./components/Modal/Modal"));
+const Notice = lazy(() => import("./components/Modal/Notice"));
+const Login = lazy(() => import("./pages/Login"));
+const Signup = lazy(() => import("./pages/Signup"));
+const MusicDetail = lazy(() => import("./pages/MusicDetail"));
+const SearchResult = lazy(() => import("./pages/SearchResult"));
+const MyList = lazy(() => import("./pages/MyList"));
+const Upload = lazy(() => import("./pages/Upload"));
 
 import GlobalStyles from "./styles";
 import theme from "./styles/theme";
@@ -66,51 +67,56 @@ export default function App() {
       {isLoaded &&
         <>
           <Container>
-            {isOpen &&
-              <Modal>
-                <Notice
-                  type={type}
-                  message={message}
-                />
-              </Modal>
-            }
+            <Suspense fallback={<div></div>}>
+              {isOpen &&
+                <Modal>
+                  <Notice
+                    type={type}
+                    message={message}
+                  />
+                </Modal>
+              }
+            </Suspense>
             <Navigation />
             <Section>
               <Header userInfo={userInfo} />
               <Switch>
-                <Route path="/login">
-                  <Login />
-                </Route>
-                <Route path="/signup">
-                  <Signup />
-                </Route>
-                <Route path="/dashboard">
-                  <Dashboard />
-                </Route>
-                <Route path="/searchResult/:keword">
-                  <SearchReuslt />
-                </Route>
-                <Route path="/musics/:music_id">
-                  <MusicDetail />
-                </Route>
-                <PrivateRoute
-                  path="/upload"
-                  isAuthenticated={isLoggedIn}
-                  component={Upload}
-                />
-                <PrivateRoute
-                  path="/mypage"
-                  isAuthenticated={isLoggedIn}
-                  component={MyPage}
-                />
-                <Route path="/" exact>
-                  <Redirect to="/dashboard" />
-                </Route>
-                <Route path="*">
-                  <Redirect to="/dashboard" />
-                </Route>
+                <Suspense fallback={<div></div>}>
+                  <Route path="/dashboard">
+                    <Dashboard />
+                  </Route>
+                  <Route path="/login">
+                    <Login />
+                  </Route>
+                  <Route path="/signup">
+                    <Signup />
+                  </Route>
+                  <Route path="/searchResult/:keword">
+                    <SearchResult />
+                  </Route>
+                  <Route path="/musics/:music_id">
+                    <MusicDetail />
+                  </Route>
+                  <PrivateRoute
+                    path="/upload"
+                    isAuthenticated={isLoggedIn}
+                    component={Upload}
+                  />
+                  <PrivateRoute
+                    path="/mypage"
+                    isAuthenticated={isLoggedIn}
+                    component={MyList}
+                  />
+                  <Route path="/" exact>
+                    <Redirect to="/dashboard" />
+                  </Route>
+                  <Route path="*">
+                    <Redirect to="/dashboard" />
+                  </Route>
+                </Suspense>
               </Switch>
             </Section>
+
           </Container>
         </>
       }
