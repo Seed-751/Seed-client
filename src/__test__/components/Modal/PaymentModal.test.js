@@ -1,7 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { render, waitFor } from "@testing-library/react";
-import userEvent from "@testing-library/user-event";
+import { render} from "@testing-library/react";
 
 import MockTheme from "../../MockTheme";
 import Payment from "../../../components/Modal/Payment";
@@ -17,7 +16,7 @@ describe("Payment Modal", () => {
     jest.restoreAllMocks();
   });
 
-  it("has component", () => {
+  it("has component", async () => {
     useSelector.mockImplementation((selectUser) => {
       return {
         userInfo: {
@@ -51,7 +50,6 @@ describe("Payment Modal", () => {
         </Modal>
       </MockTheme>
     );
-
     expect(getByText("후원하기")).toBeInTheDocument();
     expect(getByText("Pay With Kakao")).toBeInTheDocument();
   });
