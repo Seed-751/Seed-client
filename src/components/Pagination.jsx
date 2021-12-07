@@ -100,6 +100,7 @@ export default function Pagination({ pageSize, totalData, currentPage, onPageCha
             <ArrowButton active={currentPage !== 1} onClick={handlePrevButton}>{"<"}</ArrowButton>
             {pages.map((page) => (
               <li
+                data-testid="page"
                 key={page}
                 className={page === currentPage ? "page-item active" : "page-item"}
                 style={{ cursor: "pointer" }}
