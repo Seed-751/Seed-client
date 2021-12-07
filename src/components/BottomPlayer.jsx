@@ -174,7 +174,10 @@ export default function BottomPlayer({ image }) {
 
   return (
     <Wrapper>
-      <audio ref={audioPlayer} src={audioUrl} preload="metadata" />
+      <audio
+        ref={audioPlayer}
+        src={audioUrl} preload="metadata"
+      />
       <PlaySliderBox>
         <ProgressBar
           ref={progressBar}
@@ -191,22 +194,29 @@ export default function BottomPlayer({ image }) {
         </MusicDetail>
       </MusicInfoBox>
       <ButtonBox>
-        <IconButton>
+        <IconButton
+          aria-label="backwardTen"
+          onClick={handleBackwardTen}
+        >
           <Replay10
             className="side-icon"
-            onClick={handleBackwardTen}
           />
         </IconButton>
-        <IconButton onClick={handleTogglePlay}>
+        <IconButton
+          aria-label="togglePlayPause"
+          onClick={handleTogglePlay}
+        >
           {isPlaying
             ? <PauseCircleFilled className="play-icon" />
             : <PlayCircleFilled className="play-icon" />
           }
         </IconButton>
-        <IconButton>
+        <IconButton
+          aria-label="forwardTen"
+          onClick={handleForwardTen}
+        >
           <Forward10
             className="side-icon"
-            onClick={handleForwardTen}
           />
         </IconButton>
       </ButtonBox>
@@ -220,7 +230,10 @@ export default function BottomPlayer({ image }) {
             onChange={handleChangeSound}
           />
         </SoundBox>
-        <IconButton onClick={handleToggleMute}>
+        <IconButton
+          aria-label="toggleMute"
+          onClick={handleToggleMute}
+        >
           {!isMuted
             ? <VolumeUp className="side-icon" />
             : <VolumeOff className="side-icon" />
