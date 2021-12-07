@@ -16,13 +16,13 @@ exports[`Upload page matches snapshot 1`] = `
         enctype="multipart/form-data"
       >
         <div
-          class="sc-hKgJUU jqJoTQ"
+          class="sc-hKgJUU iTBZof"
         >
           <div
             class="sc-jrAFXE hvXkzg"
           >
             <div
-              class="sc-eCstlR fYvFmI"
+              class="sc-eCstlR eQcvTH"
             >
               <label
                 id="image-label"
@@ -30,7 +30,7 @@ exports[`Upload page matches snapshot 1`] = `
                 Image
               </label>
               <div
-                class="sc-fubCzh eotzAO"
+                class="sc-fubCzh kAJbsJ"
               >
                 <img
                   src="/defaultImage.png"
@@ -44,7 +44,7 @@ exports[`Upload page matches snapshot 1`] = `
               />
             </div>
             <div
-              class="sc-eCstlR fYvFmI"
+              class="sc-eCstlR eQcvTH"
             >
               <label
                 id="audio-label"
@@ -90,7 +90,7 @@ exports[`Upload page matches snapshot 1`] = `
             class="sc-kEjbQP jvxEBd"
           >
             <div
-              class="sc-eCstlR fYvFmI"
+              class="sc-eCstlR eQcvTH"
             >
               <label
                 id="title-label"
@@ -104,7 +104,7 @@ exports[`Upload page matches snapshot 1`] = `
               />
             </div>
             <div
-              class="sc-eCstlR fYvFmI"
+              class="sc-eCstlR eQcvTH"
             >
               <label
                 id="genre-label"
@@ -178,7 +178,7 @@ exports[`Upload page matches snapshot 1`] = `
               </select>
             </div>
             <div
-              class="sc-eCstlR fYvFmI"
+              class="sc-eCstlR eQcvTH"
             >
               <label
                 id="description-label"
@@ -187,7 +187,7 @@ exports[`Upload page matches snapshot 1`] = `
               </label>
               <textarea
                 aria-labelledby="description-label"
-                class="sc-iBPTik fUxqyS"
+                class="sc-iBPTik fRXNcT"
                 name="description"
               />
             </div>

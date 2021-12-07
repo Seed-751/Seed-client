@@ -1,0 +1,26 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MyList page matches snapshot 1`] = `
+<div>
+  <div
+    class="sc-eCstlR cxNDuA"
+  >
+    <h1>
+      My Musics
+    </h1>
+    <div
+      class="sc-jSgvzq dSGgCD"
+    />
+  </div>
+  <div
+    class="sc-gKseQn efNTNe"
+  >
+    <h1>
+      My Fundings
+    </h1>
+    <div
+      class="sc-iBPTik bpAjIl"
+    />
+  </div>
+</div>
+`;
