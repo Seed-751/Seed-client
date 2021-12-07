@@ -10,6 +10,7 @@ import { searchMusicRequest } from "../../reducers/searchSlice";
 import Input from "../shared/Input";
 
 const Form = styled.form`
+  z-index: 3;
   display: flex;
   margin-top: auto;
   margin-bottom: auto;

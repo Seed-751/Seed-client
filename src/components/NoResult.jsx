@@ -22,8 +22,8 @@ const Wrapper = styled.div`
   }
 
   .icon {
-    color: ${({ theme }) => theme.color.green};
-    font-size: 300px;
+    color: ${({ theme }) => theme.color.gray};
+    font-size: 100px;
   }
 `;
 

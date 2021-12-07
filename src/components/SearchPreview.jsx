@@ -8,16 +8,24 @@ import { selectSearchPreview } from "../reducers/searchPreviewSlice";
 import { Avatar } from "@material-ui/core/";
 
 const Wrapper = styled.div`
+  position: absolute;
+  top: 20px;
+  z-index: 10;
   display: flex;
   flex-direction: column;
   gap: 5px;
-  padding: 5px;
-  margin-top: 5px;
+  padding: 30px 10px 10px 10px;
   width: 100%;
-  background-color: white;
+  background-color: #fff;
   border-radius: 15px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
   z-index: 1;
   color: ${({ theme }) => theme.color.lightGray};
+
+  > div + div {
+    margin: 0 -10px;
+  }
 `;
 
 const PreviewBox = styled.div`
@@ -25,8 +33,22 @@ const PreviewBox = styled.div`
   flex-direction: column;
   padding: 3px;
   width: 100%;
-  border: 1px solid gray;
   border-radius: 15px;
+
+  h2 {
+    width: 100%;
+    text-align: left;
+    font-size: 18px;
+    font-weight: 500;
+    color: #555;
+  }
+
+  p {
+    margin-top: 5px;
+    width: 100%;
+    text-align: left;
+    font-size: 14px;
+  }
 
   .link {
     display: flex;
@@ -35,7 +57,10 @@ const PreviewBox = styled.div`
     height: 50px;
     cursor: pointer;
     gap: 25px;
-    padding-left: 10px;
+
+    > * {
+      font-size: 14px;
+    }
   }
 
   .artist {
@@ -62,7 +87,7 @@ export default function SearchPreview({ onReset, searchInput }) {
       {searchInput &&
         <Wrapper>
           <PreviewBox>
-            <h1>Title</h1>
+            <h2>Title</h2>
             {albumsByTitle?.length
               ?
               (albumsByTitle?.map((music) => (
@@ -77,7 +102,7 @@ export default function SearchPreview({ onReset, searchInput }) {
             }
           </PreviewBox>
           <PreviewBox>
-            <h1>Artist</h1>
+            <h2>Artist</h2>
             {albumsByArtist?.length
               ?
               (albumsByArtist?.map((music) => (

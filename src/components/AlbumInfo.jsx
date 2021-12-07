@@ -46,6 +46,8 @@ const InfoBox = styled.div`
   .description {
     position: relative;
     line-height: 2rem;
+    overflow-y: scroll;
+    scrollbar-color: #eee;
   }
 `;
 

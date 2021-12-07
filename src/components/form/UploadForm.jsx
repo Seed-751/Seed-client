@@ -26,7 +26,7 @@ const Form = styled.form`
 const InnerWrapper = styled.div`
   display: flex;
   padding: 5px;
-  gap: 10px;
+  gap: 20px;
 `;
 
 const InputBox = styled.div`
@@ -41,6 +41,12 @@ const InputBox = styled.div`
   label {
     display: block;
     padding: 5px;
+  }
+
+  input {
+    margin-top: 0;
+    padding: 0 10px;
+    text-align: left;
   }
 
   .files-container {
@@ -102,11 +108,14 @@ const UploadImageInput = styled.input`
 
 const UploadTextarea = styled.textarea`
   resize: none;
-  min-height: 300px;
+  min-height: 343px;
+  padding: 10px;
   border-radius: 5px;
+  line-height: 1.5;
 `;
 
 const PreviewBox = styled.div`
+  margin-bottom: 15px;
   height: 100%;
 
   img {

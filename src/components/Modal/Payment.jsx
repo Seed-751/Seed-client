@@ -1,11 +1,11 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
+import { useForm } from "react-hook-form";
+import { ErrorMessage } from "@hookform/error-message";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { useForm } from "react-hook-form";
-import { ErrorMessage } from "@hookform/error-message";
 import requestPayment from "../../api/requestPayment";
 import { ERROR } from "../../constants";
 
@@ -13,11 +13,12 @@ import Input from "../../components/shared/Input";
 import Button from "../../components/shared/Button";
 import { selectUser } from "../../reducers/userSlice";
 import { occurError } from "../../reducers/noticeSlice";
+import { Avatar } from "@material-ui/core";
 
 const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-evenly;
   align-items: center;
   text-align: center;
   width: 100%;
@@ -32,9 +33,8 @@ const Wrapper = styled.div`
   }
 
   p {
-    margin-top: 28px;
+    padding: 0 5px;
     font-size: 14px;
-    color: ${({ theme }) => theme.color.gray};
   }
 
   form {
@@ -68,6 +68,12 @@ const InputBox = styled.div`
   }
 `;
 
+const ArtistInfoBox = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
 export default function Payment({ albumInfo, userInfo, onClose }) {
   const { register, handleSubmit, formState: { errors } } = useForm();
   const { isLoggedIn } = useSelector(selectUser);
@@ -87,8 +93,12 @@ export default function Payment({ albumInfo, userInfo, onClose }) {
   return (
     <Wrapper>
       <strong>후원하기</strong>
+      <ArtistInfoBox>
+        <Avatar variant="circular" src={albumInfo.artist.profileImage} />
+        <p>{albumInfo.artist.name}</p>
+      </ArtistInfoBox>
       <p>
-        <span>{albumInfo.artist.name}</span>님의 <span>{albumInfo.title}</span> 앨범에 얼마를 후원 하시겟어요?
+        <span>{albumInfo.title}</span> 앨범에 얼마를 후원 하시겟어요?
       </p>
       <form onSubmit={handleSubmit(handlePay)}>
         <InputBox>
