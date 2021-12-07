@@ -14,11 +14,11 @@
 4. [💿 Features](#-Features)
 5. [🗓 Schedule](#-Schedule)
 6. [⛵️ Project Log](#-Project-Log)
-    - [🔅 전역 State의 비동기 로직 관리(Redux-Toolkit, Saga)](#-전역-State의-비동기-로직-관리(Redux-Toolkit,-Saga))
+    - [🔅 전역 State의 비동기 로직 관리, Redux-Toolkit Saga](#-전역-State의-비동기-로직-관리-Redux-Toolkit-Saga)
     - [🔅 음악파일 보안 이슈](#-음악파일-보안-이슈)
     - [🔅 413 Cors 에러](#-413-Cors-에러)
     - [🔅 Audio File Metadata](#-Audio-File-Metadata)
-    - [🔅 Lighthouse Performance 향상(66 => 93)](#-Lighthouse-Performance-향상(66-=>-93))
+    - [🔅 Lighthouse Performance 향상, 66 => 93](#-Lighthouse-Performance-향상,-66-=>-93)
 7. [✨ 프로젝트 후기](#-프로젝트-후기)
 
 <br>
@@ -43,14 +43,9 @@
 
 <br>
 
-<br>
-
 - 검색어의 결과를 미리 보고 다른 페이지에서도 바로 조회할 수 있습니다.
 
 <img src="./src/assets/프리뷰.gif" alt="search-preview" />
-
-<br>
-<br>
 
 <br>
 
@@ -109,7 +104,7 @@
 
 ## ⛵️ **Project Log**
 
-### 🔅 **전역 State의 비동기 로직 관리(Redux-Toolkit, Saga)**
+### 🔅 **전역 State의 비동기 로직 관리 Redux-Toolkit, Saga**
 
 - 이전 프로젝트에서는 Thunk를 사용하였는데 단점은 Action 함수의 크기가 커져 나중에 로직이 더욱 커지게 되면 더 복잡해질 수도 있는 것 그리고 관심사가 덜 분리 되는 것이었습니다. saga를 도입하게 된 이유는 새로운 기술을 도입하고 싶다는 이유도 있었지만 조사한 결과 액션에 대한 리스너로 객체를 반환하여 관심사를 더 잘 분리할 수 있고 겉으로 보기에도 코드의 가독성도 높아 보이기 때문이었습니다.
 
@@ -227,7 +222,7 @@
 
 <br>
 
-### 🔅 **Lighthouse Performance 향상(66 => 93)**
+### 🔅 **Lighthouse Performance 향상, 66 => 93**
 
 <br>
 
