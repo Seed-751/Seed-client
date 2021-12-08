@@ -1,10 +1,14 @@
-# 🌱 **Seed**
+# 🌱 **Seed** 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/56b0aa9a-4e6e-4e76-8e38-434bc1019e3d/deploy-status)](https://app.netlify.com/sites/hardcore-wing-3e9bb7/deploys)
 
-**음원을** **공유하고** QR 코드 결제를 통해 아티스트를 후원할 수 있는 클라우드 펀딩 웹 서비스
+**음원을** 공유하고 **QR 코드 결제**를 통해 아티스트를 후원할 수 있는 클라우드 펀딩 웹 서비스
 
+<br>
 
 ## 🛫 **Link**
 [Client Repository](https://github.com/Seed-751/Seed-client) | [Server Repository](https://github.com/Seed-751/Seed-server) | [Live](https://seed751.live/)
+
+<br>
 
 ## 🎯 **Table of Contents**
 
