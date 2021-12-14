@@ -11,10 +11,20 @@ import { loginRequest } from "../../reducers/userSlice";
 import Button from "../shared/Button";
 import Input from "../shared/Input";
 
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
 const InputBox = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
   margin-top: 10px;
-  margin-Bottom: 10px;
-  width: 100%;
+  margin-bottom: 10px;
+  padding: 10px 0;
+  width: 400px;
   text-align: left;
 
   label {
@@ -28,14 +38,20 @@ const InputBox = styled.div`
   }
 `;
 
-const schema = yup.object({
-  email: yup.string().email().required(),
-  password: yup.string().required(),
-}).required();
+const schema = yup
+  .object({
+    email: yup.string().email().required(),
+    password: yup.string().required(),
+  })
+  .required();
 
 export default function LoginForm() {
   const dispatch = useDispatch();
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
 
@@ -45,7 +61,7 @@ export default function LoginForm() {
 
   return (
     <>
-      <form onSubmit={handleSubmit(handleLogin)}>
+      <Form onSubmit={handleSubmit(handleLogin)}>
         <InputBox>
           <label id="email-label">Email</label>
           <Input
@@ -76,7 +92,7 @@ export default function LoginForm() {
           />
         </InputBox>
         <Button type="submit">Login</Button>
-      </form>
+      </Form>
     </>
   );
 }

@@ -25,9 +25,10 @@ import theme from "./styles/theme";
 
 const Section = styled.section`
   display: flex;
+  flex-direction: column;
+  align-items: center;
   padding: 0px 90px 0px 90px;
   width: 80%;
-  flex-direction: column;
   min-height: 100vh;
 `;
 
@@ -64,18 +65,15 @@ export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles />
-      {isLoaded &&
+      {isLoaded && (
         <>
           <Container>
             <Suspense fallback={<div></div>}>
-              {isOpen &&
+              {isOpen && (
                 <Modal>
-                  <Notice
-                    type={type}
-                    message={message}
-                  />
+                  <Notice type={type} message={message} />
                 </Modal>
-              }
+              )}
             </Suspense>
             <Navigation />
             <Section>
@@ -116,10 +114,9 @@ export default function App() {
                 </Suspense>
               </Switch>
             </Section>
-
           </Container>
         </>
-      }
+      )}
     </ThemeProvider>
   );
 }

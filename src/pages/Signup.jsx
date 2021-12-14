@@ -9,10 +9,16 @@ import SignupFrom from "../components/form/SignupForm";
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
-  margin-top: 10px;
+  gap: 10px;
+  margin-top: 50px;
+  padding: 10px;
+  width: 500px;
   text-align: center;
+  background-color: ${({ theme }) => theme.color.formDark};
+  border-radius: 10px;
 
   div > * {
     display: block;
@@ -26,7 +32,6 @@ const Container = styled.div`
   }
 
   p {
-    margin-top: 28px;
     font-size: 14px;
     color: ${({ theme }) => theme.color.gray};
   }
@@ -40,21 +45,18 @@ export default function Signup() {
     if (isSignupSuccess) {
       return history.push("/login");
     }
-
   }, [isSignupSuccess, history]);
 
   return (
     <Container>
-      <div>
-        <strong>Sign up</strong>
-        <SignupFrom />
-        <div>
-          <p>
-            Already have an Account?&nbsp;
-            <Link to="/login" style={{ color: theme.color.green }}>Login</Link>
-          </p>
-        </div>
-      </div>
+      <strong>Sign up</strong>
+      <SignupFrom />
+      <p>
+        Already have an Account?&nbsp;
+        <Link to="/login" style={{ color: theme.color.green }}>
+          Login
+        </Link>
+      </p>
     </Container>
   );
 }

@@ -27,9 +27,9 @@ const Container = styled.div`
 
 const Wrapper = styled.div`
   position: relative;
-  margin-top: 10px;
+  margin-top: 15px;
   padding: 20px;
-  background-color: ${({ theme }) => theme.color.lightBlack};
+  background-color: ${({ theme }) => theme.color.formDark};
   border-radius: 5px;
 `;
 

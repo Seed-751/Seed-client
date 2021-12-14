@@ -20,7 +20,7 @@ const GlobalStyle = createGlobalStyle`
 
     color: white;
 
-    background-color: #171717;
+    background-color: ${({ theme }) => theme.color.background};
   }
 
 

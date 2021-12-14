@@ -11,26 +11,33 @@ import Input from "../shared/Input";
 import Button from "../shared/Button";
 import { INITIAL_PREVIEW_IMAGE } from "../../constants";
 
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+`;
+
 const InputBox = styled.div`
-  margin-top: 10px;
-  margin-Bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0;
   width: 100%;
   text-align: left;
 
   label {
-    margin-left: 15px;
+    padding: 5px;
   }
 
   p {
-    margin: 0;
-    margin-left: 15px;
+    padding: 10px 0 0 10px;
     color: red;
   }
 `;
 
 const PreviewBox = styled.div`
   margin-top: 10px;
-  width:  100px;
+  width: 100px;
   height: 200px;
 
   img {
@@ -49,15 +56,24 @@ const UploadImageInput = styled(Input)`
   border-radius: 2px;
 `;
 
-const schema = yup.object({
-  email: yup.string().email().required(),
-  password: yup.string().min(8).max(20).required(),
-  passwordConfirm: yup.string().oneOf([yup.ref("password")]).required(),
-  name: yup.string().required(),
-}).required();
+const schema = yup
+  .object({
+    email: yup.string().email().required(),
+    password: yup.string().min(8).max(20).required(),
+    passwordConfirm: yup
+      .string()
+      .oneOf([yup.ref("password")])
+      .required(),
+    name: yup.string().required(),
+  })
+  .required();
 
 export default function SignupForm() {
-  const { register, handleSubmit, formState: { errors } } = useForm({
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
     resolver: yupResolver(schema),
   });
   const [previewImage, setPreviewImage] = useState(INITIAL_PREVIEW_IMAGE);
@@ -74,7 +90,7 @@ export default function SignupForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit(handleSignup)}>
+    <Form onSubmit={handleSubmit(handleSignup)}>
       <InputBox>
         <label id="profile-image-label">Profile Image</label>
         <PreviewBox>
@@ -145,11 +161,7 @@ export default function SignupForm() {
 
       <InputBox>
         <label id="name-label">Name</label>
-        <Input
-          aria-labelledby="name-label"
-          name="name"
-          {...register("name")}
-        />
+        <Input aria-labelledby="name-label" name="name" {...register("name")} />
         <ErrorMessage
           errors={errors}
           name="name"
@@ -158,6 +170,6 @@ export default function SignupForm() {
       </InputBox>
 
       <Button type="submit">Sign up</Button>
-    </form>
+    </Form>
   );
 }

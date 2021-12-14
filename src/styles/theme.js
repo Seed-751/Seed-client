@@ -7,6 +7,8 @@ const color = {
   lightBlack: "#373737",
   error: "#FC4958",
   notice: "#09CDFC",
+  formDark: "#262F38",
+  background: "#171717",
 };
 
 const padding = {

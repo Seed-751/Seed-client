@@ -9,14 +9,18 @@ import { selectUser } from "../reducers/userSlice";
 
 const Container = styled.div`
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-top: 150px;
+  padding: 50px;
+  width: 500px;
   text-align: center;
+  background-color: ${({ theme }) => theme.color.formDark};
+  border-radius: 10px;
 
   div > * {
     display: block;
-    width: 400px;
   }
 
   strong {
@@ -44,15 +48,15 @@ export default function Login() {
 
   return (
     <Container>
-      <div>
-        <strong>Welcome back!</strong>
-        <h1>Login</h1>
-        <LoginForm />
-        <p>
-          Not registerd yet?&nbsp;
-          <Link to="/signup" style={{ color: theme.color.green }}>Create an Account</Link>
-        </p>
-      </div>
+      <strong>Welcome back!</strong>
+      <h1>Login</h1>
+      <LoginForm />
+      <p>
+        Not registerd yet?&nbsp;
+        <Link to="/signup" style={{ color: theme.color.green }}>
+          Create an Account
+        </Link>
+      </p>
     </Container>
   );
 }
