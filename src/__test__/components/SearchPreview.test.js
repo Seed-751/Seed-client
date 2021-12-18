@@ -1,6 +1,6 @@
 import React from "react";
-import { useSelector } from "react-redux";
 import { render } from "@testing-library/react";
+import { useSelector } from "react-redux";
 
 import MockTheme from "../MockTheme";
 import SearchPreview from "../../components/SearchPreview";
@@ -18,33 +18,36 @@ describe("SearchPreview component", () => {
     useSelector.mockImplementation((selectSearchPreview) => {
       return {
         searchPreviewResult: {
-          albumsByArtist: [{
-            "_id": "key1",
-            "title": "Optimist 1",
-            "artist": {
-              "name": "FINNEAS1",
+          albumsByArtist: [
+            {
+              _id: "key1",
+              title: "Optimist 1",
+              artist: {
+                name: "FINNEAS1",
+              },
+              image:
+                "https://i.scdn.co/image/ab67616d00001e023bfed0974a996bfd87ea1c9a",
             },
-            "image": "https://i.scdn.co/image/ab67616d00001e023bfed0974a996bfd87ea1c9a",
-          }],
-          albumsByTitle: [{
-            "_id": "key2",
-            "title": "Optimist 2",
-            "artist": {
-              "name": "FINNEAS2",
+          ],
+          albumsByTitle: [
+            {
+              _id: "key2",
+              title: "Optimist 2",
+              artist: {
+                name: "FINNEAS2",
+              },
+              image:
+                "https://i.scdn.co/image/ab67616d00001e023bfed0974a996bfd87ea1c9a",
             },
-            "image": "https://i.scdn.co/image/ab67616d00001e023bfed0974a996bfd87ea1c9a",
-          }],
-        }
+          ],
+        },
       };
     });
     const onReset = jest.fn();
 
     const { getByText } = render(
       <MockTheme>
-        <SearchPreview
-          onReset={onReset}
-          searchInput={"test"}
-        />
+        <SearchPreview onReset={onReset} searchInput={"test"} />
       </MockTheme>
     );
 
@@ -59,25 +62,25 @@ describe("SearchPreview component", () => {
       return {
         searchPreviewResult: {
           albumsByArtist: [],
-          albumsByTitle: [{
-            "_id": "key2",
-            "title": "Optimist 2",
-            "artist": {
-              "name": "FINNEAS2",
+          albumsByTitle: [
+            {
+              _id: "key2",
+              title: "Optimist 2",
+              artist: {
+                name: "FINNEAS2",
+              },
+              image:
+                "https://i.scdn.co/image/ab67616d00001e023bfed0974a996bfd87ea1c9a",
             },
-            "image": "https://i.scdn.co/image/ab67616d00001e023bfed0974a996bfd87ea1c9a",
-          }],
-        }
+          ],
+        },
       };
     });
     const onReset = jest.fn();
 
     const { getByText } = render(
       <MockTheme>
-        <SearchPreview
-          onReset={onReset}
-          searchInput={"test"}
-        />
+        <SearchPreview onReset={onReset} searchInput={"test"} />
       </MockTheme>
     );
 

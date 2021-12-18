@@ -21,6 +21,86 @@ exports[`Search Result page matches snapshot 1`] = `
         </button>
       </ul>
     </nav>
+    <div
+      class="sc-fubCzh fPfwLl"
+    >
+      <a
+        class="link"
+        href="/musics/key2"
+      >
+        <div
+          class="sc-bdfBQB ilOPja"
+        >
+          <div
+            class="sc-gsTEea dcICfK"
+          >
+            <img
+              alt="thumb-nail"
+              src="https://i.scdn.co/image/ab67616d00001e023bfed0974a996bfd87ea1c9a"
+            />
+            <div
+              class="sc-dlfnuX jlGtbY"
+            >
+              1.0
+              %
+            </div>
+          </div>
+          <div
+            class="sc-hKgJUU fZQevE"
+          >
+            <h1>
+              Optimist 2
+            </h1>
+            <p>
+              FINNEAS2
+            </p>
+          </div>
+        </div>
+      </a>
+    </div>
+    <div
+      class="sc-eCstlR gHOyff"
+    >
+      <nav
+        class="sc-jSgvzq iDYeLz"
+      >
+        <ul
+          class="pagination"
+        >
+          <button
+            class="sc-gKseQn bpZYvz"
+          >
+            &lt;&lt;
+          </button>
+          <button
+            class="sc-gKseQn bpZYvz"
+          >
+            &lt;
+          </button>
+          <li
+            class="page-item active"
+            data-testid="page"
+            style="cursor: pointer;"
+          >
+            <button
+              class="sc-iBPTik dKgOsg page-link"
+            >
+              1
+            </button>
+          </li>
+          <button
+            class="sc-gKseQn bpZYvz"
+          >
+            &gt;
+          </button>
+          <button
+            class="sc-gKseQn bpZYvz"
+          >
+            &gt;&gt;
+          </button>
+        </ul>
+      </nav>
+    </div>
   </div>
 </div>
 `;

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import MockProvider from "../MockProvider";
+import MockTheme from "../MockTheme";
 import UploadForm from "../../components/form/UploadForm";
 
 jest.mock("react", () => ({
@@ -10,16 +10,20 @@ jest.mock("react", () => ({
   useState: jest.fn(),
 }));
 
+jest.mock("react-redux", () => ({
+  useDispatch: jest.fn().mockImplementation(() => function dispatch() {}),
+}));
+
 describe("UploadForm component", () => {
   const setState = jest.fn();
 
   beforeEach(() => {
-    useState.mockImplementation(init => [init, setState]);
+    useState.mockImplementation((init) => [init, setState]);
 
     render(
-      <MockProvider>
+      <MockTheme>
         <UploadForm />
-      </MockProvider>
+      </MockTheme>
     );
   });
 

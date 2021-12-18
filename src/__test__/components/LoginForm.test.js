@@ -2,15 +2,19 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
-import MockProvider from "../MockProvider";
+import MockTheme from "../MockTheme";
 import LoginForm from "../../components/form/LoginForm";
+
+jest.mock("react-redux", () => ({
+  useDispatch: jest.fn().mockImplementation(() => function dispatch() {}),
+}));
 
 describe("LoginForm component", () => {
   beforeEach(() => {
     render(
-      <MockProvider>
+      <MockTheme>
         <LoginForm />
-      </MockProvider>
+      </MockTheme>
     );
   });
 

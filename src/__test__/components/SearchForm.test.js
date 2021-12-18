@@ -1,9 +1,19 @@
 import React from "react";
 import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
+import { useDispatch } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-import MockProvider from "../MockProvider";
+import MockTheme from "../MockTheme";
 import SearchForm from "../../components/form/SearchForm";
+
+jest.mock("react-redux", () => ({
+  useDispatch: jest.fn(),
+}));
+
+jest.mock("react-router-dom", () => ({
+  useHistory: jest.fn(),
+}));
 
 describe("SearchForm component", () => {
   afterEach(() => {
@@ -15,13 +25,9 @@ describe("SearchForm component", () => {
     const onReset = jest.fn();
 
     render(
-      <MockProvider>
-        <SearchForm
-          onChange={onChange}
-          onReset={onReset}
-          searchInput={""}
-        />
-      </MockProvider>
+      <MockTheme>
+        <SearchForm onChange={onChange} onReset={onReset} searchInput={""} />
+      </MockTheme>
     );
     const searchInput = screen.getByPlaceholderText("Search...");
 
@@ -33,13 +39,9 @@ describe("SearchForm component", () => {
     const onReset = jest.fn();
 
     render(
-      <MockProvider>
-        <SearchForm
-          onChange={onChange}
-          onReset={onReset}
-          searchInput={""}
-        />
-      </MockProvider>
+      <MockTheme>
+        <SearchForm onChange={onChange} onReset={onReset} searchInput={""} />
+      </MockTheme>
     );
 
     const searchInput = screen.getByPlaceholderText("Search...");
@@ -52,15 +54,19 @@ describe("SearchForm component", () => {
   it("should call onReset when clicked", () => {
     const onChange = jest.fn();
     const onReset = jest.fn();
+    useDispatch.mockImplementation(() => function dispatch() {});
+    useHistory.mockImplementation(() => ({
+      push: jest.fn(),
+    }));
 
     render(
-      <MockProvider>
+      <MockTheme>
         <SearchForm
           onChange={onChange}
           onReset={onReset}
           searchInput={"test"}
         />
-      </MockProvider>
+      </MockTheme>
     );
 
     const searchInput = screen.getByPlaceholderText("Search...");

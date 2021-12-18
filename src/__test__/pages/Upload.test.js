@@ -2,7 +2,11 @@ import React from "react";
 import { render } from "@testing-library/react";
 
 import Upload from "../../pages/Upload";
-import MockProvider from "../MockProvider";
+import MockTheme from "../MockTheme";
+
+jest.mock("react-redux", () => ({
+  useDispatch: jest.fn(),
+}));
 
 describe("Upload page", () => {
   afterEach(() => {
@@ -11,9 +15,9 @@ describe("Upload page", () => {
 
   it("matches snapshot", () => {
     const { container } = render(
-      <MockProvider>
+      <MockTheme>
         <Upload />
-      </MockProvider>
+      </MockTheme>
     );
 
     expect(container).toMatchSnapshot();

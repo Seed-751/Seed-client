@@ -2,7 +2,12 @@ import React from "react";
 import { render } from "@testing-library/react";
 
 import MyList from "../../pages/MyList";
-import MockProvider from "../MockProvider";
+import MockTheme from "../MockTheme";
+
+jest.mock("react-redux", () => ({
+  useSelector: jest.fn(),
+  useDispatch: jest.fn(),
+}));
 
 describe("MyList page", () => {
   afterEach(() => {
@@ -11,9 +16,9 @@ describe("MyList page", () => {
 
   it("matches snapshot", () => {
     const { container } = render(
-      <MockProvider>
+      <MockTheme>
         <MyList />
-      </MockProvider>
+      </MockTheme>
     );
 
     expect(container).toMatchSnapshot();

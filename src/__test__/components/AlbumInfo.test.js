@@ -2,7 +2,7 @@ import React from "react";
 import { render, screen } from "@testing-library/react";
 
 import { INITIAL_PREVIEW_IMAGE } from "../../constants";
-import MockProvider from "../MockProvider";
+import MockTheme from "../MockTheme";
 import AlbumInfo from "../../components/AlbumInfo";
 
 describe("AlbumInfo component", () => {
@@ -24,12 +24,9 @@ describe("AlbumInfo component", () => {
     const onClick = jest.fn();
 
     render(
-      <MockProvider>
-        <AlbumInfo
-          album={album}
-          onClick={onClick}
-        />
-      </MockProvider>
+      <MockTheme>
+        <AlbumInfo album={album} onClick={onClick} />
+      </MockTheme>
     );
   });
 
