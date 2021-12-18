@@ -9,9 +9,9 @@ const Wrapper = styled.div`
   margin: 0 10px;
   padding: 3px;
   height: 45px;
+  vertical-align: bottom;
   line-height: 45px;
   text-align: left;
-  vertical-align: bottom;
 `;
 
 const Header = styled.div`
@@ -28,6 +28,7 @@ const List = styled.ul`
   z-index: 1;
   border-radius: 5px;
   border: 0.5px solid ${({ theme }) => theme.color.gray};
+  background-color: ${({ theme }) => theme.color.black};
   color: ${({ theme }) => theme.color.green};
   font-size: 14px;
 
@@ -51,18 +52,23 @@ export default function Dropdown({ header, options }) {
 
   return (
     <Wrapper isOpen={isOpen} onClick={handleClickToggle}>
-      <Header onClick={handleClickToggle}>
-        {header}
-      </Header>
-      {isOpen &&
+      <Header onClick={handleClickToggle}>{header}</Header>
+      {isOpen && (
         <List>
           {Object.entries(options).map((option) => {
             const optionName = option[0];
             const optionFunc = option[1];
-            return <div key={optionName} onClick={() => handleClickOption(optionFunc)}>{optionName}</div>;
+            return (
+              <div
+                key={optionName}
+                onClick={() => handleClickOption(optionFunc)}
+              >
+                {optionName}
+              </div>
+            );
           })}
         </List>
-      }
+      )}
     </Wrapper>
   );
 }
