@@ -3,7 +3,7 @@ import { render } from "@testing-library/react";
 import { useSelector } from "react-redux";
 
 import MockTheme from "../MockTheme";
-import SearchPreview from "../../components/Layout/SearchPreview";
+import SearchPreview from "../../components/Layout/Header/SearchPreview";
 
 jest.mock("react-redux", () => ({
   useSelector: jest.fn(),

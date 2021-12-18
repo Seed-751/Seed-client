@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { selectSearchPreview } from "../../reducers/searchPreviewSlice";
+import { selectSearchPreview } from "../../../reducers/searchPreviewSlice";
 import { Avatar } from "@material-ui/core/";
 
 const Wrapper = styled.div`
@@ -84,39 +84,54 @@ export default function SearchPreview({ onReset, searchInput }) {
 
   return (
     <>
-      {searchInput &&
+      {searchInput && (
         <Wrapper>
           <PreviewBox>
             <h2>Title</h2>
-            {albumsByTitle?.length
-              ?
-              (albumsByTitle?.map((music) => (
-                <div key={music._id} className="link" onClick={() => handleClickPreview(music._id)} >
-                  <Avatar className="avatar" variant="square" src={music.image} />
+            {albumsByTitle?.length ? (
+              albumsByTitle?.map((music) => (
+                <div
+                  key={music._id}
+                  className="link"
+                  onClick={() => handleClickPreview(music._id)}
+                >
+                  <Avatar
+                    className="avatar"
+                    variant="square"
+                    src={music.image}
+                  />
                   <p className="artist">{music.artist.name}</p>
                   <p className="title">{music.title}</p>
                 </div>
-              )))
-              :
+              ))
+            ) : (
               <p>결과를 찾을수 없습니다</p>
-            }
+            )}
           </PreviewBox>
           <PreviewBox>
             <h2>Artist</h2>
-            {albumsByArtist?.length
-              ?
-              (albumsByArtist?.map((music) => (
-                <div key={music._id} className="link" onClick={() => handleClickPreview(music._id)} >
-                  <Avatar className="avatar" variant="square" src={music.image} />
+            {albumsByArtist?.length ? (
+              albumsByArtist?.map((music) => (
+                <div
+                  key={music._id}
+                  className="link"
+                  onClick={() => handleClickPreview(music._id)}
+                >
+                  <Avatar
+                    className="avatar"
+                    variant="square"
+                    src={music.image}
+                  />
                   <p className="artist">{music.artist.name}</p>
                   <p className="title">{music.title}</p>
                 </div>
-              )))
-              :
+              ))
+            ) : (
               <p>결과를 찾을수 없습니다</p>
-            }
+            )}
           </PreviewBox>
-        </Wrapper>}
+        </Wrapper>
+      )}
     </>
   );
 }

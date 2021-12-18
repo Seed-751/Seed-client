@@ -5,13 +5,13 @@ import PropTypes from "prop-types";
 import { Avatar } from "@material-ui/core/";
 import styled from "styled-components";
 
-import { searchPreviewRequest } from "../../reducers/searchPreviewSlice";
-import { logoutRequest } from "../../reducers/userSlice";
-import useDropdown from "../../hooks/useDropdown";
+import { searchPreviewRequest } from "../../../reducers/searchPreviewSlice";
+import { logoutRequest } from "../../../reducers/userSlice";
+import useDropdown from "../../../hooks/useDropdown";
 
 import SearchForm from "./SearchForm";
 import SearchPreview from "./SearchPreview";
-import Dropdown from "../Shared/Dropdown";
+import Dropdown from "../../Shared/Dropdown";
 
 const Wrapper = styled.header`
   display: flex;
@@ -78,22 +78,26 @@ export default function Header({ userInfo }) {
   return (
     <Wrapper>
       <SearchBox>
-        <SearchForm onChange={handleChangeInput} onReset={handleResetInput} searchInput={searchInput} />
+        <SearchForm
+          onChange={handleChangeInput}
+          onReset={handleResetInput}
+          searchInput={searchInput}
+        />
         <SearchPreview onReset={handleResetInput} searchInput={searchInput} />
       </SearchBox>
       <Box>
-        {!userInfo
-          ?
+        {!userInfo ? (
           <>
-            <Link to="/login" className="link">Login</Link>
-            <Link to="/signup" className="link">Signup</Link>
+            <Link to="/login" className="link">
+              Login
+            </Link>
+            <Link to="/signup" className="link">
+              Signup
+            </Link>
           </>
-          :
-          <Dropdown
-            header={header}
-            options={options}
-          />
-        }
+        ) : (
+          <Dropdown header={header} options={options} />
+        )}
       </Box>
     </Wrapper>
   );
