@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
-import { getMusicsRequest, selectMusic } from "../reducers/musicSlice";
+import { getMusicsRequest, selectMusic } from "../../../reducers/musicSlice";
 
-import Music from "../components/Music";
-import MoreBox from "../components/MoreBox";
+import Music from "../../Shared/Music";
+import MoreBox from "./MoreBox";
 
 const MusicBox = styled.div`
   display: grid;
@@ -40,11 +40,7 @@ export default function MusicGrid() {
     <>
       <MusicBox>
         {musics?.map((music) => (
-          <Link
-            key={music._id}
-            to={`/musics/${music._id}`}
-            className="link"
-          >
+          <Link key={music._id} to={`/musics/${music._id}`} className="link">
             <Music key={music._id} music={music} />
           </Link>
         ))}

@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import UploadForm from "../components/form/UploadForm";
+import UploadForm from "../components/Pages/Upload/UploadForm";
 
 const Container = styled.div`
   display: flex;

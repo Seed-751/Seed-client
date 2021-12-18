@@ -6,10 +6,10 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import { ErrorMessage } from "@hookform/error-message";
 import * as yup from "yup";
 
-import { signupRequest } from "../../reducers/userSlice";
-import Input from "../shared/Input";
-import Button from "../shared/Button";
-import { INITIAL_PREVIEW_IMAGE } from "../../constants";
+import { signupRequest } from "../../../reducers/userSlice";
+import Input from "../../Shared/Input";
+import Button from "../../Shared/Button";
+import { INITIAL_PREVIEW_IMAGE } from "../../../constants";
 
 const Form = styled.form`
   display: flex;

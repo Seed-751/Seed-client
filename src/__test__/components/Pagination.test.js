@@ -4,7 +4,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import MockTheme from "../MockTheme";
-import Pagination from "../../components/Pagination";
+import Pagination from "../../components/Shared/Pagination";
 
 describe("Pagination component", () => {
   afterEach(() => {

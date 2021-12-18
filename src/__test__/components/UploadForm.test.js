@@ -3,7 +3,7 @@ import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import MockTheme from "../MockTheme";
-import UploadForm from "../../components/form/UploadForm";
+import UploadForm from "../../components/Pages/Upload/UploadForm";
 
 jest.mock("react", () => ({
   ...jest.requireActual("react"),

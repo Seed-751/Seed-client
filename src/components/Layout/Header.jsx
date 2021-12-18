@@ -5,13 +5,13 @@ import PropTypes from "prop-types";
 import { Avatar } from "@material-ui/core/";
 import styled from "styled-components";
 
-import { searchPreviewRequest } from "../reducers/searchPreviewSlice";
-import { logoutRequest } from "../reducers/userSlice";
-import useDropdown from "../hooks/useDropdown";
+import { searchPreviewRequest } from "../../reducers/searchPreviewSlice";
+import { logoutRequest } from "../../reducers/userSlice";
+import useDropdown from "../../hooks/useDropdown";
 
-import SearchForm from "../components/form/SearchForm";
-import SearchPreview from "../components/SearchPreview";
-import Dropdown from "../components/shared/Dropdown";
+import SearchForm from "./SearchForm";
+import SearchPreview from "./SearchPreview";
+import Dropdown from "../Shared/Dropdown";
 
 const Wrapper = styled.header`
   display: flex;

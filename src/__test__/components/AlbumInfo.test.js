@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 
 import { INITIAL_PREVIEW_IMAGE } from "../../constants";
 import MockTheme from "../MockTheme";
-import AlbumInfo from "../../components/AlbumInfo";
+import AlbumInfo from "../../components/Pages/MusicDetail/AlbumInfo";
 
 describe("AlbumInfo component", () => {
   beforeEach(() => {

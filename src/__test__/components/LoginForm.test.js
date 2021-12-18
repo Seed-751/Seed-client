@@ -3,7 +3,7 @@ import { render, screen } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 
 import MockTheme from "../MockTheme";
-import LoginForm from "../../components/form/LoginForm";
+import LoginForm from "../../components/Pages/Login/LoginForm";
 
 jest.mock("react-redux", () => ({
   useDispatch: jest.fn().mockImplementation(() => function dispatch() {}),

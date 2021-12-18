@@ -4,8 +4,9 @@ import { useDispatch } from "react-redux";
 import requestMyMusics from "../api/requestMyMusics";
 import requestMyFundings from "../api/requestMyFundings";
 import { occurError } from "../reducers/noticeSlice";
-import MyMusics from "../components/MyMusics";
-import MyFundings from "../components/MyFundings";
+
+import MyMusics from "../components/Pages/MyList/MyMusics";
+import MyFundings from "../components/Pages/MyList/MyFundings";
 
 export default function MyList() {
   const dispatch = useDispatch();

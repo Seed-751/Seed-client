@@ -6,15 +6,15 @@ import { useForm } from "react-hook-form";
 import { ErrorMessage } from "@hookform/error-message";
 import styled from "styled-components";
 
-import Input from "../shared/Input";
-import Button from "../shared/Button";
+import Input from "../../Shared/Input";
+import Button from "../../Shared/Button";
 
-import { initiateMusics } from "../../reducers/musicSlice";
-import requestUploadMusic from "../../api/requestUploadMusic";
-import { occurError } from "../../reducers/noticeSlice";
-import validateAudio from "../../utils/validateAudio";
+import { initiateMusics } from "../../../reducers/musicSlice";
+import requestUploadMusic from "../../../api/requestUploadMusic";
+import { occurError } from "../../../reducers/noticeSlice";
+import validateAudio from "../../../utils/validateAudio";
 
-import { INITIAL_PREVIEW_IMAGE, ERROR, GENRE_OPTIONS } from "../../constants";
+import { INITIAL_PREVIEW_IMAGE, ERROR, GENRE_OPTIONS } from "../../../constants";
 
 const Form = styled.form`
   .submit {

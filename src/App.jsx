@@ -6,11 +6,11 @@ import styled, { ThemeProvider } from "styled-components";
 import { authCheckRequest, selectUser } from "./reducers/userSlice";
 import { selectNotice } from "./reducers/noticeSlice";
 
-import Header from "./components/Header";
-import Navigation from "./components/Navigation";
+import Header from "./components/Layout/Header";
+import Navigation from "./components/Layout/Navigation";
 
 const Dashboard = lazy(() => import("./pages/Dashboard"));
-const PrivateRoute = lazy(() => import("./components/PrivateRoute"));
+const PrivateRoute = lazy(() => import("./components/Layout/PrivateRoute"));
 const Modal = lazy(() => import("./components/Modal/Modal"));
 const Notice = lazy(() => import("./components/Modal/Notice"));
 const Login = lazy(() => import("./pages/Login"));

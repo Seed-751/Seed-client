@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import { selectSearchPreview } from "../reducers/searchPreviewSlice";
+import { selectSearchPreview } from "../../reducers/searchPreviewSlice";
 import { Avatar } from "@material-ui/core/";
 
 const Wrapper = styled.div`

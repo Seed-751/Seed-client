@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import Music from "../components/Music";
+import Music from "../../Shared/Music";
 
 const Container = styled.div`
   padding: 20px;
@@ -13,7 +13,7 @@ const MusicBox = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   row-gap: 20px;
-	column-gap: 20px;
+  column-gap: 20px;
   margin-top: 10px;
 
   .link {
@@ -27,11 +27,7 @@ export default function MyMusics({ myMusics }) {
       <h1>My Musics</h1>
       <MusicBox>
         {myMusics?.map((music) => (
-          <Link
-            key={music._id}
-            to={`/musics/${music._id}`}
-            className="link"
-          >
+          <Link key={music._id} to={`/musics/${music._id}`} className="link">
             <Music key={music._id} music={music} />
           </Link>
         ))}

@@ -7,7 +7,7 @@ import { IconButton } from "@material-ui/core/";
 import { Search } from "@material-ui/icons/";
 
 import { searchMusicRequest } from "../../reducers/searchSlice";
-import Input from "../shared/Input";
+import Input from "../Shared/Input";
 
 const Form = styled.form`
   z-index: 3;

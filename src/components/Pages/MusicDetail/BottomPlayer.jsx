@@ -3,11 +3,11 @@ import { useSelector } from "react-redux";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import theme from "../styles/theme";
+import theme from "../../../styles/theme";
 import { IconButton, Avatar } from "@material-ui/core/";
 import { Forward10, Replay10, PlayCircleFilled, PauseCircleFilled, VolumeOff, VolumeUp } from "@material-ui/icons/";
-import { selectCurrentMusic } from "../reducers/currentMusicSlice";
-import transformTime from "../utils/transformTime";
+import { selectCurrentMusic } from "../../../reducers/currentMusicSlice";
+import transformTime from "../../../utils/transformTime";
 
 const Wrapper = styled.div`
   display: flex;

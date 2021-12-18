@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import styled from "styled-components";
 import PropTypes from "prop-types";
 
-import Music from "../components/Music";
+import Music from "../../Shared/Music";
 
 const Container = styled.div`
   padding: 20px;

@@ -5,7 +5,7 @@ import { createMemoryHistory } from "history";
 import { render, screen } from "@testing-library/react";
 
 import MockTheme from "../MockTheme";
-import MusicList from "../../components/MusicList";
+import MusicList from "../../components/Shared/MusicList";
 
 describe("MusicList component", () => {
   afterEach(() => {

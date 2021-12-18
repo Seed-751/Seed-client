@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 
-import Button from "../components/shared/Button";
+import Button from "../../Shared/Button";
 
 const Wrapper = styled.div`
   display: flex;

@@ -5,7 +5,7 @@ import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 
 import MockTheme from "../MockTheme";
-import SearchForm from "../../components/form/SearchForm";
+import SearchForm from "../../components/Layout/SearchForm";
 
 jest.mock("react-redux", () => ({
   useDispatch: jest.fn(),

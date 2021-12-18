@@ -9,8 +9,8 @@ import styled from "styled-components";
 import requestPayment from "../../api/requestPayment";
 import { ERROR } from "../../constants";
 
-import Input from "../../components/shared/Input";
-import Button from "../../components/shared/Button";
+import Input from "../Shared/Input";
+import Button from "../Shared/Button";
 import { selectUser } from "../../reducers/userSlice";
 import { occurError } from "../../reducers/noticeSlice";
 import { Avatar } from "@material-ui/core";

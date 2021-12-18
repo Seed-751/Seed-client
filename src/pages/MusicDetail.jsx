@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import styled from "styled-components";
 
-import BottomPlayer from "../components/BottomPlayer";
-import AlbumInfo from "../components/AlbumInfo";
-import PlayList from "../components/PlayList";
+import BottomPlayer from "../components/Pages/MusicDetail/BottomPlayer";
+import AlbumInfo from "../components/Pages/MusicDetail/AlbumInfo";
+import PlayList from "../components/Pages/MusicDetail/PlayList";
 import Modal from "../components/Modal/Modal";
 import Payment from "../components/Modal/Payment";
 

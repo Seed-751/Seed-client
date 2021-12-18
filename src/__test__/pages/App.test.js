@@ -7,7 +7,7 @@ import { BrowserRouter as Router } from "react-router-dom";
 import store from "../../reducers/store";
 import App from "../../App";
 
-describe("<App />", () => {
+describe.only("<App />", () => {
   afterEach(() => {
     jest.restoreAllMocks();
   });

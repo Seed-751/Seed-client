@@ -6,10 +6,10 @@ import * as yup from "yup";
 import { ErrorMessage } from "@hookform/error-message";
 import styled from "styled-components";
 
-import { loginRequest } from "../../reducers/userSlice";
+import { loginRequest } from "../../../reducers/userSlice";
 
-import Button from "../shared/Button";
-import Input from "../shared/Input";
+import Button from "../../Shared/Button";
+import Input from "../../Shared/Input";
 
 const Form = styled.form`
   display: flex;

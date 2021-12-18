@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import { IconButton } from "@material-ui/core/";
 import { PlayArrow } from "@material-ui/icons/";
-import { setCurrentTrack } from "../reducers/currentMusicSlice";
+import { setCurrentTrack } from "../../../reducers/currentMusicSlice";
 
 const Wrapper = styled.div`
   display: flex;

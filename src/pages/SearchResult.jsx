@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components";
 
-import MusicList from "../components/MusicList";
-import NoResult from "../components/NoResult";
+import MusicList from "../components/Shared/MusicList";
+import NoResult from "../components/Pages/SearchResult/NoResult";
 import { selectSearch } from "../reducers/searchSlice";
 
 const Container = styled.div`
@@ -28,9 +28,9 @@ const Nav = styled.nav`
 `;
 
 const LinkButton = styled.button`
-  color: ${({ active, theme }) => active ? "white" : theme.color.lightGray};
+  color: ${({ active, theme }) => (active ? "white" : theme.color.lightGray)};
   font-size: 30px;
-  border-bottom: ${({ active }) => active ? "2px solid white" : "none"};
+  border-bottom: ${({ active }) => (active ? "2px solid white" : "none")};
 `;
 
 export default function SearchResult() {
@@ -52,26 +52,32 @@ export default function SearchResult() {
     <Container>
       <Nav>
         <ul>
-          <LinkButton active={active.byTitle} onClick={handleShowByTitle}>Title</LinkButton>
-          <LinkButton active={active.byArtist} onClick={handleShowByArtist}>Artist</LinkButton>
+          <LinkButton active={active.byTitle} onClick={handleShowByTitle}>
+            Title
+          </LinkButton>
+          <LinkButton active={active.byArtist} onClick={handleShowByArtist}>
+            Artist
+          </LinkButton>
         </ul>
       </Nav>
-      {active.byTitle &&
+      {active.byTitle && (
         <>
-          {albumsByTitle?.length
-            ? <MusicList data={albumsByTitle} />
-            : <NoResult />
-          }
+          {albumsByTitle?.length ? (
+            <MusicList data={albumsByTitle} />
+          ) : (
+            <NoResult />
+          )}
         </>
-      }
-      {active.byArtist &&
+      )}
+      {active.byArtist && (
         <>
-          {albumsByArtist?.length
-            ? <MusicList data={albumsByArtist} />
-            : <NoResult />
-          }
+          {albumsByArtist?.length ? (
+            <MusicList data={albumsByArtist} />
+          ) : (
+            <NoResult />
+          )}
         </>
-      }
+      )}
     </Container>
   );
 }

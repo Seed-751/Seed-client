@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 import styled from "styled-components";
 import { CheckCircle, SmsFailed } from "@material-ui/icons/";
 
-import Button from "../shared/Button";
+import Button from "../Shared/Button";
 import { confirm } from "../../reducers/noticeSlice";
 import { NOTICE } from "../../constants";
 
