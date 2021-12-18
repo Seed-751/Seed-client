@@ -8,7 +8,7 @@ const Wrapper = styled.nav`
   box-sizing: border-box;
   background-color: ${({ theme }) => theme.color.lightBlack};
 
-  h1 {
+  strong {
     font-size: 30px;
     color: ${({ theme }) => theme.color.green};
   }
@@ -37,7 +37,7 @@ const Wrapper = styled.nav`
 export default function Navigation() {
   return (
     <Wrapper>
-      <h1><Link to="/">Seed</Link></h1>
+      <strong><Link to="/">Seed</Link></strong>
       <nav>
         <ul>
           <li>

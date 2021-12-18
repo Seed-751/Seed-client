@@ -13,7 +13,7 @@ const Wrapper = styled.div`
   gap: 10px;
   width: 100%;
 
-  h1 {
+  strong {
     font-size: 25px;
   }
 `;
@@ -49,7 +49,7 @@ export default function PlayList({ musics }) {
 
   return (
     <Wrapper>
-      <h1>Tracks</h1>
+      <strong>Tracks</strong>
       {musics?.map((music) => {
         const { title, track, _id } = music;
         const currentTrack = track.split("/")[0];

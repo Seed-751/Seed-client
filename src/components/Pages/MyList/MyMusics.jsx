@@ -24,7 +24,7 @@ const MusicBox = styled.div`
 export default function MyMusics({ myMusics }) {
   return (
     <Container>
-      <h1>My Musics</h1>
+      <strong>My Musics</strong>
       <MusicBox>
         {myMusics?.map((music) => (
           <Link key={music._id} to={`/musics/${music._id}`} className="link">

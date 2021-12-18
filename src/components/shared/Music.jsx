@@ -42,7 +42,7 @@ const ImgBox = styled.div`
   position: relative;
   width: 100%;
   margin-top: 0 auto;
-  box-shadow: 2px 0px 10px 1px rgba(0,0,0,0.3);
+  box-shadow: 2px 0px 10px 1px rgba(0, 0, 0, 0.3);
 `;
 
 const Status = styled.div`
@@ -61,10 +61,10 @@ const InfoBox = styled.div`
   justify-content: center;
   line-height: 1.5;
 
-  h1 {
-    overflow:hidden;
-    text-overflow:ellipsis;
-    white-space:nowrap;
+  span {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 `;
 
@@ -72,7 +72,7 @@ export default function Music({ music }) {
   const { title, image: url, artist, funding } = music;
   const { name } = artist;
   const { target, amount } = funding;
-  const status = amount / target * 100;
+  const status = (amount / target) * 100;
 
   return (
     <Wrapper>
@@ -81,7 +81,7 @@ export default function Music({ music }) {
         <Status>{status.toFixed(1)}%</Status>
       </ImgBox>
       <InfoBox>
-        <h1>{title}</h1>
+        <span>{title}</span>
         <p>{name}</p>
       </InfoBox>
     </Wrapper>

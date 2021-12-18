@@ -13,7 +13,7 @@ const MusicBox = styled.div`
   display: grid;
   grid-template-columns: repeat(4, 1fr);
   row-gap: 20px;
-	column-gap: 20px;
+  column-gap: 20px;
   margin-top: 10px;
 
   .link {
@@ -24,14 +24,10 @@ const MusicBox = styled.div`
 export default function MyFundings({ myFundings }) {
   return (
     <Container>
-      <h1>My Fundings</h1>
+      <strong>My Fundings</strong>
       <MusicBox>
         {myFundings?.map((music) => (
-          <Link
-            key={music._id}
-            to={`/musics/${music._id}`}
-            className="link"
-          >
+          <Link key={music._id} to={`/musics/${music._id}`} className="link">
             <Music key={music._id} music={music} />
           </Link>
         ))}
