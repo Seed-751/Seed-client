@@ -68,7 +68,7 @@ const InfoBox = styled.div`
   }
 `;
 
-export default function Music({ music }) {
+function Music({ music }) {
   const { title, image: url, artist, funding } = music;
   const { name } = artist;
   const { target, amount } = funding;
@@ -96,3 +96,5 @@ Music.propTypes = {
     funding: PropTypes.object,
   }).isRequired,
 };
+
+export default React.memo(Music);
